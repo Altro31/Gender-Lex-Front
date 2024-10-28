@@ -1,0 +1,32 @@
+---
+import "@/base.css"
+import { buildPageTitle } from "@/utils/text/buid-page-title"
+import { ClientRouter } from "astro:transitions"
+import Theme from "@/components/Theme.astro"
+import Sidebar from "@/components/Sidebar.astro"
+
+interface Props {
+    title?: string
+}
+const { title } = Astro.props
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{buildPageTitle(title)}</title>
+        <ClientRouter />
+    </head>
+    <body class="has-[#theme:checked]:dark min-h-screen">
+        <Theme />
+        <section class="flex h-screen">
+            <Sidebar />
+            <main class="flex-1">
+                <slot> No Content Provided </slot>
+            </main>
+        </section>
+    </body>
+</html>

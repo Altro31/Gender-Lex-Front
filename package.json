@@ -1,0 +1,47 @@
+{
+    "name": "gender-lex-front",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "prepare": "husky || node ./.husky/husky-fail.js",
+        "lint": "oxlint -c ./oxlintrc.json --fix --fix-suggestions"
+    },
+    "dependencies": {
+        "@astrojs/check": "0.9.4",
+        "@astrojs/tailwind": "5.1.2",
+        "@astrojs/vue": "^4.5.2",
+        "@tailwindcss/typography": "^0.5.15",
+        "@vee-validate/zod": "^4.14.6",
+        "@vueuse/core": "^11.2.0",
+        "astro": "5.0.0-beta.4",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.1",
+        "lucide-vue-next": "^0.454.0",
+        "prettier": "^3.3.3",
+        "prettier-plugin-tailwindcss": "^0.6.8",
+        "radix-vue": "^1.9.8",
+        "tailwind-merge": "^2.5.4",
+        "tailwindcss": "^3.4.13",
+        "tailwindcss-animate": "^1.0.7",
+        "typescript": "^5.6.3",
+        "vee-validate": "^4.14.6",
+        "vue": "^3.5.12",
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
+        "oxlint": "^0.10.3",
+        "prettier-plugin-astro": "^0.14.1",
+        "shadcn-vue": "^0.11.0"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,astro,vue}": "oxlint -c ./oxlintrc.json --fix --fix-suggestions",
+        "*.{js,jsx,ts,tsx,astro,vue,json}": "prettier -w"
+    }
+}
