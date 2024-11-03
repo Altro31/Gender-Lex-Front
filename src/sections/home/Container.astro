@@ -2,6 +2,7 @@
 import { Card } from "@/components/ui/card"
 import Form from "./Form.vue"
 import { MailIcon, TextIcon, UserIcon, ZapIcon } from "lucide-vue-next"
+import { actions } from "astro:actions"
 
 const prompts = [
     {
@@ -44,5 +45,5 @@ const prompts = [
             ))
         }
     </div>
-    <Form />
+    <Form client:load />
 </div>
