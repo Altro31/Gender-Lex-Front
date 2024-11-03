@@ -34,12 +34,12 @@
 </script>
 
 <template>
-    <div class="mb-8 flex justify-center">
+    <a class="mb-8 flex justify-center" href="/">
         <Button variant="outline" size="sm" class="gap-2">
             <RefreshCwIcon class="h-4 w-4" />
-            Refresh Prompts
+            Empezar de nuevo
         </Button>
-    </div>
+    </a>
 
     <div class="relative">
         <Input
@@ -49,21 +49,24 @@
             v-model="text"
         />
         <div class="flex h-full items-center justify-end gap-2 pr-2">
-            <Button variant="ghost" size="icon" class="h-8 w-8">
+            <Button variant="ghost" size="icon" class="h-8 w-8" disabled>
                 <PaperclipIcon class="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="icon" class="h-8 w-8">
+            <Button variant="ghost" size="icon" class="h-8 w-8" disabled>
                 <ImageIcon class="h-4 w-4" />
             </Button>
-            <Button size="sm" class="rounded-lg" @click.prevent="handleSubmit">
+            <Button
+                size="sm"
+                class="rounded-lg"
+                @click.prevent="handleSubmit"
+                :disabled="!text"
+            >
                 Send</Button
             >
         </div>
     </div>
     <div v-if="result.length" class="container mx-auto space-y-6 p-4">
-        <h1 class="mb-6 text-3xl font-bold">
-            Resultados del Análisis de Expresiones
-        </h1>
+        <h1 class="mb-6 text-3xl font-bold">Resultados del Análisis</h1>
 
         <div
             v-for="(expression, index) in result"
