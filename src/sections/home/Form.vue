@@ -66,7 +66,7 @@
                 @click.prevent="handleSubmit"
                 :disabled="!text"
             >
-                Send</Button
+                Enviar</Button
             >
         </div>
     </div>
