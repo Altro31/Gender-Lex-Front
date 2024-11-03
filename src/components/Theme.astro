@@ -1,8 +1,37 @@
-<label>
-    <input
-        type="checkbox"
-        id="theme"
-        class="absolute right-3.5 top-3.5"
-        @change="handleChange"
-    />
-</label>
+---
+import { SunIcon, MoonIcon } from "lucide-vue-next"
+
+const isDark = Astro.cookies.get("THEME_DARK")?.boolean() ?? false
+const checked = isDark ? { checked: true } : {}
+---
+
+<astro-theme>
+    <label
+        class="group/theme absolute right-3.5 top-3.5 select-none cursor-pointer"
+    >
+        <input
+            type="checkbox"
+            id="theme"
+            class="hidden"
+            value="off"
+            {...checked}
+        />
+        <MoonIcon class="hidden group-has-[#theme:checked]/theme:inline" />
+        <SunIcon class="group-has-[#theme:checked]/theme:hidden" />
+    </label>
+</astro-theme>
+
+<script>
+    import Cookies from "js-cookie"
+    class Theme extends HTMLElement {
+        connectedCallback() {
+            const input: HTMLInputElement | null = this.querySelector("#theme")
+            input?.addEventListener("input", (e) => {
+                const target = e.target as HTMLInputElement
+                Cookies.set("THEME_DARK", target.checked.toString())
+            })
+        }
+    }
+
+    customElements.define("astro-theme", Theme)
+</script>
