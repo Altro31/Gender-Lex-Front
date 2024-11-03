@@ -31,15 +31,20 @@
         if (biasRate < 0.7) return "bg-yellow-500"
         return "bg-red-500"
     }
+
+    function resetState() {
+        text.value = ""
+        result.value = []
+    }
 </script>
 
 <template>
-    <a class="mb-8 flex justify-center" href="/">
-        <Button variant="outline" size="sm" class="gap-2">
+    <div class="mb-8 flex justify-center">
+        <Button variant="outline" size="sm" class="gap-2" @click="resetState">
             <RefreshCwIcon class="h-4 w-4" />
             Empezar de nuevo
         </Button>
-    </a>
+    </div>
 
     <div class="relative">
         <Input
