@@ -1,12 +1,17 @@
 ---
 import { Card } from "@/components/ui/card"
-import Form from "./Form.vue"
 import {
     FileText as FileTextIcon,
     RefreshCw as RefreshCwIcon,
     SearchCode as SearchCodeIcon,
     ChartColumn as ChartColumnIcon,
 } from "lucide-astro"
+import { actions } from "astro:actions"
+import RefreshButton from "@/sections/home/components/RefreshButton.astro"
+import FormContainer from "@/sections/home/components/form/FormContainer.vue"
+import FormBody from "@/sections/home/components/form/FormBody.vue"
+import SendButton from "@/sections/home/components/form/SendButton.vue"
+import Result from "./components/Result.astro"
 
 const prompts = [
     {
@@ -32,7 +37,9 @@ const prompts = [
 ]
 ---
 
-<div class="size-full grid place-content-center">
+<div
+    class="size-full grid place-content-center group-has-[#theme:checked]:bg-red-500"
+>
     <div class="w-fit">
         <div class="mb-8 space-y-2">
             <h1
@@ -44,7 +51,10 @@ const prompts = [
             </h1>
         </div>
     </div>
-    <div class="mb-8 flex gap-4 flex-wrap justify-center">
+    <div
+        class="mb-8 flex gap-4 flex-wrap justify-center"
+        transition:name="info"
+    >
         {
             prompts.map(({ icon: Icon, text, ready }) => (
                 <Card
@@ -66,5 +76,11 @@ const prompts = [
             ))
         }
     </div>
-    <Form client:load />
+    <RefreshButton />
+
+    <form action={actions.ai.ollama.basicCall} method="POST" class="space-y-2">
+        <FormContainer client:load />
+    </form>
+
+    <Result />
 </div>

@@ -3,10 +3,11 @@ import { z } from "astro:schema"
 import { genderLex } from "@/services/domain/gender-lex.ts"
 
 export const basicCall = defineAction({
+    accept: "form",
     input: z.object({
-        prompt: z.string(),
+        text: z.string(),
     }),
-    async handler(input) {
-        return genderLex(input.prompt)
+    handler(input) {
+        return genderLex(input.text)
     },
 })

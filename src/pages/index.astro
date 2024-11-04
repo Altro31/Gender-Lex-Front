@@ -1,6 +1,9 @@
 ---
 import RootLayout from "@/layouts/RootLayout.astro"
 import Container from "@/sections/home/Container.astro"
+import { actions } from "astro:actions"
+
+const result = Astro.getActionResult(actions.ai.ollama.basicCall)
 ---
 
 <RootLayout title="Home">
