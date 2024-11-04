@@ -3,13 +3,15 @@
     import { useFieldValue } from "vee-validate"
     import { ref } from "vue"
     import { RefreshCw as RefreshCwIcon } from "lucide-vue-next"
+    import { navigate } from "astro:transitions/client"
+    import { actions } from "astro:actions"
 
     const text = useFieldValue("text")
     const loading = ref(false)
 
     function handleClick(e: Event) {
         const target = e.target as HTMLButtonElement
-        target.form?.submit()
+        target.click()
         loading.value = true
     }
 </script>

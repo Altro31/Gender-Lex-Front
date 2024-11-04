@@ -45,8 +45,9 @@ const expressions: Expression[] = result?.data?.expressions ?? []
                                         />
                                     </div>
                                     <span class="text-sm font-medium">
-                                        {(expression.biasRate * 100).toFixed(0)}
-                                        %
+                                        {(expression.biasRate * 100).toFixed(
+                                            0,
+                                        ) + "%"}
                                     </span>
                                 </div>
                             </div>
