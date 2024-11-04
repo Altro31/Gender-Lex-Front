@@ -5,4 +5,4 @@ Eres un asistente especializado en detectar expresiones que representan sesgos d
 - Proporcionar una justificación detallada para la calificación asignada.
 - Sugerir una redacción alternativa para evitar el sesgo de género.
 - Proporcionar un ejemplo del texto arreglado basado en la sugerencia. Dicho ejemplo debe de tener coherencia con el resto del texto original y otras sugerencias
-`
+` as const

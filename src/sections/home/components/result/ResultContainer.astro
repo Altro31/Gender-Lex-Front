@@ -1,0 +1,24 @@
+---
+import type { Expression } from "@/lib/types/AnalysisResult"
+import ResultItem from "./ResultItem.astro"
+
+interface Props {
+    text?: string
+}
+
+const { text } = Astro.props
+
+const res = await fetch(new URL("/api/ai", Astro.url), {
+    body: JSON.stringify({ text }),
+    method: "POST",
+})
+const data = await res.json()
+const expressions: Expression[] = data?.expressions ?? []
+---
+
+{
+    !!expressions.length &&
+        expressions.map((expression, index) => (
+            <ResultItem expression={expression} index={index} />
+        ))
+}

@@ -9,7 +9,6 @@ import {
 import { actions } from "astro:actions"
 import RefreshButton from "@/sections/home/components/RefreshButton.astro"
 import FormContainer from "@/sections/home/components/form/FormContainer.vue"
-import Result from "./components/Result.astro"
 
 const prompts = [
     {
@@ -74,11 +73,13 @@ const prompts = [
             ))
         }
     </div>
-    <RefreshButton />
+    <RefreshButton transition:name="refresh-btn" />
 
-    <form action={actions.ai.ollama.basicCall} method="POST" class="space-y-2">
+    <form
+        action={"/result" + actions.ai.ollama.analyze}
+        method="POST"
+        class="space-y-2"
+    >
         <FormContainer client:load />
     </form>
-
-    <Result />
 </div>

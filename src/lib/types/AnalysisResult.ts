@@ -1,5 +1,6 @@
-export interface AnalysisResult {
-    text: string
-    suggestions: string[]
-    chartData: any
+export interface Expression {
+    content: string
+    biasRate: number
+    justification: string
+    fixedExample: string
 }

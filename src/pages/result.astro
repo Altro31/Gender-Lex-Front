@@ -1,0 +1,26 @@
+---
+import RootLayout from "@/layouts/RootLayout.astro"
+import RefreshButton from "@/sections/home/components/RefreshButton.astro"
+import ResultContainer from "@/sections/home/components/result/ResultContainer.astro"
+import ResultItemSkeleton from "@/sections/home/components/result/ResultItem.skeleton.astro"
+import { actions } from "astro:actions"
+
+const res = Astro.getActionResult(actions.ai.ollama.analyze)
+const text = res?.data?.text
+
+if (!text) {
+    return Astro.redirect("/")
+}
+---
+
+<RootLayout>
+    <section class="p-4">
+        <RefreshButton transition:name="refresh-btn" />
+        <div class="container mx-auto space-y-6 p-4">
+            <h1 class="mb-6 text-3xl font-bold">Resultados del Análisis</h1>
+            <ResultContainer server:defer text={text}>
+                <ResultItemSkeleton slot="fallback" />
+            </ResultContainer>
+        </div>
+    </section>
+</RootLayout>
