@@ -18,7 +18,7 @@
     <div>
         <Button
             size="sm"
-            class="rounded-lg"
+            class="rounded-lg transition-opacity"
             :disabled="!text || loading"
             type="submit"
             @click="handleClick"
