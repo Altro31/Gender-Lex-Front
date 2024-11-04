@@ -2,7 +2,7 @@
     "$schema": "https://openapi.vercel.sh/vercel.json",
     "framework": "astro",
     "functions": {
-        "src/pages/api/ai.ts": {
+        "api/ai.ts": {
             "maxDuration": 60
         }
     },
