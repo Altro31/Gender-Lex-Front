@@ -1,8 +1,12 @@
 ---
+import { SignIn } from "auth-astro/components"
+import { getSession } from "auth-astro/server"
 import { Clock as ClockIcon, Plus as PlusIcon } from "lucide-astro"
 import { Button } from "~ui/button"
 import ToggleButton from "~ui/sidebar/ToggleButton.astro"
 import UserAvatar from "~ui/sidebar/UserAvatar.vue"
+import Google from "@/components/Google.vue"
+const session = await getSession(Astro.request)
 ---
 
 <nav class="flex flex-col gap-4 border-r p-4 justify-between">
@@ -17,5 +21,17 @@ import UserAvatar from "~ui/sidebar/UserAvatar.vue"
             <ClockIcon class="h-5 w-5" />
         </Button>
     </div>
-    <UserAvatar client:load class="justify-self-end" />
+    {
+        session ? (
+            <UserAvatar
+                client:load
+                img={session?.user?.image ?? ""}
+                name={session?.user?.name ?? ""}
+            />
+        ) : (
+            <SignIn provider="google">
+                <Google client:load />
+            </SignIn>
+        )
+    }
 </nav>

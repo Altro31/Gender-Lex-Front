@@ -1,13 +1,16 @@
 <script setup lang="ts">
+    import { signOut } from "@/utils/auth/sign-out"
     import { Avatar, AvatarImage, AvatarFallback } from "~ui/avatar"
-    import { signIn } from "auth-astro/client"
+
+    const props = defineProps<{
+        name: string
+        img: string
+    }>()
 </script>
 
 <template>
-    <Avatar @click="signIn('google')">
-        <AvatarImage
-            src="https://astro.build/_astro/fail-houston.ZVrSplAD.webp"
-        />
-        <AvatarFallback>A</AvatarFallback>
+    <Avatar @click="signOut()" class="cursor-pointer">
+        <AvatarImage :src="img" />
+        <AvatarFallback />
     </Avatar>
 </template>

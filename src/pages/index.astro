@@ -4,6 +4,7 @@ import ResultContainer from "@/sections/home/components/result/ResultContainer.a
 import ResultItemSkeleton from "@/sections/home/components/result/ResultItem.skeleton.astro"
 import Container from "@/sections/home/Container.astro"
 import { actions } from "astro:actions"
+import { getSession } from "auth-astro/server"
 
 const res = Astro.getActionResult(actions.analyzeText)
 const text = res?.data?.text
