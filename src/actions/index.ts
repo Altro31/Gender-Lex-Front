@@ -1,5 +1,14 @@
-import * as ai from "@/actions/ai"
+import { defineAction } from "astro:actions"
+import { z } from "astro:schema"
 
 export const server = {
-    ai,
+    analyzeText: defineAction({
+        accept: "form",
+        input: z.object({
+            text: z.string(),
+        }),
+        async handler(input) {
+            return input
+        },
+    }),
 }

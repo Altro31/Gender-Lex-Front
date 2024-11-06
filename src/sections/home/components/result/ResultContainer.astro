@@ -1,24 +1,23 @@
 ---
-import type { Expression } from "@/lib/types/AnalysisResult"
+import { genderLex } from "@/services/domain/gender-lex"
 import ResultItem from "./ResultItem.astro"
 
 interface Props {
-    text?: string
+    text: string
 }
 
 const { text } = Astro.props
 
-const res = await fetch(new URL("/api/ai", Astro.url), {
-    body: JSON.stringify({ text }),
-    method: "POST",
-})
-const data = await res.json()
-const expressions: Expression[] = data?.expressions ?? []
+const { expressions } = await genderLex(text)
 ---
 
-{
-    !!expressions.length &&
-        expressions.map((expression, index) => (
-            <ResultItem expression={expression} index={index} />
-        ))
-}
+<ul class="space-y-4 p-10">
+    {
+        !!expressions.length &&
+            expressions.map((expression, index) => (
+                <li>
+                    <ResultItem expression={expression} index={index} />
+                </li>
+            ))
+    }
+</ul>

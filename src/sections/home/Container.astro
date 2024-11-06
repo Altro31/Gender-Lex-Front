@@ -1,14 +1,13 @@
 ---
 import { Card } from "@/components/ui/card"
+import RefreshButton from "@/sections/home/components/RefreshButton.astro"
 import {
+    ChartColumn as ChartColumnIcon,
     FileText as FileTextIcon,
     RefreshCw as RefreshCwIcon,
     SearchCode as SearchCodeIcon,
-    ChartColumn as ChartColumnIcon,
 } from "lucide-astro"
-import { actions } from "astro:actions"
-import RefreshButton from "@/sections/home/components/RefreshButton.astro"
-import FormContainer from "@/sections/home/components/form/FormContainer.vue"
+import FormContainer from "./components/form/FormContainer.astro"
 
 const prompts = [
     {
@@ -74,12 +73,5 @@ const prompts = [
         }
     </div>
     <RefreshButton transition:name="refresh-btn" />
-
-    <form
-        action={"/result" + actions.ai.ollama.analyze}
-        method="POST"
-        class="space-y-2"
-    >
-        <FormContainer client:load />
-    </form>
+    <FormContainer />
 </div>

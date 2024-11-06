@@ -30,6 +30,7 @@
         "js-cookie": "^3.0.5",
         "lucide-astro": "^0.454.0",
         "lucide-vue-next": "^0.454.0",
+        "nanostores": "^0.11.3",
         "prettier": "^3.3.3",
         "prettier-plugin-tailwindcss": "^0.6.8",
         "radix-vue": "^1.9.8",
@@ -47,7 +48,7 @@
         "lint-staged": "^15.2.10",
         "oxlint": "^0.10.3",
         "prettier-plugin-astro": "^0.14.1",
-        "shadcn-vue": "^0.11.0"
+        "shadcn-vue": "^0.11.2"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,astro,vue}": "oxlint -c ./oxlintrc.json --fix --fix-suggestions",

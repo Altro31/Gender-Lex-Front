@@ -1,5 +1,5 @@
 ---
-import { SunIcon, MoonIcon } from "lucide-vue-next"
+import { Sun as SunIcon, Moon as MoonIcon } from "lucide-astro"
 
 const isDark = Astro.cookies.get("THEME_DARK")?.boolean() ?? false
 const checked = isDark ? { checked: true } : {}

@@ -1,0 +1,21 @@
+---
+import { Clock as ClockIcon, Plus as PlusIcon } from "lucide-astro"
+import { Button } from "~ui/button"
+import ToggleButton from "~ui/sidebar/ToggleButton.astro"
+import UserAvatar from "~ui/sidebar/UserAvatar.vue"
+---
+
+<nav class="flex flex-col gap-4 border-r p-4 justify-between">
+    <div class="flex flex-col gap-4">
+        <ToggleButton />
+        <a href="/">
+            <Button variant="ghost" size="icon" class="rounded-xl">
+                <PlusIcon class="h-5 w-5" />
+            </Button>
+        </a>
+        <Button variant="ghost" size="icon" class="rounded-xl">
+            <ClockIcon class="h-5 w-5" />
+        </Button>
+    </div>
+    <UserAvatar client:load class="justify-self-end" />
+</nav>

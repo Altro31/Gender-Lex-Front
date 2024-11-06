@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import type { HTMLAttributes } from "vue"
+    import type { ButtonHTMLAttributes, HTMLAttributes } from "vue"
     import { cn } from "@/lib/utils"
     import { Primitive, type PrimitiveProps } from "radix-vue"
     import { type ButtonVariants, buttonVariants } from "."
@@ -8,6 +8,8 @@
         variant?: ButtonVariants["variant"]
         size?: ButtonVariants["size"]
         class?: HTMLAttributes["class"]
+        disabled?: ButtonHTMLAttributes["disabled"]
+        id?: ButtonHTMLAttributes["id"]
     }
 
     const props = withDefaults(defineProps<Props>(), {

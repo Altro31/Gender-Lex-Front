@@ -2,7 +2,7 @@
 import type { Expression } from "@/lib/types/AnalysisResult"
 
 interface Props {
-    expression: Expression
+    expression: Partial<Expression>
     index: number
 }
 
@@ -24,23 +24,24 @@ function getBiasColor(biasRate: number): string {
             Contenido original: {expression.content}
         </p>
         <div class="space-y-4">
-            <div>
-                <h3 class="mb-2 font-semibold">Tasa de Sesgo</h3>
-                <div class="flex items-center space-x-2">
-                    <div
-                        class="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700"
-                    >
-                        <div
-                            class={`h-2.5 rounded-full ${getBiasColor(expression.biasRate)}`}
-                            style={`width: ${expression.biasRate * 100}%`}
-                        >
+            {
+                expression.biasRate !== undefined && (
+                    <div>
+                        <h3 class="mb-2 font-semibold">Tasa de Sesgo</h3>
+                        <div class="flex items-center space-x-2">
+                            <div class="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                                <div
+                                    class={`h-2.5 rounded-full ${getBiasColor(expression.biasRate)}`}
+                                    style={`width: ${expression.biasRate * 100}%`}
+                                />
+                            </div>
+                            <span class="text-sm font-medium">
+                                {(expression.biasRate * 100).toFixed(0) + "%"}
+                            </span>
                         </div>
                     </div>
-                    <span class="text-sm font-medium">
-                        {(expression.biasRate * 100).toFixed(0) + "%"}
-                    </span>
-                </div>
-            </div>
+                )
+            }
             <div>
                 <h3 class="mb-2 font-semibold">Justificación</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400">

@@ -1,0 +1,22 @@
+---
+import { Input } from "~ui/input"
+---
+
+<Input
+    type="text"
+    class="rounded-xl pl-4 pr-24"
+    placeholder="Analizar un texto..."
+    id="analyze-text"
+    name="text"
+/>
+
+<script>
+    import { $analyzeText } from "@/utils/stores/analyle-text"
+
+    const text: HTMLInputElement | null =
+        document.querySelector("#analyze-text")
+    text?.addEventListener("input", (e) => {
+        const target = e.target as HTMLInputElement
+        $analyzeText.set(target.value)
+    })
+</script>

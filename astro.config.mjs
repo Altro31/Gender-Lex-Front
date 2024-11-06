@@ -13,13 +13,9 @@ import auth from "auth-astro"
 export default defineConfig({
     output: "server",
 
-    integrations: [
-        tailwind({
-            applyBaseStyles: false,
-        }),
-        vue(),
-        auth(),
-    ],
+    integrations: [tailwind({
+        applyBaseStyles: false,
+    }), vue(), auth()],
 
     env: {
         schema: {

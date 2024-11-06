@@ -1,8 +1,24 @@
 ---
 import RootLayout from "@/layouts/RootLayout.astro"
+import ResultContainer from "@/sections/home/components/result/ResultContainer.astro"
+import ResultItemSkeleton from "@/sections/home/components/result/ResultItem.skeleton.astro"
 import Container from "@/sections/home/Container.astro"
+import { actions } from "astro:actions"
+
+const res = Astro.getActionResult(actions.analyzeText)
+const text = res?.data?.text
 ---
 
 <RootLayout title="Home">
-    <Container />
+    {
+        !text ? (
+            <Container />
+        ) : (
+            <ResultContainer text={text} server:defer>
+                <section class="p-10" slot="fallback">
+                    <ResultItemSkeleton />
+                </section>
+            </ResultContainer>
+        )
+    }
 </RootLayout>
