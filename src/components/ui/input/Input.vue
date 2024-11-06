@@ -1,16 +1,12 @@
 <script setup lang="ts">
-    import type { HTMLAttributes, InputHTMLAttributes } from "vue"
     import { cn } from "@/lib/utils"
     import { useVModel } from "@vueuse/core"
+    import type { HTMLAttributes } from "vue"
 
     const props = defineProps<{
         defaultValue?: string | number
         modelValue?: string | number
         class?: HTMLAttributes["class"]
-        type?: InputHTMLAttributes["type"]
-        placeholder?: InputHTMLAttributes["placeholder"]
-        id?: InputHTMLAttributes["id"]
-        name?: InputHTMLAttributes["name"]
     }>()
 
     const emits = defineEmits<{

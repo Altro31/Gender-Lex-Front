@@ -3,6 +3,7 @@ import { actions } from "astro:actions"
 import FormAnalyzeText from "./FormAnalyzeText.astro"
 import { Button } from "~ui/button"
 import { RefreshCw as RefreshCwIcon } from "lucide-astro"
+import FormContainerButton from "./FormContainerButton.vue"
 ---
 
 <form
@@ -13,22 +14,7 @@ import { RefreshCw as RefreshCwIcon } from "lucide-astro"
 >
     <FormAnalyzeText />
     <div class="flex h-full items-center justify-end gap-2 pr-2">
-        <Button
-            size="sm"
-            class="rounded-lg transition-opacity"
-            disabled={true}
-            id="submit-button"
-        >
-            <div class="group-data-[loading=false]:hidden flex gap-1">
-                <span class="animate-spin">
-                    <RefreshCwIcon />
-                </span>
-                <span>Analizando</span>
-            </div>
-            <span data-loading="false" class="group-data-[loading=true]:hidden"
-                >Enviar</span
-            >
-        </Button>
+        <FormContainerButton />
     </div>
 </form>
 

@@ -13,9 +13,13 @@ import auth from "auth-astro"
 export default defineConfig({
     output: "server",
 
-    integrations: [tailwind({
-        applyBaseStyles: false,
-    }), vue(), auth()],
+    integrations: [
+        tailwind({
+            applyBaseStyles: false,
+        }),
+        vue(),
+        auth(),
+    ],
 
     env: {
         schema: {
@@ -30,17 +34,25 @@ export default defineConfig({
             AUTH_TRUST_HOST: envField.boolean({
                 access: "secret",
                 context: "server",
-                default: false
+                default: false,
             }),
             AUTH_SECRET: envField.string({
                 access: "public",
                 context: "client",
-                min: 32
+                min: 32,
+            }),
+            AUTH_GOOGLE_ID: envField.string({
+                access: "secret",
+                context: "server",
+            }),
+            AUTH_GOOGLE_SECRET: envField.string({
+                access: "secret",
+                context: "server",
             }),
         },
     },
 
     adapter: vercel({
-        maxDuration: 60
+        maxDuration: 60,
     }),
 })

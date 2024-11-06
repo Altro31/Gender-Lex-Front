@@ -8,8 +8,6 @@
         variant?: ButtonVariants["variant"]
         size?: ButtonVariants["size"]
         class?: HTMLAttributes["class"]
-        disabled?: ButtonHTMLAttributes["disabled"]
-        id?: ButtonHTMLAttributes["id"]
     }
 
     const props = withDefaults(defineProps<Props>(), {
