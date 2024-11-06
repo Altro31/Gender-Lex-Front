@@ -12,12 +12,17 @@ const session = await getSession(Astro.request)
 <nav class="flex flex-col gap-4 border-r p-4 justify-between">
     <div class="flex flex-col gap-4">
         <ToggleButton />
-        <a href="/">
+        <a href="/" aria-label="Nuevo análisis">
             <Button variant="ghost" size="icon" class="rounded-xl">
                 <PlusIcon class="h-5 w-5" />
             </Button>
         </a>
-        <Button variant="ghost" size="icon" class="rounded-xl">
+        <Button
+            variant="ghost"
+            size="icon"
+            class="rounded-xl"
+            aria-label="Historial"
+        >
             <ClockIcon class="h-5 w-5" />
         </Button>
     </div>
