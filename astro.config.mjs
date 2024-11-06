@@ -12,7 +12,6 @@ import auth from "auth-astro"
 // https://astro.build/config
 export default defineConfig({
     output: "server",
-
     integrations: [
         tailwind({
             applyBaseStyles: false,
@@ -55,4 +54,8 @@ export default defineConfig({
     adapter: vercel({
         maxDuration: 60,
     }),
+
+    image: {
+        domains: ["lh3.googleusercontent.com"],
+    },
 })
