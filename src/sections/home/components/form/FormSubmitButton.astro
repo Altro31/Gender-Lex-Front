@@ -1,0 +1,45 @@
+---
+import { RefreshCw as RefreshCwIcon } from "lucide-astro"
+import { Button } from "~ui/button"
+---
+
+<form-submit-button>
+    <Button size="sm" className="rounded-lg transition-opacity" disabled>
+        <div class="flex gap-1 group-data-[loading=false]:hidden items-center">
+            <span class="animate-spin">
+                <RefreshCwIcon />
+            </span>
+            <span>Analizando</span>
+        </div>
+        <span data-loading="false" class="group-data-[loading=true]:hidden"
+            >Enviar</span
+        >
+    </Button>
+</form-submit-button>
+
+<script>
+    import { $analyzeText } from "@/utils/stores/analyle-text"
+
+    class FormSubmitButton extends HTMLElement {
+        connectedCallback() {
+            const submitter = this.querySelector<HTMLButtonElement>("button")
+
+            const form = document.querySelector<HTMLFormElement>(
+                "form:has(analyze-text-input)",
+            )
+
+            if (!submitter) return
+
+            form?.addEventListener("submit", () => {
+                form.setAttribute("data-loading", "true")
+                if (submitter) submitter.disabled = true
+            })
+
+            $analyzeText.subscribe((value) => {
+                if (submitter) submitter.disabled = !value
+            })
+        }
+    }
+
+    customElements.define("form-submit-button", FormSubmitButton)
+</script>

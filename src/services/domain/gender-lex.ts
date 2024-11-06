@@ -13,12 +13,11 @@ export async function genderLex(text: string) {
     return object
 }
 
-export async function genderLexStream(text: string) {
-    const { partialObjectStream } = await streamObject({
+export function genderLexStream(text: string) {
+    return streamObject({
         model: models.Gemini_1_5_pro,
         prompt: text,
         system: genderLexSystemPrompt,
         schema: genderLexSchema,
     })
-    return partialObjectStream
 }

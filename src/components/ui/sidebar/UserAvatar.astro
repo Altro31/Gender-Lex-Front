@@ -10,7 +10,6 @@ const name = session?.user?.name ?? ""
 {img && <Avatar src={img} alt={name} />}
 
 <script>
-    import { signOut } from "@/utils/auth/sign-out"
-
-    document.querySelector("img")?.addEventListener("click", signOut)
+    import { signOut } from "auth-astro/client"
+    document.querySelector("img")?.addEventListener("click", () => signOut())
 </script>

@@ -1,16 +1,31 @@
 ---
-import FormAnalyzeTextInput from "./FormAnalyzeTextInput.vue"
+import { Input } from "~ui/input"
 ---
 
-<FormAnalyzeTextInput />
+<analyze-text-input>
+    <Input
+        type="text"
+        className="rounded-xl pl-4 pr-24"
+        placeholder="Analizar un texto..."
+        id="analyze-text"
+        name="text"
+    />
+</analyze-text-input>
 
 <script>
     import { $analyzeText } from "@/utils/stores/analyle-text"
 
-    const text: HTMLInputElement | null =
-        document.querySelector("#analyze-text")
-    text?.addEventListener("input", (e) => {
-        const target = e.target as HTMLInputElement
-        $analyzeText.set(target.value)
-    })
+    class AnalyzeTextInput extends HTMLElement {
+        connectedCallback() {
+            const text: HTMLInputElement | null =
+                this.querySelector("#analyze-text")
+            text?.addEventListener("input", (e) => {
+                const target = e.target as HTMLInputElement | null
+                if (!target) return
+                $analyzeText.set(target.value)
+            })
+        }
+    }
+
+    customElements.define("analyze-text-input", AnalyzeTextInput)
 </script>

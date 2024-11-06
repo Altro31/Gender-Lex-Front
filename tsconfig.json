@@ -6,6 +6,7 @@
             "~ui/*": ["src/components/ui/*"],
             "@/*": ["./src/*"]
         },
-        "jsx": "preserve"
+        "jsx": "react-jsx",
+        "jsxImportSource": "react"
     }
 }

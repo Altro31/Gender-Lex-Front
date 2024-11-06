@@ -1,9 +1,7 @@
 ---
 import { actions } from "astro:actions"
 import FormAnalyzeText from "./FormAnalyzeText.astro"
-import { Button } from "~ui/button"
-import { RefreshCw as RefreshCwIcon } from "lucide-astro"
-import FormContainerButton from "./FormContainerButton.vue"
+import FormSubmitButton from "./FormSubmitButton.astro"
 ---
 
 <form
@@ -14,25 +12,6 @@ import FormContainerButton from "./FormContainerButton.vue"
 >
     <FormAnalyzeText />
     <div class="flex h-full items-center justify-end gap-2 pr-2">
-        <FormContainerButton />
+        <FormSubmitButton />
     </div>
 </form>
-
-<script>
-    import { $analyzeText } from "@/utils/stores/analyle-text"
-
-    const submitter: HTMLButtonElement | null =
-        document.querySelector("#submit-button")
-    const form: HTMLFormElement | null = document.querySelector("form")
-
-    form?.addEventListener("submit", () => {
-        form.setAttribute("data-loading", "true")
-        if (submitter) submitter.disabled = true
-    })
-
-    $analyzeText.subscribe((value) => {
-        if (submitter) submitter.disabled = !value
-    })
-</script>
-
-<script></script>
