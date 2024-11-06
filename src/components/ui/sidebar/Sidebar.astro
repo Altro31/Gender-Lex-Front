@@ -1,11 +1,11 @@
 ---
+import Google from "@/components/Google.astro"
 import { SignIn } from "auth-astro/components"
 import { getSession } from "auth-astro/server"
 import { Clock as ClockIcon, Plus as PlusIcon } from "lucide-astro"
 import { Button } from "~ui/button"
 import ToggleButton from "~ui/sidebar/ToggleButton.astro"
-import UserAvatar from "~ui/sidebar/UserAvatar.vue"
-import Google from "@/components/Google.vue"
+import UserAvatar from "~ui/sidebar/UserAvatar.astro"
 const session = await getSession(Astro.request)
 ---
 
@@ -23,14 +23,10 @@ const session = await getSession(Astro.request)
     </div>
     {
         session ? (
-            <UserAvatar
-                client:load
-                img={session?.user?.image ?? ""}
-                name={session?.user?.name ?? ""}
-            />
+            <UserAvatar />
         ) : (
             <SignIn provider="google">
-                <Google client:load />
+                <Google />
             </SignIn>
         )
     }

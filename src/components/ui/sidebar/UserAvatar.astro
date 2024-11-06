@@ -1,0 +1,16 @@
+---
+import Avatar from "@/components/Avatar.astro"
+import { getSession } from "auth-astro/server"
+
+const session = await getSession(Astro.request)
+const img = session?.user?.image
+const name = session?.user?.name ?? ""
+---
+
+{img && <Avatar src={img} alt={name} />}
+
+<script>
+    import { signOut } from "@/utils/auth/sign-out"
+
+    document.querySelector("img")?.addEventListener("click", signOut)
+</script>
