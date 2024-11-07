@@ -51,6 +51,7 @@ export default defineConfig({
 
     adapter: vercel({
         maxDuration: 60,
+        webAnalytics: { enabled: true }
     }),
 
     image: {
