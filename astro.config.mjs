@@ -20,6 +20,10 @@ export default defineConfig({
 
     env: {
         schema: {
+            DATABASE_URL: envField.string({
+                access: "secret",
+                context: "server",
+            }),
             GROQ_API_KEY: envField.string({
                 access: "secret",
                 context: "server",
