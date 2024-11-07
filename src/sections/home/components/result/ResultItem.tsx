@@ -1,7 +1,8 @@
-import type { Expression } from "@/lib/types/AnalysisResult"
+import type { ExpressionType } from "@/utils/schemas/gender-lex"
+import { Skeleton } from "~ui/skeleton"
 
 interface Props {
-    expression?: Partial<Expression>
+    expression?: Partial<ExpressionType>
     index: number
 }
 
@@ -14,7 +15,7 @@ export default function ResultItem({ expression, index }: Props) {
                         Expresión {index + 1}
                     </h2>
                     <p className="mb-4 text-gray-600 dark:text-gray-400">
-                        Contenido original: {expression.content}
+                        Contenido original: {expression.targetContent}
                     </p>
                     <div className="space-y-4">
                         {expression.biasRate !== undefined && (
@@ -43,17 +44,25 @@ export default function ResultItem({ expression, index }: Props) {
                             <h3 className="mb-2 font-semibold">
                                 Justificación
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                                {expression.justification}
-                            </p>
+                            {expression.justification ? (
+                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                    {expression.justification}
+                                </p>
+                            ) : (
+                                <Skeleton className="h-16" />
+                            )}
                         </div>
                         <div>
                             <h3 className="mb-2 font-semibold">
                                 Ejemplo Corregido
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                                {expression.fixedExample}
-                            </p>
+                            {expression.fixedExample ? (
+                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                    {expression.fixedExample}
+                                </p>
+                            ) : (
+                                <Skeleton className="h-4" />
+                            )}
                         </div>
                     </div>
                 </div>

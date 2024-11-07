@@ -7,6 +7,7 @@ import { actions } from "astro:actions"
 
 const res = Astro.getActionResult(actions.analyzeText)
 const text = res?.data?.text
+const analysisId = res?.data?.id
 ---
 
 <RootLayout title="Home">
@@ -14,7 +15,11 @@ const text = res?.data?.text
         !text ? (
             <Container />
         ) : (
-            <ResultContainer text={text} client:only="react">
+            <ResultContainer
+                text={text}
+                analysisId={analysisId}
+                client:only="react"
+            >
                 <section class="p-10">
                     <ResultItemSkeleton />
                 </section>
