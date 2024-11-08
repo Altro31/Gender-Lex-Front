@@ -1,29 +1,30 @@
 ---
 import RootLayout from "@/layouts/RootLayout.astro"
 import ResultContainer from "@/sections/home/components/result/ResultContainer"
-import ResultItemSkeleton from "@/sections/home/components/result/ResultItem.skeleton.astro"
+import ResultList from "@/sections/home/components/result/ResultList"
 import Container from "@/sections/home/Container.astro"
+import { getCachedResponse } from "@/services/domain/analysis"
 import { actions } from "astro:actions"
 
 const res = Astro.getActionResult(actions.analyzeText)
 const text = res?.data?.text
 const analysisId = res?.data?.id
+
+const cachedResponse = text ? await getCachedResponse(text) : undefined
 ---
 
 <RootLayout title="Home">
     {
         !text ? (
             <Container />
+        ) : cachedResponse?.length ? (
+            <ResultList expressions={cachedResponse} />
         ) : (
             <ResultContainer
                 text={text}
                 analysisId={analysisId}
                 client:only="react"
-            >
-                <section class="p-10">
-                    <ResultItemSkeleton />
-                </section>
-            </ResultContainer>
+            />
         )
     }
 </RootLayout>

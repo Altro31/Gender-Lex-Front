@@ -44,3 +44,12 @@ export async function completeAnalysisCreating(
         })),
     })
 }
+
+export async function getCachedResponse(text: string) {
+    const result = await prisma.analysis.findFirst({
+        where: { originalContent: text },
+        include: { Expressions: true },
+    })
+
+    return result?.Expressions
+}
