@@ -9,6 +9,7 @@
         "preview": "astro preview",
         "astro": "astro",
         "prepare": "husky || node ./.husky/husky-fail.js",
+        "postinstall": "prisma generate",
         "lint": "oxlint -c ./oxlintrc.json --fix --fix-suggestions"
     },
     "dependencies": {
