@@ -1,6 +1,6 @@
 import type { ExpressionType } from "@/utils/schemas/gender-lex"
 import type { User } from "@auth/core/types"
-import { PrismaClient, type Expression } from "@prisma/client"
+import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
@@ -30,13 +30,6 @@ export async function completeAnalysisCreating(
     analysisId: number,
     expressions: ExpressionType[],
 ) {
-    console.log("🚀 ~ analysisId:", analysisId)
-    console.log("🚀 ~ completeAnalysisCreating ~ expressions:", expressions)
-
-    const analysis = await prisma.analysis.findUnique({
-        where: { id: analysisId },
-    })
-
     return prisma.expression.createMany({
         data: expressions.map((expression) => ({
             ...expression,

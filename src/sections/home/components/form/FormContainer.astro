@@ -1,17 +1,15 @@
 ---
+import FormAnalyzeText from "@/sections/home/components/form/FormAnalyzeText.astro"
+import FormSubmitButton from "@/sections/home/components/form/FormSubmitButton.astro"
 import { actions } from "astro:actions"
-import FormAnalyzeText from "./FormAnalyzeText.astro"
-import FormSubmitButton from "./FormSubmitButton.astro"
 ---
 
 <form
-    action={actions.analyzeText}
+    action={"/analysis" + actions.analyzeText}
     method="POST"
-    class="space-y-2 group"
+    class="space-y-2 group flex h-full items-center gap-2 pr-2"
     data-loading="false"
 >
-    <div class="flex h-full items-center gap-2 pr-2">
-        <FormAnalyzeText />
-        <FormSubmitButton />
-    </div>
+    <FormAnalyzeText />
+    <FormSubmitButton />
 </form>

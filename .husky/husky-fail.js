@@ -14,8 +14,8 @@ for (const pos of positions) {
 
 console.log("WARNING: Maybe husky installation fails because the project path:")
 console.log(`--> ${path}`)
-positions.length && console.log(`    ${blank}`)
+if (positions.length) console.log(`    ${blank}`)
 console.log("should contains special characters.")
 console.log("Try: ")
 console.log("• moving the project to another directory, or")
-console.log("• removing those spaces from the project's path")
+console.log("• removing those special characters from the project's path")

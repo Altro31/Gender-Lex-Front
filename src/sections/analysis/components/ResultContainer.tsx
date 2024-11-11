@@ -1,15 +1,15 @@
+import ResultList from "@/sections/analysis/components/ResultList"
 import { genderLexSchema } from "@/utils/schemas/gender-lex"
 import { experimental_useObject as useObject } from "ai/react"
 import { actions } from "astro:actions"
-import { useEffect, type PropsWithChildren } from "react"
-import ResultList from "./ResultList"
+import { useEffect } from "react"
 
-interface Props extends PropsWithChildren {
+interface Props {
     text: string
     analysisId?: number
 }
 
-export default function ResultContainer({ text, children, analysisId }: Props) {
+export default function ResultContainer({ text, analysisId }: Props) {
     const { object, submit } = useObject({
         id: "analyze-text",
         api: "/api/analyzeText",

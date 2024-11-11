@@ -1,0 +1,25 @@
+---
+import ResultContainer from "@/sections/analysis/components/ResultContainer"
+import ResultList from "@/sections/analysis/components/ResultList"
+import { getCachedResponse } from "@/services/domain/analysis"
+import { actions } from "astro:actions"
+
+const res = Astro.getActionResult(actions.analyzeText)
+// TODO: validar que text exista
+const text = res?.data?.text!
+const analysisId = res?.data?.id
+
+const cachedResponse = text ? await getCachedResponse(text) : undefined
+---
+
+{
+    cachedResponse?.length ? (
+        <ResultList expressions={cachedResponse} />
+    ) : (
+        <ResultContainer
+            text={text}
+            analysisId={analysisId}
+            client:only="react"
+        />
+    )
+}

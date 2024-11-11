@@ -1,5 +1,4 @@
 import { z } from "astro:schema"
-import { Prisma } from "@prisma/client"
 
 export const expressionSchema = z.object({
     targetContent: z.string(),

@@ -6,7 +6,5 @@ export const POST: APIRoute = async ({ request }) => {
     const context = await request.json()
     const text = z.string().min(1).parse(context)
     const result = await genderLexStream(text)
-    console.log("Entró")
-
     return result.toTextStreamResponse()
 }

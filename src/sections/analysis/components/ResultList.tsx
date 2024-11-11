@@ -1,8 +1,10 @@
+import ResultItem from "@/sections/analysis/components/ResultItem"
 import type { ExpressionType } from "@/utils/schemas/gender-lex"
-import ResultItem from "./ResultItem"
+
+type MaybePartialExpression = Partial<ExpressionType> | undefined
 
 interface Props {
-    expressions: (Partial<ExpressionType> | undefined)[]
+    expressions: MaybePartialExpression[]
 }
 
 export default function ResultList({ expressions }: Props) {
