@@ -1,38 +1,20 @@
+import { expressionSchema } from "@/utils/schemas/gender-lex"
 import { userSchema } from "@/utils/schemas/user"
 import { defineAction } from "astro:actions"
 import { z } from "astro:schema"
 import { getSession } from "auth-astro/server"
-import {
-    completeAnalysisCreating,
-    initializeAnalysis,
-} from "../services/domain/analysis"
-import { expressionSchema } from "@/utils/schemas/gender-lex"
+import { registerAnalysis } from "../services/domain/analysis"
 
 export const server = {
-    analyzeText: defineAction({
-        accept: "form",
+    registerAnalysis: defineAction({
         input: z.object({
             text: z.string(),
-        }),
-        async handler(input, { request }) {
-            const session = await getSession(request)
-            const user = userSchema.safeParse(session?.user)
-            const res = {
-                text: input.text,
-                id: undefined as number | undefined,
-            }
-            if (user.data)
-                res.id = await initializeAnalysis(input.text, user.data)
-            return res
-        },
-    }),
-    completeAnalysisCreating: defineAction({
-        input: z.object({
-            analysisId: z.number(),
             expressions: z.array(expressionSchema),
         }),
-        handler({ analysisId, expressions }) {
-            completeAnalysisCreating(analysisId, expressions)
+        async handler({ expressions, text }, { request }) {
+            const session = await getSession(request)
+            const user = userSchema.safeParse(session?.user)
+            if (user.data) registerAnalysis(user.data, text, expressions)
             return {}
         },
     }),

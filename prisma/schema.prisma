@@ -36,8 +36,8 @@ model Expression {
   analysis_id Int
   Analysis    Analysis @relation(fields: [analysis_id], references: [id])
 
-  targetContent String
+  originalText String
   biasRate      Float
   justification String
-  fixedExample  String
+  alternative  String
 }

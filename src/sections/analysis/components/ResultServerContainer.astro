@@ -1,0 +1,14 @@
+---
+import ResultList from "@/sections/analysis/components/ResultList"
+import { genderLex } from "@/services/domain/gender-lex"
+
+interface Props {
+    text: string
+}
+
+const { text } = Astro.props
+
+const { expressions } = await genderLex(text)
+---
+
+<ResultList expressions={expressions} />

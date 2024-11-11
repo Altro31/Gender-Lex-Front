@@ -4,37 +4,22 @@ import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
-export async function initializeAnalysis(text: string, user: User) {
-    const { id } = await prisma.analysis.create({
+export async function registerAnalysis(
+    user: User,
+    text: string,
+    expressions: ExpressionType[],
+) {
+    return prisma.analysis.create({
         data: {
             originalContent: text,
+            Expressions: { createMany: { data: expressions } },
             User: {
                 connectOrCreate: {
-                    create: {
-                        email: user.email!,
-                        name: user.name!,
-                    },
-                    where: {
-                        email: user.email!,
-                    },
+                    where: { email: user.email! },
+                    create: { email: user.email!, name: user.name! },
                 },
             },
         },
-        select: { id: true },
-    })
-
-    return id
-}
-
-export async function completeAnalysisCreating(
-    analysisId: number,
-    expressions: ExpressionType[],
-) {
-    return prisma.expression.createMany({
-        data: expressions.map((expression) => ({
-            ...expression,
-            analysis_id: analysisId,
-        })),
     })
 }
 

@@ -15,7 +15,7 @@ export default function ResultItem({ expression, index }: Props) {
                         Expresión {index + 1}
                     </h2>
                     <p className="mb-4 text-gray-600 dark:text-gray-400">
-                        Contenido original: {expression.targetContent}
+                        Contenido original: {expression.originalText}
                     </p>
                     <div className="space-y-4">
                         {expression.biasRate !== undefined && (
@@ -56,9 +56,9 @@ export default function ResultItem({ expression, index }: Props) {
                             <h3 className="mb-2 font-semibold">
                                 Ejemplo Corregido
                             </h3>
-                            {expression.fixedExample ? (
+                            {expression.alternative ? (
                                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                                    {expression.fixedExample}
+                                    {expression.alternative}
                                 </p>
                             ) : (
                                 <Skeleton className="h-4" />

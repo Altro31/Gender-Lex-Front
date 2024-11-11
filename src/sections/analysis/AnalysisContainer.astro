@@ -1,25 +1,34 @@
 ---
 import ResultContainer from "@/sections/analysis/components/ResultContainer"
-import ResultList from "@/sections/analysis/components/ResultList"
-import { getCachedResponse } from "@/services/domain/analysis"
-import { actions } from "astro:actions"
+import { analyzeTextInputSchema } from "@/utils/schemas/analyzeTextInput"
 
-const res = Astro.getActionResult(actions.analyzeText)
-// TODO: validar que text exista
-const text = res?.data?.text!
-const analysisId = res?.data?.id
+const formData = await Astro.request.formData()
+const { success, data } = analyzeTextInputSchema.safeParse(
+    Object.fromEntries(formData.entries()),
+)
+if (!success) throw new Error("Text must be provided")
+const text = data!.text
 
-const cachedResponse = text ? await getCachedResponse(text) : undefined
+// const cachedResponse = text ? await getCachedResponse(text) :  undefined
 ---
 
-{
-    cachedResponse?.length ? (
-        <ResultList expressions={cachedResponse} />
-    ) : (
-        <ResultContainer
-            text={text}
-            analysisId={analysisId}
-            client:only="react"
-        />
-    )
-}
+<section class="group">
+    <div id="test" class="group-has-[&_astro-island:empty]:bg-red-500">
+        Test
+    </div>
+    <!-- {
+        cachedResponse?.length ? (
+            <ResultList expressions={cachedResponse} />
+        ) : (
+            <> -->
+    <ResultContainer
+        text={text}
+        client:only="react"
+        data-name="ResultContainer"
+    >
+        {/* <ResultItemSkeleton slot="fallback" /> */}
+    </ResultContainer>
+    <!-- </>
+        )
+    } -->
+</section>

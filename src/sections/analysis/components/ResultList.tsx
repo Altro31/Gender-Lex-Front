@@ -9,15 +9,20 @@ interface Props {
 
 export default function ResultList({ expressions }: Props) {
     return (
-        <div className="space-y-4 p-10">
-            {expressions.length > 0 &&
+        <>
+            {expressions.length > 0 ? (
                 expressions.map((expression, index) => (
                     <ResultItem
                         expression={expression}
                         index={index}
                         key={index}
                     />
-                ))}
-        </div>
+                ))
+            ) : (
+                <div className="grid h-full place-content-center">
+                    No se detectaron sesgos de género
+                </div>
+            )}
+        </>
     )
 }

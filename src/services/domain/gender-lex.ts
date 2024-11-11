@@ -5,7 +5,7 @@ import { generateObject, streamObject } from "ai"
 
 export async function genderLex(text: string) {
     const { object } = await generateObject({
-        model: models.Gemini_1_5_pro,
+        model: models.Llama3_8b,
         prompt: text,
         system: genderLexSystemPrompt,
         schema: genderLexSchema,
@@ -15,7 +15,7 @@ export async function genderLex(text: string) {
 
 export function genderLexStream(text: string) {
     return streamObject({
-        model: models.Gemini_1_5_pro,
+        model: models.Llama3_8b,
         prompt: text,
         system: genderLexSystemPrompt,
         schema: genderLexSchema,
