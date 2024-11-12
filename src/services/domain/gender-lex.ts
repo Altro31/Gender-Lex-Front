@@ -4,18 +4,17 @@ import { genderLexSchema } from "@/utils/schemas/gender-lex.ts"
 import { generateObject, streamObject } from "ai"
 
 export async function genderLex(text: string) {
-    const { object } = await generateObject({
-        model: models.Llama3_8b,
+    return generateObject({
+        model: models.Llama,
         prompt: text,
         system: genderLexSystemPrompt,
         schema: genderLexSchema,
     })
-    return object
 }
 
 export function genderLexStream(text: string) {
     return streamObject({
-        model: models.Llama3_8b,
+        model: models.Llama,
         prompt: text,
         system: genderLexSystemPrompt,
         schema: genderLexSchema,

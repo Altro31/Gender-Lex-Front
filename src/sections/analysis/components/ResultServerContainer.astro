@@ -7,8 +7,7 @@ interface Props {
 }
 
 const { text } = Astro.props
-
-const { expressions } = await genderLex(text)
+const res = await genderLex(text)
 ---
 
-<ResultList expressions={expressions} />
+<ResultList expressions={res.object.expressions} />
