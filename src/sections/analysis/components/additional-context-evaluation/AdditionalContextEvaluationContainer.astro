@@ -1,0 +1,33 @@
+---
+import AdditionalContextEvaluationItem from "@/sections/analysis/components/additional-context-evaluation/AdditionalContextEvaluationItem.astro"
+import type { AdditionalContextEvaluationType } from "~types/gender-lex"
+import { Card } from "~ui/card"
+
+interface Props {
+    data: AdditionalContextEvaluationType
+}
+
+const { data } = Astro.props
+---
+
+<Card>
+    <div class="p-4">
+        <h3 class="text-base font-semibold mb-2">
+            Evaluación de Contexto Adicional
+        </h3>
+        <div class="flex justify-around flex-wrap pt-4 gap-4">
+            <AdditionalContextEvaluationItem
+                data={data.stereotype}
+                title="Estereotipo"
+            />
+            <AdditionalContextEvaluationItem
+                data={data.powerAsymmetry}
+                title="Asimetría de Poder"
+            />
+            <AdditionalContextEvaluationItem
+                data={data.genderRepresentationAbsence}
+                title="Ausencia de Representación de Género"
+            />
+        </div>
+    </div>
+</Card>

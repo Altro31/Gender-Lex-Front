@@ -1,0 +1,41 @@
+---
+import { cn } from "@/lib/utils"
+import { getBiasColor } from "@/sections/analysis/utils/get-bias-color"
+import type { BiasedTermType } from "~types/gender-lex"
+import { Card } from "~ui/card"
+import { Progress } from "~ui/progress"
+
+interface Props {
+    data: BiasedTermType[]
+}
+
+const { data } = Astro.props
+---
+
+<Card>
+    <div class="p-4 space-y-3">
+        <h3 class="text-base font-semibold mb-2">Términos Sesgados</h3>
+        {
+            data.map((term) => (
+                <div class="space-y-1">
+                    <p class="font-medium">"{term.term}"</p>
+                    <div class="flex items-center gap-2">
+                        <Progress
+                            value={term.influencePercentage * 100}
+                            className={cn(
+                                "h-3",
+                                getBiasColor(term.influencePercentage),
+                            )}
+                        />
+                        <span class="text-sm text-muted-foreground">
+                            {term.influencePercentage * 100}%
+                        </span>
+                    </div>
+                    <p class="text-sm text-muted-foreground">
+                        {term.explanation}
+                    </p>
+                </div>
+            ))
+        }
+    </div>
+</Card>

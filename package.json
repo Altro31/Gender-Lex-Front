@@ -22,6 +22,8 @@
         "@astrojs/vue": "^4.5.2",
         "@auth/core": "^0.32.0",
         "@prisma/client": "5.22.0",
+        "@radix-ui/react-progress": "^1.1.0",
+        "@radix-ui/react-separator": "^1.1.0",
         "@radix-ui/react-slot": "^1.1.0",
         "@tailwindcss/typography": "^0.5.15",
         "@types/react": "^18.3.12",

@@ -3,6 +3,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
+            "~types/*": ["src/lib/types/*"],
             "~ui/*": ["src/components/ui/*"],
             "@/*": ["./src/*"]
         },

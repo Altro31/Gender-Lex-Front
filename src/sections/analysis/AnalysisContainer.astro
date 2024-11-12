@@ -1,6 +1,6 @@
 ---
-import ResultContainer from "@/sections/analysis/components/ResultContainer"
-import { analyzeTextInputSchema } from "@/utils/schemas/analyzeTextInput"
+import { analyzeTextInputSchema } from "@/lib/schemas/analyzeTextInput"
+import GenderBiasAnalysis from "@/sections/analysis/components/GenderBiasAnalysis.astro"
 
 const formData = await Astro.request.formData()
 const { success, data } = analyzeTextInputSchema.safeParse(
@@ -8,27 +8,8 @@ const { success, data } = analyzeTextInputSchema.safeParse(
 )
 if (!success) throw new Error("Text must be provided")
 const text = data!.text
-
-// const cachedResponse = text ? await getCachedResponse(text) :  undefined
 ---
 
-<section class="group">
-    <div id="test" class="group-has-[&_astro-island:empty]:bg-red-500">
-        Test
-    </div>
-    <!-- {
-        cachedResponse?.length ? (
-            <ResultList expressions={cachedResponse} />
-        ) : (
-            <> -->
-    <ResultContainer
-        text={text}
-        client:only="react"
-        data-name="ResultContainer"
-    >
-        {/* <ResultItemSkeleton slot="fallback" /> */}
-    </ResultContainer>
-    <!-- </>
-        )
-    } -->
-</section>
+<GenderBiasAnalysis server:defer text={text}>
+    <span slot="fallback">Loading...</span>
+</GenderBiasAnalysis>

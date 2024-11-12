@@ -1,0 +1,116 @@
+---
+interface Props {
+    progress: number
+    size?: number
+    strokeWidth?: number
+    label?: boolean
+    class: string
+}
+
+const {
+    progress,
+    size = 100,
+    strokeWidth = 8,
+    label = false,
+    class: className,
+} = Astro.props
+console.log("🚀 ~ className:", className)
+
+const radius = (size - strokeWidth) / 2
+const circumference = radius * 2 * Math.PI
+---
+
+<circular-progress data-progress={progress} data-circumference={circumference}>
+    <div
+        class:list={[
+            "relative inline-flex items-center justify-center",
+            className,
+        ]}
+    >
+        <svg width={size} height={size} class="transform -rotate-90">
+            <circle
+                class="text-muted-foreground"
+                stroke-width={strokeWidth}
+                stroke="currentColor"
+                fill="transparent"
+                r={radius}
+                cx={size / 2}
+                cy={size / 2}></circle>
+            <circle
+                class="text-primary transition-all duration-1000 ease-out progress-circle"
+                stroke-width={strokeWidth}
+                stroke-dasharray={circumference}
+                stroke-dashoffset={circumference}
+                stroke-linecap="round"
+                stroke="inherit"
+                fill="transparent"
+                r={radius}
+                cx={size / 2}
+                cy={size / 2}></circle>
+        </svg>
+        {
+            label && (
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="font-medium progress-label">0%</span>
+                </div>
+            )
+        }
+    </div>
+</circular-progress>
+
+<script>
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const target = entry.target as CircularProgress
+                    observer.unobserve(target)
+                    target.updateProgress()
+                }
+            })
+        },
+        {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.5,
+        },
+    )
+
+    class CircularProgress extends HTMLElement {
+        private circle!: SVGCircleElement
+        private label!: HTMLLabelElement
+
+        private progress: number = 40
+        private circumference: number = 100
+        private currentProgress: number = 0
+
+        updateProgress() {
+            if (this.currentProgress < this.progress) {
+                this.currentProgress++
+                const offset =
+                    this.circumference -
+                    (this.currentProgress / 100) * this.circumference
+                if (this.circle)
+                    this.circle.style.strokeDashoffset = offset.toString()
+                if (this.label) {
+                    this.label.textContent = `${Math.round(this.currentProgress)}%`
+                }
+                requestAnimationFrame(this.updateProgress.bind(this))
+            }
+        }
+
+        connectedCallback() {
+            this.progress = Number(this.dataset.progress)
+            this.circumference = Number(this.dataset.circumference)
+
+            this.circle =
+                this.querySelector<SVGCircleElement>(".progress-circle")!
+            this.label =
+                this.querySelector<HTMLLabelElement>(".progress-label")!
+
+            observer.observe(this)
+        }
+    }
+
+    customElements.define("circular-progress", CircularProgress)
+</script>

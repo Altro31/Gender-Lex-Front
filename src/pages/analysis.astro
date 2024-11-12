@@ -1,10 +1,10 @@
 ---
 import RootLayout from "@/layouts/RootLayout.astro"
-import AnalysisServerContainer from "@/sections/analysis/AnalysisServerContainer.astro"
+import AnalysisContainer from "@/sections/analysis/AnalysisContainer.astro"
 
 if (Astro.request.method !== "POST") return Astro.redirect("/")
 ---
 
 <RootLayout title="Analisis">
-    <AnalysisServerContainer />
+    <AnalysisContainer />
 </RootLayout>
