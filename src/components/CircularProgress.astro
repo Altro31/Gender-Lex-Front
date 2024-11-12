@@ -13,6 +13,7 @@ const {
     strokeWidth = 8,
     label = false,
     class: className,
+    ...props
 } = Astro.props
 console.log("🚀 ~ className:", className)
 
@@ -26,6 +27,7 @@ const circumference = radius * 2 * Math.PI
             "relative inline-flex items-center justify-center",
             className,
         ]}
+        {...props}
     >
         <svg width={size} height={size} class="transform -rotate-90">
             <circle

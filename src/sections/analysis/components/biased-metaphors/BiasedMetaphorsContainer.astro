@@ -1,6 +1,4 @@
 ---
-import { cn } from "@/lib/utils"
-import { getBiasColor } from "@/sections/analysis/utils/get-bias-color"
 import type { BiasedMetaphorType } from "~types/gender-lex"
 import { Card } from "~ui/card"
 import { Progress } from "~ui/progress"
@@ -22,10 +20,7 @@ const { data } = Astro.props
                     <div class="flex items-center gap-2">
                         <Progress
                             value={term.influencePercentage * 100}
-                            className={cn(
-                                "h-3",
-                                getBiasColor(term.influencePercentage, "*:bg"),
-                            )}
+                            className="h-3"
                         />
                         <span class="text-sm text-muted-foreground">
                             {term.influencePercentage * 100}%
