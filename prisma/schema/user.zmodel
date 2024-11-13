@@ -2,7 +2,6 @@ import "request"
 
 model User {
     email     String    @id @email
-    name      String?
 
     createdAt DateTime  @default(now())
 
