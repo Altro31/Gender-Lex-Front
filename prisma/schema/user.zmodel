@@ -1,0 +1,14 @@
+import "request"
+
+model User {
+    email     String    @id @email
+    name      String?
+
+    createdAt DateTime  @default(now())
+
+    Analyses  Request[]
+
+    @@auth
+    @@allow('all', auth() != null)
+    @@allow('create', true)
+}

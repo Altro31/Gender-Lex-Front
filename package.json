@@ -9,7 +9,8 @@
         "preview": "astro preview",
         "astro": "astro",
         "prepare": "husky || node ./.husky/husky-fail.js",
-        "postinstall": "prisma generate",
+        "postinstall": "zenstack generate",
+        "generate": "zenstack generate",
         "lint": "oxlint -c ./oxlintrc.json --fix --fix-suggestions"
     },
     "dependencies": {
@@ -52,11 +53,13 @@
     },
     "devDependencies": {
         "@types/js-cookie": "^3.0.6",
+        "@zenstackhq/runtime": "2.8.1",
         "husky": "^9.1.6",
         "lint-staged": "^15.2.10",
         "oxlint": "^0.10.3",
         "prettier-plugin-astro": "^0.14.1",
-        "prisma": "^5.22.0"
+        "prisma": "^5.22.0",
+        "zenstack": "2.8.1"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,astro,vue}": "oxlint -c ./oxlintrc.json --fix --fix-suggestions",

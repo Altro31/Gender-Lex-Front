@@ -1,10 +1,10 @@
 ---
 import AdditionalContextEvaluationItem from "@/sections/analysis/components/additional-context-evaluation/AdditionalContextEvaluationItem.astro"
-import type { AdditionalContextEvaluationType } from "~types/gender-lex"
+import { type AdditionalContextEvaluation } from "@zenstackhq/runtime/models"
 import { Card } from "~ui/card"
 
 interface Props {
-    data: AdditionalContextEvaluationType
+    data: AdditionalContextEvaluation
 }
 
 const { data } = Astro.props

@@ -1,8 +1,8 @@
 ---
 import AdditionalContextEvaluationContainer from "@/sections/analysis/components/additional-context-evaluation/AdditionalContextEvaluationContainer.astro"
-import BiasedMetaphorsContainer from "@/sections/analysis/components/biased-metaphors/BiasedMetaphorsContainer.astro"
-import BiasedTermsContainer from "@/sections/analysis/components/biased-terms/BiasedTermsContainer.astro"
+import BiasedContentContainer from "@/sections/analysis/components/biased-content/BiasedContentContainer.astro"
 import { genderLex } from "@/services/domain/gender-lex"
+import { RequestRepository } from "@/services/domain/request"
 import { Separator } from "~ui/separator"
 
 interface Props {
@@ -13,6 +13,8 @@ const { text } = Astro.props
 
 const res = await genderLex(text)
 const analysisData = res.object
+
+RequestRepository.create(analysisData, Astro.request)
 
 // const analysisData = {
 //     originalText:
@@ -77,14 +79,16 @@ const analysisData = res.object
             <section>
                 <h2 class="text-lg font-semibold mb-2">Análisis</h2>
                 <div class="space-y-4">
-                    <BiasedTermsContainer
-                        data={analysisData.analysis.biasedTerms}
+                    <BiasedContentContainer
+                        title="Términos Sesgados"
+                        data={analysisData.Analysis.biasedTerms}
                     />
-                    <BiasedMetaphorsContainer
-                        data={analysisData.analysis.biasedMetaphors}
+                    <BiasedContentContainer
+                        title="Metáforas Sesgadas"
+                        data={analysisData.Analysis.biasedMetaphors}
                     />
                     <AdditionalContextEvaluationContainer
-                        data={analysisData.analysis.additionalContextEvaluation}
+                        data={analysisData.Analysis.additionalContextEvaluation}
                     />
                 </div>
             </section>

@@ -1,0 +1,18 @@
+import "user"
+import "analysis"
+
+model Request {
+    id           String   @id @default(cuid())
+    originalText String
+    modifiedText String
+    conclusion   String
+    userEmail    String?  @default(auth().email)
+    User         User?    @relation(fields: [userEmail], references: [email], onDelete: SetNull)
+
+    createdAt    DateTime @default(now())
+
+    Analysis     Analysis @json
+
+    @@allow('create',auth() != null)
+    @@allow('read', auth() == User)
+}

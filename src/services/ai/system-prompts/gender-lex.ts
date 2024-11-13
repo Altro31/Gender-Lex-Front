@@ -28,40 +28,38 @@ Actúa como un experto en el análisis de sesgo de género en textos. Para cada 
 ## Formato de salida en JSON:
 {
     "originalText": "<Texto original aquí>",
-    "analysis": {
+    "Analysis": {
         "biasedTerms": [
             {
-                "term": "<Término identificado>",
+                "content": "<Término identificado>",
                 "influencePercentage": "<Porcentaje de influencia en el sesgo general>",
                 "explanation": "<Explicación detallada del sesgo de género asociado al término>"
             } // Más términos según corresponda 
         ],
         "biasedMetaphors": [
             {
-                "metaphor": "<Metáfora o expresión figurativa identificada>",
-                "influencePercentage": "<Porcentaje de influencia en el sesgo general>",
+                "content": "<Metáfora o expresión figurativa identificada>",
+                "influencePercentage": <Porcentaje de influencia en el sesgo general>,
                 "explanation": "<Explicación detallada del sesgo de género asociado a la metáfora>"
             } // Más metáforas según corresponda 
         ],
-        "additionalContextEvaluation": [
-            {
-                "stereotype": {
-                    "presence": "<Sí/No>",
-                    "influencePercentage": "<Porcentaje de influencia en el sesgo general>",
-                    "explanation": "<Explicación del sesgo de género asociado al estereotipo>"
-                },
-                "powerAsymmetry": {
-                    "presence": "<Sí/No>",
-                    "influencePercentage": "<Porcentaje de influencia en el sesgo general>",
-                    "explanation": "<Explicación del sesgo de género asociado a la asimetría de poder>"
-                },
-                "genderRepresentationAbsence": {
-                    "presence": "<Sí/No>",
-                    "influencePercentage": "<Porcentaje de influencia en el sesgo general>",
-                    "explanation": "<Explicación del sesgo de género asociado a la falta de representatividad de género>"
-                }
+        "additionalContextEvaluation": {
+            "stereotype": {
+                "presence": <Sí/No>,
+                "influencePercentage": <Porcentaje de influencia en el sesgo general>,
+                "explanation": "<Explicación del sesgo de género asociado al estereotipo>"
+            },
+            "powerAsymmetry": {
+                "presence": <Sí/No>,
+                "influencePercentage": <Porcentaje de influencia en el sesgo general>,
+                "explanation": "<Explicación del sesgo de género asociado a la asimetría de poder>"
+            },
+            "genderRepresentationAbsence": {
+                "presence": <Sí/No>,
+                "influencePercentage": <Porcentaje de influencia en el sesgo general>,
+                "explanation": "<Explicación del sesgo de género asociado a la falta de representatividad de género>"
             }
-        ]
+        }
     },
     "modifiedText": "<Texto modificado con cambios subrayados>",
     "conclusion": "<Conclusión sobre el análisis del sesgo de género>"

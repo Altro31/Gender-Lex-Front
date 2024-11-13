@@ -1,0 +1,23 @@
+type Analysis {
+  biasedTerms                   BiasedITem[]
+  biasedMetaphors               BiasedITem[]
+  additionalContextEvaluation   AdditionalContextEvaluation
+}
+
+type BiasedITem {
+  content             String
+  influencePercentage Float  @gte(0) @lte(1)
+  explanation         String
+}
+
+type AdditionalContextEvaluation {
+  stereotype                  AdditionalContextEvaluationItem
+  powerAsymmetry              AdditionalContextEvaluationItem
+  genderRepresentationAbsence AdditionalContextEvaluationItem
+}
+
+type AdditionalContextEvaluationItem {
+  presence            Boolean
+  influencePercentage Float @gte(0) @lte(1)
+  explanation         String
+}

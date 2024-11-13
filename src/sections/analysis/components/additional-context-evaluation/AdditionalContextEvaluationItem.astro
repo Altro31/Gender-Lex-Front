@@ -1,10 +1,10 @@
 ---
 import CircularProgress from "@/components/CircularProgress.astro"
 import { getRateLabel } from "@/sections/analysis/utils/get-rate-label"
-import type { AdditionalContextEvaluationItemType } from "~types/gender-lex"
+import type { AdditionalContextEvaluationItem } from "@zenstackhq/runtime/models"
 
 interface Props {
-    data: AdditionalContextEvaluationItemType
+    data: AdditionalContextEvaluationItem
     title: string
 }
 
