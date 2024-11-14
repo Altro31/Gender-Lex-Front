@@ -1,0 +1,11 @@
+---
+import ResultContainer from "@/sections/analysis/components/ResultContainer.astro"
+import { RequestRepository } from "@/services/domain/request"
+
+const id = Astro.params.id ?? ""
+
+const data = await RequestRepository.findOne(id, Astro.request)
+if (!data) return Astro.redirect("/404")
+---
+
+<ResultContainer data={data} />

@@ -1,0 +1,25 @@
+---
+import HistoryItem from "@/sections/history/components/HistoryItem.astro"
+import { RequestRepository } from "@/services/domain/request"
+import { Card, CardHeader, CardTitle, CardContent } from "~ui/card"
+
+const analysisData = await RequestRepository.findAll({}, Astro.request)
+---
+
+<div class="container mx-auto py-8 space-y-3">
+    <Card className="mb-6">
+        <CardHeader>
+            <CardTitle>Historial de Análisis</CardTitle>
+        </CardHeader>
+        <CardContent>
+            <p class="text-muted-foreground">
+                Aquí puedes ver un resumen de tus análisis de sesgos anteriores.
+                Haz clic en &quot;Más detalles&quot; para expandir la
+                información o en &quot;Ver análisis completo&quot; para acceder
+                al informe detallado.
+            </p>
+        </CardContent>
+    </Card>
+
+    {analysisData?.map((data) => <HistoryItem data={data as any} />)}
+</div>

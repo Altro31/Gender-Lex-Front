@@ -1,0 +1,23 @@
+---
+import { Button, type ButtonProps } from "~ui/button"
+
+interface Props extends ButtonProps {}
+
+const { id, ...props } = Astro.props
+---
+
+<toggle-button
+    id={id}
+    onclick="this.dataset.state = this.dataset.state === 'on'? 'off' : 'on'"
+    data-state="on"
+    class="group"
+>
+    <Button {...props} type="button">
+        <div class="group-data-[state=off]:hidden">
+            <slot name="on">On</slot>
+        </div>
+        <div class="group-data-[state=on]:hidden">
+            <slot name="off">Off</slot>
+        </div>
+    </Button>
+</toggle-button>

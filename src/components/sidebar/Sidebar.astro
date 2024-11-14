@@ -19,17 +19,23 @@ const session = await getSession(Astro.request)
             aria-label="Nuevo análisis"
         >
             <a href="/" data-astro-reload data-astro-prefetch="false"
-                ><PlusIcon class="h-5 w-5" /></a
+                ><PlusIcon class="size-5" /></a
             >
         </Button>
-        <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-xl"
-            aria-label="Historial"
-        >
-            <ClockIcon class="h-5 w-5" />
-        </Button>
+        {
+            session && (
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-xl"
+                    aria-label="Historial"
+                >
+                    <a href="/history">
+                        <ClockIcon class="size-5" />
+                    </a>
+                </Button>
+            )
+        }
     </div>
     {
         session ? (
