@@ -1,6 +1,7 @@
 ---
 import { analyzeTextInputSchema } from "@/lib/schemas/analyzeTextInput"
 import GenderBiasAnalysis from "@/sections/analysis/components/GenderBiasAnalysis.astro"
+import GenderBiasAnalysisSkeleton from "@/sections/analysis/components/GenderBiasAnalysisSkeleton.astro"
 
 const formData = await Astro.request.formData()
 const { success, data } = analyzeTextInputSchema.safeParse(
@@ -11,5 +12,5 @@ const text = data!.text
 ---
 
 <GenderBiasAnalysis server:defer text={text}>
-    <span slot="fallback">Loading...</span>
+    <GenderBiasAnalysisSkeleton slot="fallback" />
 </GenderBiasAnalysis>
