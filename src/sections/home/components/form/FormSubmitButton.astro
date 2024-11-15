@@ -18,7 +18,10 @@ import { Button } from "~ui/button"
 </form-submit-button>
 
 <script>
-    import { $analyzeText } from "@/sections/home/stores/analyle-text"
+    import {
+        $analyzeFile,
+        $analyzeText,
+    } from "@/sections/home/stores/analyle-input"
 
     class FormSubmitButton extends HTMLElement {
         connectedCallback() {
@@ -36,6 +39,10 @@ import { Button } from "~ui/button"
             })
 
             $analyzeText.subscribe((value) => {
+                if (submitter) submitter.disabled = !value
+            })
+
+            $analyzeFile.subscribe((value) => {
                 if (submitter) submitter.disabled = !value
             })
         }

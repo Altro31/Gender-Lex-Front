@@ -12,7 +12,10 @@ import { Textarea } from "~ui/textarea"
 </analyze-text-input>
 
 <script>
-    import { $analyzeText } from "@/sections/home/stores/analyle-text"
+    import {
+        $analyzeFile,
+        $analyzeText,
+    } from "@/sections/home/stores/analyle-input"
 
     class AnalyzeTextInput extends HTMLElement {
         connectedCallback() {
@@ -22,6 +25,12 @@ import { Textarea } from "~ui/textarea"
                 const target = e.target as HTMLInputElement | null
                 if (!target) return
                 $analyzeText.set(target.value)
+            })
+            $analyzeFile.subscribe((value) => {
+                if (text) text.disabled = !!value
+            })
+            $analyzeText.subscribe((value) => {
+                if (text) text.value = value
             })
         }
     }

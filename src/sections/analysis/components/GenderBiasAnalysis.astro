@@ -2,14 +2,19 @@
 import ResultContainer from "@/sections/analysis/components/ResultContainer.astro"
 import { genderLex } from "@/services/domain/gender-lex"
 import { RequestRepository } from "@/services/domain/request"
+import { extractPDFText } from "@/services/pdf/extract-pdf-text"
 
 interface Props {
-    text: string
+    text?: string
+    file?: string
 }
 
-const { text } = Astro.props
+const { text, file } = Astro.props
 
-const res = await genderLex(text)
+const analizeText = file ? await extractPDFText(file) : text
+console.log("🚀 ~ analizeText:", analizeText)
+
+const res = await genderLex(analizeText ?? "")
 const analysisData = res.object
 
 RequestRepository.create(analysisData, Astro.request)

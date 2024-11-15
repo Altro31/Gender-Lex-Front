@@ -8,9 +8,8 @@ const { success, data } = analyzeTextInputSchema.safeParse(
     Object.fromEntries(formData.entries()),
 )
 if (!success) throw new Error("Text must be provided")
-const text = data!.text
 ---
 
-<GenderBiasAnalysis server:defer text={text}>
+<GenderBiasAnalysis server:defer text={data.text} file={data.file}>
     <GenderBiasAnalysisSkeleton slot="fallback" />
 </GenderBiasAnalysis>

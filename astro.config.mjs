@@ -9,17 +9,34 @@ import vercel from "@astrojs/vercel/serverless"
 
 import auth from "auth-astro"
 
-import react from "@astrojs/react";
+import react from "@astrojs/react"
 
 // https://astro.build/config
 export default defineConfig({
     output: "server",
-    integrations: [tailwind({
-        applyBaseStyles: false,
-    }), vue(), auth(), react()],
+    integrations: [
+        tailwind({
+            applyBaseStyles: false,
+        }),
+        vue(),
+        auth(),
+        react(),
+    ],
 
     env: {
         schema: {
+            PDF_SERVICES_CLIENT_ID: envField.string({
+                access: "secret",
+                context: "server",
+            }),
+            PDF_SERVICES_CLIENT_SECRET: envField.string({
+                access: "secret",
+                context: "server",
+            }),
+            UPLOADTHING_TOKEN: envField.string({
+                access: "secret",
+                context: "server",
+            }),
             DATABASE_URL: envField.string({
                 access: "secret",
                 context: "server",
@@ -55,7 +72,7 @@ export default defineConfig({
 
     adapter: vercel({
         maxDuration: 60,
-        webAnalytics: { enabled: true }
+        webAnalytics: { enabled: true },
     }),
 
     image: {
