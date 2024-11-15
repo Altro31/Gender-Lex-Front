@@ -83,7 +83,11 @@ const biasColor = getBiasColor(overallBias)
         </ToggleButton>
 
         <Button variant="ghost" size="sm" className="group/arrow">
-            <a href={"/history/" + id} class="flex items-center">
+            <a
+                href={"/history/" + id}
+                class="flex items-center"
+                data-astro-prefetch="viewport"
+            >
                 Ver análisis completo{" "}
                 <ChevronRight
                     className="ml-2 h-4 w-4 group-hover/arrow:translate-x-1 transition-transform"
