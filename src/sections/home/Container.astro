@@ -1,5 +1,5 @@
 ---
-import FormContainer from "@/sections/home/components/form/FormContainer.astro"
+import FormContainer from "@/sections/home/components/form/FormContainer"
 import RefreshButton from "@/sections/home/components/RefreshButton.astro"
 import {
     ChartColumn as ChartColumnIcon,
@@ -73,5 +73,5 @@ const prompts = [
         }
     </div>
     <RefreshButton />
-    <FormContainer />
+    <FormContainer client:load />
 </div>

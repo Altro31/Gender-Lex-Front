@@ -18,9 +18,7 @@ const session = await getSession(Astro.request)
             className="rounded-xl"
             aria-label="Nuevo análisis"
         >
-            <a href="/" data-astro-reload data-astro-prefetch="false"
-                ><PlusIcon class="size-5" /></a
-            >
+            <a href="/"><PlusIcon class="size-5" /></a>
         </Button>
         {
             session && (
