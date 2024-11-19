@@ -1,9 +1,10 @@
 ---
 import "@/base.css"
-import { buildPageTitle } from "@/lib/text/buid-page-title"
-import { ClientRouter } from "astro:transitions"
 import Theme from "@/components/Theme.astro"
 import Sidebar from "@/components/sidebar"
+import { buildPageTitle } from "@/lib/text/buid-page-title"
+import { DEV_DEVELOP } from "astro:env/server"
+import { ClientRouter } from "astro:transitions"
 
 interface Props {
     title?: string
@@ -19,6 +20,11 @@ const { title, withTransitionsAPI } = Astro.props
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>{buildPageTitle(title)}</title>
+        {
+            DEV_DEVELOP && (
+                <script src="https://unpkg.com/react-scan/dist/auto.global.js" />
+            )
+        }
         {withTransitionsAPI && <ClientRouter />}
     </head>
     <body class="min-h-screen dark:dark">
