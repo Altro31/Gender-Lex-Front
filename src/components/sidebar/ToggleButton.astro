@@ -3,9 +3,20 @@ import { Menu as MenuIcon } from "lucide-astro"
 import { Button } from "~ui/button"
 ---
 
-<label>
-    <Button variant="ghost" size="icon" className="rounded-xl">
+<Button
+    variant="ghost"
+    size="icon"
+    className="rounded-xl w-full  select-none"
+    id="toggle"
+>
+    <div
+        onclick="this.dataset.open = this.dataset.open === 'true'? 'false': 'true'"
+        data-open="true"
+        data-role="menu-toggle"
+        class="flex gap-4 w-fit items-center px-3"
+    >
         <MenuIcon class="h-5 w-5" />
-    </Button>
-    <input type="checkbox" class="hidden" />
-</label>
+
+        <span class="menu-closed:hidden">GenderLex</span>
+    </div>
+</Button>
