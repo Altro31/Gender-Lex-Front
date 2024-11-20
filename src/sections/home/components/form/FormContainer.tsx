@@ -1,8 +1,7 @@
 import UploadButton from "@/components/UploadButton"
 import { useUploadThing } from "@/hooks/use-uploadthing"
-import { RefreshCwIcon } from "lucide-react"
+import FormSendButton from "@/sections/home/components/form/FormSendButton"
 import { useCallback, useState } from "react"
-import { Button } from "~ui/button"
 import { Textarea } from "~ui/textarea"
 
 type Input = string | undefined
@@ -33,6 +32,7 @@ export default function FormContainer() {
             }
         }
     }, [])
+
     return (
         <form
             action={"/analysis"}
@@ -59,22 +59,10 @@ export default function FormContainer() {
                     id="analyze-input"
                     value={inputFile}
                 />
-                <Button
-                    size="sm"
-                    className="rounded-lg transition-opacity"
+                <FormSendButton
                     disabled={disabled}
-                >
-                    {state === "loading" ? (
-                        <div className="flex items-center gap-1">
-                            <span className="animate-spin">
-                                <RefreshCwIcon />
-                            </span>
-                            <span>Analizando</span>
-                        </div>
-                    ) : (
-                        <span>Enviar</span>
-                    )}
-                </Button>
+                    loading={state === "loading"}
+                />
                 <UploadButton disabled={disabled} onFileUpload={onFileUpload} />
             </div>
         </form>

@@ -1,11 +1,12 @@
 import { PaperclipIcon } from "lucide-react"
+import { memo } from "react"
 import { Button, type ButtonProps } from "~ui/button"
 
 interface Props extends ButtonProps {
     onFileUpload: (file: File) => void
 }
 
-export default function UploadButton(props: Props) {
+function UploadButton(props: Props) {
     return (
         <Button
             asChild
@@ -27,3 +28,5 @@ export default function UploadButton(props: Props) {
         </Button>
     )
 }
+
+export default memo(UploadButton)
