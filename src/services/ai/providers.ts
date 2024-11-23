@@ -1,8 +1,8 @@
-import { createOpenAI } from "@ai-sdk/openai"
 import { createGoogleGenerativeAI } from "@ai-sdk/google"
-import { GROQ_API_KEY, GEMINI_API_KEY } from "astro:env/server"
+import { createGroq } from "@ai-sdk/groq"
+import { GEMINI_API_KEY, GROQ_API_KEY } from "astro:env/server"
 
-export const groq = createOpenAI({
+export const groq = createGroq({
     baseURL: "https://api.groq.com/openai/v1",
     apiKey: GROQ_API_KEY,
 })
