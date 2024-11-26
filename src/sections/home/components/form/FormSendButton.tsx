@@ -1,13 +1,15 @@
 import { RefreshCwIcon } from "lucide-react"
-import { memo } from "react"
 import { Button } from "~ui/button"
 
 interface Props {
-    disabled: boolean
-    loading: boolean
+    disabled?: boolean
+    loading?: boolean
 }
 
-function FormSendButton({ disabled, loading }: Props) {
+export default function FormSendButton({
+    disabled = false,
+    loading = false,
+}: Props) {
     return (
         <Button
             size="sm"
@@ -27,5 +29,3 @@ function FormSendButton({ disabled, loading }: Props) {
         </Button>
     )
 }
-
-export default memo(FormSendButton)

@@ -7,7 +7,6 @@ import {
     MimeType,
 } from "@adobe/pdfservices-node-sdk"
 import AdmZip from "adm-zip"
-import fs from "node:fs"
 import { Readable, Writable } from "node:stream"
 
 export async function extractPDFText(fileURL: string) {
@@ -42,7 +41,7 @@ export async function extractPDFText(fileURL: string) {
     let buffer = Buffer.alloc(0) // Inicializar buffer vacío
     // Crear un WritableStream que escriba en el buffer
     const writableStream = new Writable({
-        write(chunk, encoding, callback) {
+        write(chunk, _, callback) {
             buffer = Buffer.concat([buffer, chunk])
             callback()
         },

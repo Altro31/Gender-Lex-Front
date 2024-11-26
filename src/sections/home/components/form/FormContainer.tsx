@@ -1,14 +1,17 @@
 import UploadButton from "@/components/UploadButton"
 import { useUploadThing } from "@/hooks/use-uploadthing"
 import FormSendButton from "@/sections/home/components/form/FormSendButton"
-import { useCallback, useState } from "react"
+import { memo, useCallback, useState } from "react"
 import { Textarea } from "~ui/textarea"
 
 type Input = string | undefined
 type State = "ready" | "loading" | "error"
 
+const MemoizedFormSendButton = memo(FormSendButton)
+const MemoizedUploadButton = memo(UploadButton)
+
 export default function FormContainer() {
-    const { isUploading, startUpload } = useUploadThing("fileUploader")
+    const { startUpload } = useUploadThing("fileUploader")
     const [input, setInput] = useState<string>("")
     const [inputValue, setInputValue] = useState<Input>("")
     const [inputFile, setInputFile] = useState("")
@@ -60,11 +63,14 @@ export default function FormContainer() {
                     value={inputFile}
                     readOnly
                 />
-                <FormSendButton
+                <MemoizedFormSendButton
                     disabled={disabled}
                     loading={state === "loading"}
                 />
-                <UploadButton disabled={disabled} onFileUpload={onFileUpload} />
+                <MemoizedUploadButton
+                    disabled={disabled}
+                    onFileUpload={onFileUpload}
+                />
             </div>
         </form>
     )

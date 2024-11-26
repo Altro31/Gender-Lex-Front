@@ -26,10 +26,7 @@ export class RequestRepository {
         return prisma.request.findUnique({ where: { id } })
     }
 
-    static async findAll(
-        { limit = 5, page = 0 }: FindAllArgs,
-        request: Request,
-    ) {
+    static async findAll({ limit = 5 }: FindAllArgs, request: Request) {
         const user = await getUser(request)
         if (!user) return
         const prisma = getPrisma(user)

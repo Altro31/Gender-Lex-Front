@@ -10,7 +10,7 @@ const session = await getSession(Astro.request)
 ---
 
 <nav class="flex flex-col gap-4 border-r p-4 justify-between">
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 *:cursor-pointer">
         <ToggleButton />
         <Button
             variant="ghost"

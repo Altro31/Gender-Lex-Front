@@ -1,8 +1,8 @@
 ---
+import { getPreferredThemeFromAstroCookies } from "@/lib/theme"
 import { Sun as SunIcon, Moon as MoonIcon } from "lucide-astro"
 
-const isDark = Astro.cookies.get("THEME_DARK")?.boolean() ?? false
-const checked = isDark ? { checked: true } : {}
+const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
 ---
 
 <astro-theme>
@@ -14,7 +14,7 @@ const checked = isDark ? { checked: true } : {}
             id="theme"
             class="hidden"
             value="off"
-            {...checked}
+            {...theme === "dark" && { checked: true }}
         />
         <MoonIcon class="hidden group-has-[#theme:checked]/theme:inline" />
         <SunIcon class="group-has-[#theme:checked]/theme:hidden" />
@@ -29,6 +29,7 @@ const checked = isDark ? { checked: true } : {}
             input?.addEventListener("input", (e) => {
                 const target = e.target as HTMLInputElement
                 Cookies.set("THEME_DARK", target.checked.toString())
+                document.body.classList.toggle("dark", target.checked)
             })
         }
     }

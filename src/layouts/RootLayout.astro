@@ -2,8 +2,8 @@
 import "@/base.css"
 import Theme from "@/components/Theme.astro"
 import Sidebar from "@/components/sidebar"
-import { buildPageTitle } from "@/lib/text/buid-page-title"
-import { DEV_DEVELOP } from "astro:env/server"
+import { buildPageTitle } from "@/lib/text/build-page-title"
+import { getPreferredThemeFromAstroCookies } from "@/lib/theme"
 import { ClientRouter } from "astro:transitions"
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 const { title, withTransitionsAPI } = Astro.props
 
-const isDev = DEV_DEVELOP
+const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
 ---
 
 <html lang="en">
@@ -24,7 +24,7 @@ const isDev = DEV_DEVELOP
         <title>{buildPageTitle(title)}</title>
         {withTransitionsAPI && <ClientRouter />}
     </head>
-    <body class="min-h-screen dark:dark">
+    <body class="min-h-screen" class:list={[{ dark: theme === "dark" }]}>
         <Theme />
         <section class="flex h-screen">
             <Sidebar />
@@ -36,7 +36,7 @@ const isDev = DEV_DEVELOP
 </html>
 
 {
-    isDev && (
+    import.meta.env.DEV && (
         <script
             src="https://unpkg.com/react-scan/dist/auto.global.js"
             is:inline

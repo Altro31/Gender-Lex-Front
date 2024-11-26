@@ -16,7 +16,7 @@ export const fileRouter = {
             if (!session) throw new Error("Unauthorized")
             return {}
         })
-        .onUploadComplete(({ metadata, file }) => {
+        .onUploadComplete(({}) => {
             return {}
         }),
 } satisfies FileRouterType

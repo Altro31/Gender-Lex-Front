@@ -1,35 +1,22 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config"
 
-import tailwind from "@astrojs/tailwind"
-
-import vue from "@astrojs/vue"
-
-import vercel from "@astrojs/vercel/serverless"
+import vercel from "@astrojs/vercel"
 
 import auth from "auth-astro"
 
 import react from "@astrojs/react"
 
+import tailwindcss from "@tailwindcss/vite"
+
 // https://astro.build/config
 export default defineConfig({
     output: "server",
-    integrations: [
-        tailwind({
-            applyBaseStyles: false,
-        }),
-        vue(),
-        auth(),
-        react(),
-    ],
-
+    integrations: [auth(), react()],
+    // @ts-ignore
+    vite: { plugins: [tailwindcss()] },
     env: {
         schema: {
-            DEV_DEVELOP: envField.boolean({
-                access: "secret",
-                context: "server",
-                default: false,
-            }),
             PDF_SERVICES_CLIENT_ID: envField.string({
                 access: "secret",
                 context: "server",
