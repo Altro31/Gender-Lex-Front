@@ -32,31 +32,31 @@ Actúa como un experto en el análisis de sesgo de género en textos. Para cada 
         "biasedTerms": [
             {
                 "content": "<Término identificado>",
-                "influencePercentage": "<Porcentaje de influencia en el sesgo general>",
+                "influencePercentage": "<Porcentaje de influencia en el sesgo general (entre 0 y 1)>",
                 "explanation": "<Explicación detallada del sesgo de género asociado al término>"
             } // Más términos según corresponda 
         ],
         "biasedMetaphors": [
             {
                 "content": "<Metáfora o expresión figurativa identificada>",
-                "influencePercentage": <Porcentaje de influencia en el sesgo general>,
+                "influencePercentage": <Porcentaje de influencia en el sesgo general (entre 0 y 1)>,
                 "explanation": "<Explicación detallada del sesgo de género asociado a la metáfora>"
             } // Más metáforas según corresponda 
         ],
         "additionalContextEvaluation": {
             "stereotype": {
                 "presence": <Sí/No>,
-                "influencePercentage": <Porcentaje de influencia en el sesgo general>,
+                "influencePercentage": <Porcentaje de influencia en el sesgo general (entre 0 y 1)>,
                 "explanation": "<Explicación del sesgo de género asociado al estereotipo>"
             },
             "powerAsymmetry": {
                 "presence": <Sí/No>,
-                "influencePercentage": <Porcentaje de influencia en el sesgo general>,
+                "influencePercentage": <Porcentaje de influencia en el sesgo general (entre 0 y 1)>,
                 "explanation": "<Explicación del sesgo de género asociado a la asimetría de poder>"
             },
             "genderRepresentationAbsence": {
                 "presence": <Sí/No>,
-                "influencePercentage": <Porcentaje de influencia en el sesgo general>,
+                "influencePercentage": <Porcentaje de influencia en el sesgo general (entre 0 y 1)>,
                 "explanation": "<Explicación del sesgo de género asociado a la falta de representatividad de género>"
             }
         }

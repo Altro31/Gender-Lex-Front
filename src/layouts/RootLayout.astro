@@ -11,6 +11,8 @@ interface Props {
     withTransitionsAPI?: boolean
 }
 const { title, withTransitionsAPI } = Astro.props
+
+const isDev = DEV_DEVELOP
 ---
 
 <html lang="en">
@@ -20,11 +22,6 @@ const { title, withTransitionsAPI } = Astro.props
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>{buildPageTitle(title)}</title>
-        {
-            DEV_DEVELOP && (
-                <script src="https://unpkg.com/react-scan/dist/auto.global.js" />
-            )
-        }
         {withTransitionsAPI && <ClientRouter />}
     </head>
     <body class="min-h-screen dark:dark">
@@ -32,8 +29,17 @@ const { title, withTransitionsAPI } = Astro.props
         <section class="flex h-screen">
             <Sidebar />
             <main class="flex-1 overflow-auto max-h-screen">
-                <slot> No Content Provided </slot>
+                <slot> No Content Provided</slot>
             </main>
         </section>
     </body>
 </html>
+
+{
+    isDev && (
+        <script
+            src="https://unpkg.com/react-scan/dist/auto.global.js"
+            is:inline
+        />
+    )
+}

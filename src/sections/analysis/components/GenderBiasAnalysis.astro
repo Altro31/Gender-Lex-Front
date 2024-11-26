@@ -12,7 +12,6 @@ interface Props {
 const { text, file } = Astro.props
 
 const analizeText = file ? await extractPDFText(file) : text
-console.log("🚀 ~ analizeText:", analizeText)
 
 const res = await genderLex(analizeText ?? "")
 const analysisData = res.object

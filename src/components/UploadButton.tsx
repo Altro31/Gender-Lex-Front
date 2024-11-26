@@ -6,7 +6,7 @@ interface Props extends ButtonProps {
     onFileUpload: (file: File) => void
 }
 
-function UploadButton(props: Props) {
+function UploadButton({ onFileUpload, ...props }: Props) {
     return (
         <Button
             asChild
@@ -21,7 +21,7 @@ function UploadButton(props: Props) {
                     type="file"
                     className="hidden"
                     onChange={(e) =>
-                        props.onFileUpload(e.currentTarget.files?.item(0)!)
+                        onFileUpload(e.currentTarget.files?.item(0)!)
                     }
                 />
             </label>

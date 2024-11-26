@@ -35,17 +35,17 @@ export default function FormContainer() {
 
     return (
         <form
-            action={"/analysis"}
+            action="/analysis"
             method="POST"
             className="group flex h-full gap-2 pr-2"
             onSubmit={() => setState("loading")}
         >
             <Textarea
+                name="text"
                 className="resize-none px-4"
                 placeholder="Analizar un texto..."
                 id="analyze-text"
-                name="text"
-                disabled={state === "loading"}
+                contentEditable={state !== "loading"}
                 value={inputValue}
                 onInput={(e) => {
                     setInput(e.currentTarget.value)
@@ -58,6 +58,7 @@ export default function FormContainer() {
                     className="hidden"
                     id="analyze-input"
                     value={inputFile}
+                    readOnly
                 />
                 <FormSendButton
                     disabled={disabled}
