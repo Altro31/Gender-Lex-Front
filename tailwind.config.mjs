@@ -1,4 +1,3 @@
-import plugin from "tailwindcss/plugin"
 import animate from "tailwindcss-animate"
 import { withUt } from "uploadthing/tw"
 
@@ -116,17 +115,5 @@ export default withUt({
         animate,
         require("tailwindcss-animate"),
         require("@tailwindcss/typography"),
-        plugin(function ({ addVariant, e }) {
-            addVariant("menu-open", ({ modifySelectors, separator }) => {
-                modifySelectors(({ className }) => {
-                    return `html:has([data-role=menu-toggle][data-open=true]) .${e(`menu-open${separator}${className}`)}`
-                })
-            })
-            addVariant("menu-closed", ({ modifySelectors, separator }) => {
-                modifySelectors(({ className }) => {
-                    return `html:has([data-role=menu-toggle][data-open=false]) .${e(`menu-closed${separator}${className}`)}`
-                })
-            })
-        }),
     ],
 })

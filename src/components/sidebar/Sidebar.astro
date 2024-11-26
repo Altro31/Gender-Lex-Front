@@ -5,23 +5,33 @@ import Google from "@/sections/auth/components/Google.astro"
 import { SignIn } from "auth-astro/components"
 import { getSession } from "auth-astro/server"
 import { Clock as ClockIcon, Plus as PlusIcon } from "lucide-astro"
-import SidebarButton from "./SidebarButton.astro"
+import { Button } from "~ui/button"
 const session = await getSession(Astro.request)
 ---
 
-<nav id="menu" class="flex flex-col gap-4 px-1 py-4 border-r justify-between">
-    <div class="flex flex-col gap-4 menu-closed:items-center">
+<nav class="flex flex-col gap-4 border-r p-4 justify-between">
+    <div class="flex flex-col gap-4">
         <ToggleButton />
-        <SidebarButton to="/">
-            <PlusIcon class="size-5" slot="icon" />
-            Nueveo Análisis
-        </SidebarButton>
+        <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-xl"
+            aria-label="Nuevo análisis"
+        >
+            <a href="/"><PlusIcon class="size-5" /></a>
+        </Button>
         {
             session && (
-                <SidebarButton to="/history">
-                    <ClockIcon class="size-5" slot="icon" />
-                    Historial
-                </SidebarButton>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-xl"
+                    aria-label="Historial"
+                >
+                    <a href="/history">
+                        <ClockIcon class="size-5" />
+                    </a>
+                </Button>
             )
         }
     </div>
@@ -29,12 +39,8 @@ const session = await getSession(Astro.request)
         session ? (
             <UserAvatar />
         ) : (
-            <SignIn
-                provider="google"
-                class="flex gap-4 items-center menu-open:hover:bg-muted py-2 px-3 rounded-xl"
-            >
+            <SignIn provider="google">
                 <Google />
-                <span class="menu-closed:hidden">Iniciar Sesión</span>
             </SignIn>
         )
     }
