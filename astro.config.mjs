@@ -70,4 +70,8 @@ export default defineConfig({
     image: {
         domains: ["lh3.googleusercontent.com"],
     },
+
+    experimental: {
+        clientPrerender: true,
+    },
 })
