@@ -5,7 +5,11 @@ export class PrismaService {
 
     static getInstance() {
         if (!this.instance) {
-            this.instance = new PrismaClient()
+            this.instance = new PrismaClient({
+                transactionOptions: {
+                    timeout: 10000,
+                },
+            })
         }
         return this.instance
     }
