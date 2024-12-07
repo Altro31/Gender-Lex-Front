@@ -6,32 +6,21 @@ import { SignIn } from "auth-astro/components"
 import { getSession } from "auth-astro/server"
 import { Clock as ClockIcon, Plus as PlusIcon } from "lucide-astro"
 import { Button } from "~ui/button"
+import SidebarButton from "./SidebarButton.astro"
 const session = await getSession(Astro.request)
 ---
 
 <nav class="flex flex-col gap-4 border-r p-4 justify-between">
     <div class="flex flex-col gap-4 *:cursor-pointer">
         <ToggleButton />
-        <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-xl"
-            aria-label="Nuevo análisis"
-        >
-            <a href="/"><PlusIcon class="size-5" /></a>
-        </Button>
+        <SidebarButton to="/">
+            <PlusIcon class="size-5" />
+        </SidebarButton>
         {
             session && (
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-xl"
-                    aria-label="Historial"
-                >
-                    <a href="/history">
-                        <ClockIcon class="size-5" />
-                    </a>
-                </Button>
+                <SidebarButton to="/history">
+                    <ClockIcon class="size-5" />
+                </SidebarButton>
             )
         }
     </div>

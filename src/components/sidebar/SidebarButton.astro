@@ -1,0 +1,21 @@
+---
+import { cn } from "@/lib/utils"
+import { Button, type ButtonProps } from "~ui/button"
+
+interface Props extends ButtonProps {
+    to: string
+}
+
+const { to, className, ...props } = Astro.props
+---
+
+<a href={to}>
+    <Button
+        className={cn("rounded-xl cursor-pointer", className)}
+        variant="ghost"
+        size="icon"
+        {...props}
+    >
+        <slot />
+    </Button>
+</a>
