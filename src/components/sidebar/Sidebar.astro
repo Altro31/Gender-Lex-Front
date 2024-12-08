@@ -5,7 +5,6 @@ import Google from "@/sections/auth/components/Google.astro"
 import { SignIn } from "auth-astro/components"
 import { getSession } from "auth-astro/server"
 import { Clock as ClockIcon, Plus as PlusIcon } from "lucide-astro"
-import { Button } from "~ui/button"
 import SidebarButton from "./SidebarButton.astro"
 const session = await getSession(Astro.request)
 ---

@@ -4,53 +4,62 @@ on:
         branches:
             - main
 jobs:
-    sync-3.2-90b:
+    sync_3-2_90b:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout source branch
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
               with:
-                  ref: main
+                  fetch-depth: 0
+                  ref: preview/llama3.2-90b
 
-            - name: Checkout target branch
-              run: git checkout preview/llama3.2-90b
+            - name: Config name and email
+              run: |
+                  git config --global user.email "albe020531@outlook.com" 
+                  git config --global user.name "Altro"
 
             - name: Pull rebase
-              run: git pull --rebase origin main
+              run: git pull -r origin main
 
             - name: Push changes
               run: git push -f
 
-    sync-3.1-8b:
+    sync_3-1_8b:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout source branch
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
               with:
-                  ref: main
+                  fetch-depth: 0
+                  ref: preview/llama3.1-8b
 
-            - name: Checkout target branch
-              run: git checkout preview/llama3.2-11b
+            - name: Config name and email
+              run: |
+                  git config --global user.email "albe020531@outlook.com" 
+                  git config --global user.name "Altro"
 
             - name: Pull rebase
-              run: git pull --rebase origin main
+              run: git pull -r origin main
 
             - name: Push changes
               run: git push -f
 
-    sync-3.2-11b:
+    sync_3-2_11b:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout source branch
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
               with:
-                  ref: main
+                  fetch-depth: 0
+                  ref: preview/llama3.2-11b
 
-            - name: Checkout target branch
-              run: git checkout preview/llama3.2-11b
+            - name: Config name and email
+              run: |
+                  git config --global user.email "albe020531@outlook.com" 
+                  git config --global user.name "Altro"
 
             - name: Pull rebase
-              run: git pull --rebase origin main
+              run: git pull -r origin main
 
             - name: Push changes
               run: git push -f
