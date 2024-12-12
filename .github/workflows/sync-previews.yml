@@ -19,7 +19,7 @@ jobs:
                   git config --global user.name "Altro"
 
             - name: Pull rebase
-              run: git pull -r origin main
+              run: git reset --hard origin/main
 
             - name: Push changes
               run: git push -f
@@ -39,7 +39,7 @@ jobs:
                   git config --global user.name "Altro"
 
             - name: Pull rebase
-              run: git pull -r origin main
+              run: git reset --hard origin/main
 
             - name: Push changes
               run: git push -f
@@ -59,7 +59,7 @@ jobs:
                   git config --global user.name "Altro"
 
             - name: Pull rebase
-              run: git pull -r origin main
+              run: git reset --hard origin/main
 
             - name: Push changes
               run: git push -f
