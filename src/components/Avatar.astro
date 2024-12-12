@@ -1,19 +1,16 @@
 ---
+import { cn } from "@/lib/utils"
+import type { ComponentProps } from "astro/types"
 import { Image } from "astro:assets"
 
-interface Props {
-    src: any
-    alt: string
-    width?: number
-    height?: number
-}
-const { height = 40, width = 40, src, alt } = Astro.props
+type Props = ComponentProps<typeof Image>
+
+const { height = 40, width = 40, class: classStr, ...rest } = Astro.props
 ---
 
 <Image
-    src={src}
-    alt={alt}
+    {...rest}
     height={height}
     width={width}
-    class="rounded-full cursor-pointer"
+    class:list={["rounded-full cursor-pointer", classStr]}
 />
