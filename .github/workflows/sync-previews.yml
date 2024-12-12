@@ -18,8 +18,17 @@ jobs:
                   git config --global user.email "albe020531@outlook.com" 
                   git config --global user.name "Altro"
 
+            - name: Get First Commit's Hash
+              id: get_commit_hash
+              run: |
+                  COMMIT_HASH=$(git rev-parse HEAD) 
+                  echo "::set-output name=commit_hash::$COMMIT_HASH"
+
             - name: Pull rebase
               run: git reset --hard origin/main
+
+            - name: Rebase saved Commit
+              run: git cherry-pick ${{steps.get_commit_hash.outputs.commit_hash}} || true
 
             - name: Push changes
               run: git push -f
@@ -38,8 +47,17 @@ jobs:
                   git config --global user.email "albe020531@outlook.com" 
                   git config --global user.name "Altro"
 
+            - name: Get First Commit's Hash
+              id: get_commit_hash
+              run: |
+                  COMMIT_HASH=$(git rev-parse HEAD) 
+                  echo "::set-output name=commit_hash::$COMMIT_HASH"
+
             - name: Pull rebase
               run: git reset --hard origin/main
+
+            - name: Rebase saved Commit
+              run: git cherry-pick ${{steps.get_commit_hash.outputs.commit_hash}} || true
 
             - name: Push changes
               run: git push -f
@@ -58,8 +76,17 @@ jobs:
                   git config --global user.email "albe020531@outlook.com" 
                   git config --global user.name "Altro"
 
+            - name: Get First Commit's Hash
+              id: get_commit_hash
+              run: |
+                  COMMIT_HASH=$(git rev-parse HEAD) 
+                  echo "::set-output name=commit_hash::$COMMIT_HASH"
+
             - name: Pull rebase
               run: git reset --hard origin/main
+
+            - name: Rebase saved Commit
+              run: git cherry-pick ${{steps.get_commit_hash.outputs.commit_hash}} || true
 
             - name: Push changes
               run: git push -f
