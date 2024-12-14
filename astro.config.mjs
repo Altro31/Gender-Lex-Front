@@ -3,6 +3,8 @@ import { defineConfig, envField } from "astro/config"
 
 import vercel from "@astrojs/vercel"
 
+import node from "@astrojs/node"
+
 import auth from "auth-astro"
 
 import react from "@astrojs/react"
@@ -14,7 +16,9 @@ export default defineConfig({
     output: "server",
     integrations: [auth(), react()],
     // @ts-ignore
-    vite: { plugins: [tailwindcss()] },
+    vite: {
+        plugins: [tailwindcss()],
+    },
     env: {
         schema: {
             PDF_SERVICES_CLIENT_ID: envField.string({
@@ -62,10 +66,12 @@ export default defineConfig({
         },
     },
 
-    adapter: vercel({
-        maxDuration: 60,
-        webAnalytics: { enabled: true },
-    }),
+    adapter: process.env.DOCKER
+        ? node({ mode: "standalone" })
+        : vercel({
+              maxDuration: 60,
+              webAnalytics: { enabled: true },
+          }),
 
     image: {
         domains: ["lh3.googleusercontent.com"],
