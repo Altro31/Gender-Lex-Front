@@ -13,7 +13,7 @@ const {
     useNativeImg,
     ...rest
 } = Astro.props
-const ImgComp = useNativeImg ? "img" : Image
+const ImgComp = (useNativeImg ? "img" : Image) as typeof Image
 ---
 
 <ImgComp
