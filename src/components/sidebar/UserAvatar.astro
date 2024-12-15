@@ -7,7 +7,7 @@ const img = session?.user?.image
 const name = session?.user?.name ?? ""
 ---
 
-{img && <Avatar src={img as any} alt={name} />}
+{img && <Avatar src={img as any} alt={name} loading="eager" useNativeImg />}
 
 <script>
     import { signOut } from "auth-astro/client"

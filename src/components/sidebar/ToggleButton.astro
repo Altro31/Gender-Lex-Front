@@ -4,8 +4,9 @@ import { Button } from "~ui/button"
 ---
 
 <label>
+    <span class="sr-only">Menu</span>
     <Button variant="ghost" size="icon" className="rounded-xl cursor-pointer">
         <MenuIcon class="h-5 w-5" />
     </Button>
-    <input type="checkbox" class="hidden" />
+    <input id="toggle-menu" type="checkbox" class="hidden" />
 </label>

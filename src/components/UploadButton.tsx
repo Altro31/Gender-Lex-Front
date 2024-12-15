@@ -20,6 +20,7 @@ export default function UploadButton({
             {...props}
         >
             <label>
+                <span className="sr-only">Upload file</span>
                 <PaperclipIcon className="h-4 w-4" />
                 <input
                     type="file"

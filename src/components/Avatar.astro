@@ -2,12 +2,21 @@
 import type { ComponentProps } from "astro/types"
 import { Image } from "astro:assets"
 
-type Props = ComponentProps<typeof Image>
+type Props = {
+    useNativeImg?: boolean
+} & ComponentProps<typeof Image>
 
-const { height = 40, width = 40, class: classStr, ...rest } = Astro.props
+const {
+    height = 40,
+    width = 40,
+    class: classStr,
+    useNativeImg,
+    ...rest
+} = Astro.props
+const ImgComp = useNativeImg ? "img" : Image
 ---
 
-<Image
+<ImgComp
     {...rest}
     height={height}
     width={width}

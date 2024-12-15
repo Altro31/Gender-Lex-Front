@@ -6,14 +6,15 @@ interface Props extends ButtonProps {
     to: string
 }
 
-const { to, className, ...props } = Astro.props
+const { to, className, "aria-label": ariaLabel, ...props } = Astro.props
 ---
 
-<a href={to}>
+<a href={to} aria-label={ariaLabel}>
     <Button
         className={cn("rounded-xl cursor-pointer", className)}
         variant="ghost"
         size="icon"
+        aria-label={ariaLabel}
         {...props}
     >
         <slot />
