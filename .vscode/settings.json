@@ -1,5 +1,5 @@
 {
     "typescript.tsdk": "node_modules/typescript/lib",
     "cSpell.words": ["astrojs", "oxlint", "oxlintrc"],
-    "cSpell.language": "en,es"
+    "cSpell.language": "en,es,es-ES"
 }

@@ -24,6 +24,7 @@ export default function UploadButton({
                 <input
                     type="file"
                     className="hidden"
+                    accept=".pdf"
                     onChange={(e) =>
                         onFileUpload(e.currentTarget.files?.item(0)!)
                     }
