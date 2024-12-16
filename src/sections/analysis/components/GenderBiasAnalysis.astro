@@ -3,6 +3,7 @@ import ResultContainer from "@/sections/analysis/components/ResultContainer.astr
 import { genderLex } from "@/services/domain/gender-lex"
 import { RequestRepository } from "@/services/domain/request"
 import { extractPDFText } from "@/services/pdf/extract-pdf-text"
+import type { Request } from "@zenstackhq/runtime/models"
 
 interface Props {
     text?: string
@@ -13,10 +14,11 @@ const { text, file } = Astro.props
 
 const analizeText = file ? await extractPDFText(file) : text
 
-const res = await genderLex(analizeText ?? "")
-const analysisData = res.object
+const { object } = await genderLex(analizeText ?? "")
 
-RequestRepository.create(analysisData, Astro.request)
+RequestRepository.create(object, Astro.request)
 ---
 
-<ResultContainer data={analysisData} />
+<ResultContainer
+    data={object as Omit<Request, "id" | "createdAt" | "userEmail">}
+/>

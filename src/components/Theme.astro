@@ -22,13 +22,13 @@ const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
 </astro-theme>
 
 <script>
-    import Cookies from "js-cookie"
+    import { actions } from "astro:actions"
     class Theme extends HTMLElement {
         connectedCallback() {
             const input: HTMLInputElement | null = this.querySelector("#theme")
             input?.addEventListener("input", (e) => {
                 const target = e.target as HTMLInputElement
-                Cookies.set("THEME_DARK", target.checked.toString())
+                actions.registerTheme(target.checked ? "dark" : "light")
                 document.body.classList.toggle("dark", target.checked)
             })
         }

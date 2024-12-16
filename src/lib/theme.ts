@@ -1,6 +1,8 @@
+import type { ThemeType } from "@/schemas/theme"
 import type { AstroCookies } from "astro"
 
-export function getPreferredThemeFromAstroCookies(cookies: AstroCookies) {
-    const isDark = cookies.get("THEME_DARK")?.boolean() ?? false
-    return isDark ? "dark" : "light"
+export function getPreferredThemeFromAstroCookies(
+    cookies: AstroCookies,
+): ThemeType {
+    return (cookies.get("THEME")?.value as ThemeType | undefined) ?? "light"
 }

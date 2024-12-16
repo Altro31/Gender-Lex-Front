@@ -1,4 +1,4 @@
-import { genderLexSchema } from "@/lib/schemas/gender-lex"
+import { genderLexSchema } from "@/schemas/gender-lex"
 import { models } from "@/services/ai/models.ts"
 import { genderLexSystemPrompt } from "@/services/ai/system-prompts/gender-lex.ts"
 import { generateObject, streamObject } from "ai"
