@@ -15,7 +15,7 @@ import tailwindcss from "@tailwindcss/vite"
 export default defineConfig({
     output: "server",
     integrations: [auth(), react()],
-    // @ts-ignore
+    
     vite: {
         plugins: [tailwindcss()],
     },
