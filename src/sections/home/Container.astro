@@ -1,6 +1,5 @@
 ---
 import FormContainer from "@/sections/home/components/form/FormContainer"
-import RefreshButton from "@/sections/home/components/RefreshButton.astro"
 import {
     ChartColumn as ChartColumnIcon,
     FileText as FileTextIcon,
@@ -48,7 +47,7 @@ const prompts = [
         </div>
     </div>
     <div
-        class="mb-8 flex gap-4 flex-wrap justify-center"
+        class="mb-16 flex gap-4 flex-wrap justify-center"
         transition:name="info"
     >
         {
@@ -72,6 +71,5 @@ const prompts = [
             ))
         }
     </div>
-    <RefreshButton />
     <FormContainer client:load />
 </div>

@@ -1,12 +1,9 @@
 ---
+import SidebarAuth from "@/components/sidebar/SidebarAuth.astro"
+import SidebarHistory from "@/components/sidebar/SidebarHistory.astro"
 import ToggleButton from "@/components/sidebar/ToggleButton.astro"
-import UserAvatar from "@/components/sidebar/UserAvatar.astro"
-import Google from "@/sections/auth/components/Google.astro"
-import { SignIn } from "auth-astro/components"
-import { getSession } from "auth-astro/server"
-import { Clock as ClockIcon, Plus as PlusIcon } from "lucide-astro"
+import { Plus as PlusIcon } from "lucide-astro"
 import SidebarButton from "./SidebarButton.astro"
-const session = await getSession(Astro.request)
 ---
 
 <nav class="flex flex-col gap-4 border-r p-4 justify-between">
@@ -15,21 +12,7 @@ const session = await getSession(Astro.request)
         <SidebarButton to="/" aria-label="Nuevo análisis">
             <PlusIcon class="size-5" />
         </SidebarButton>
-        {
-            session && (
-                <SidebarButton to="/history" aria-label="Historial">
-                    <ClockIcon class="size-5" />
-                </SidebarButton>
-            )
-        }
+        <SidebarHistory server:defer />
     </div>
-    {
-        session ? (
-            <UserAvatar />
-        ) : (
-            <SignIn provider="google">
-                <Google />
-            </SignIn>
-        )
-    }
+    <SidebarAuth server:defer />
 </nav>

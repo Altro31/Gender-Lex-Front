@@ -11,12 +11,15 @@ import react from "@astrojs/react"
 
 import tailwindcss from "@tailwindcss/vite"
 
+// @ts-expect-error - no TS types yet for beta test.
+import reactCompiler from "babel-plugin-react-compiler"
+
 // https://astro.build/config
 export default defineConfig({
-    output: "server",
-    integrations: [auth(), react()],
-    
+    integrations: [auth(), react({ babel: { plugins: [reactCompiler] } })],
+
     vite: {
+        // @ts-ignore
         plugins: [tailwindcss()],
     },
     env: {

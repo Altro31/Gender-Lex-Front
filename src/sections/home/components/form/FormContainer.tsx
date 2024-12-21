@@ -1,14 +1,11 @@
 import UploadButton from "@/components/UploadButton"
 import { useUploadThing } from "@/hooks/use-uploadthing"
 import FormSendButton from "@/sections/home/components/form/FormSendButton"
-import { memo, useCallback, useState } from "react"
+import { useState, type FormEventHandler } from "react"
 import { Textarea } from "~ui/textarea"
 
 type Input = string | undefined
 type State = "ready" | "loading" | "error"
-
-const MemoizedFormSendButton = memo(FormSendButton)
-const MemoizedUploadButton = memo(UploadButton)
 
 export default function FormContainer() {
     const { startUpload } = useUploadThing("fileUploader")
@@ -19,7 +16,7 @@ export default function FormContainer() {
 
     const disabled = !input || state === "loading"
 
-    const onFileUpload = useCallback(async (file: File) => {
+    const onFileUpload = async (file: File) => {
         if (file) {
             const files = await startUpload([file])
             const newFile = files?.[0]
@@ -34,7 +31,12 @@ export default function FormContainer() {
                 )
             }
         }
-    }, [])
+    }
+
+    const handleInput: FormEventHandler<HTMLTextAreaElement> = (e) => {
+        setInput(e.currentTarget.value)
+        setInputValue(e.currentTarget.value)
+    }
 
     return (
         <form
@@ -50,10 +52,7 @@ export default function FormContainer() {
                 id="analyze-text"
                 contentEditable={state !== "loading"}
                 value={inputValue}
-                onInput={(e) => {
-                    setInput(e.currentTarget.value)
-                    setInputValue(e.currentTarget.value)
-                }}
+                onInput={handleInput}
             />
             <div className="flex flex-col gap-1">
                 <input
@@ -63,14 +62,11 @@ export default function FormContainer() {
                     value={inputFile}
                     readOnly
                 />
-                <MemoizedFormSendButton
+                <FormSendButton
                     disabled={disabled}
                     loading={state === "loading"}
                 />
-                <MemoizedUploadButton
-                    disabled={disabled}
-                    onFileUpload={onFileUpload}
-                />
+                <UploadButton disabled={disabled} onFileUpload={onFileUpload} />
             </div>
         </form>
     )

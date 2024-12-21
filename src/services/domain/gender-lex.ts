@@ -1,14 +1,14 @@
-import { genderLexSchema } from "@/schemas/gender-lex"
+import { altGenderLexSchema } from "@/schemas/gender-lex"
 import { models } from "@/services/ai/models.ts"
 import { genderLexSystemPrompt } from "@/services/ai/system-prompts/gender-lex.ts"
 import { generateObject, streamObject } from "ai"
 
 export async function genderLex(text: string) {
     return generateObject({
-        model: models.Llama,
+        model: models.Gemini,
         prompt: text,
         system: genderLexSystemPrompt,
-        schema: genderLexSchema,
+        schema: altGenderLexSchema,
     })
 }
 
@@ -17,6 +17,6 @@ export function genderLexStream(text: string) {
         model: models.Llama,
         prompt: text,
         system: genderLexSystemPrompt,
-        schema: genderLexSchema,
+        schema: altGenderLexSchema,
     })
 }

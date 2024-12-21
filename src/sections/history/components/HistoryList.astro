@@ -1,0 +1,8 @@
+---
+import HistoryItem from "@/sections/history/components/HistoryItem.astro"
+import { RequestRepository } from "@/services/domain/request"
+
+const analysisData = await RequestRepository.findAll({}, Astro.request)
+---
+
+{analysisData?.map((data) => <HistoryItem data={data as any} />)}

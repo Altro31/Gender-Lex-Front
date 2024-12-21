@@ -13,7 +13,7 @@ export default function FormSendButton({
     return (
         <Button
             size="sm"
-            className="rounded-lg transition-opacity"
+            className="cursor-pointer rounded-lg transition-opacity"
             disabled={disabled}
         >
             {loading ? (

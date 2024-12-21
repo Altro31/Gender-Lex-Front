@@ -3,16 +3,13 @@ import "@/base.css"
 import Theme from "@/components/Theme.astro"
 import Sidebar from "@/components/sidebar"
 import { buildPageTitle } from "@/lib/text/build-page-title"
-import { getPreferredThemeFromAstroCookies } from "@/lib/theme"
 import { ClientRouter } from "astro:transitions"
 
 interface Props {
     title?: string
-    withTransitionsAPI?: boolean
+    withoutTransitionsAPI?: boolean
 }
-const { title, withTransitionsAPI } = Astro.props
-
-const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
+const { title, withoutTransitionsAPI = false } = Astro.props
 ---
 
 <html lang="en">
@@ -22,24 +19,23 @@ const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>{buildPageTitle(title)}</title>
-        {withTransitionsAPI && <ClientRouter />}
+        {!withoutTransitionsAPI && <ClientRouter />}
+        {
+            import.meta.env.DEV && (
+                <script
+                    src="https://unpkg.com/react-scan/dist/auto.global.js"
+                    is:inline
+                />
+            )
+        }
     </head>
-    <body class="min-h-screen" class:list={[theme !== "light" && theme]}>
-        <Theme />
+    <body class="min-h-screen">
+        <Theme server:defer />
         <section class="flex h-screen">
-            <Sidebar />
+            <Sidebar transition:persist />
             <main class="flex-1 overflow-auto max-h-screen">
                 <slot> No Content Provided</slot>
             </main>
         </section>
     </body>
 </html>
-
-{
-    import.meta.env.DEV && (
-        <script
-            src="https://unpkg.com/react-scan/dist/auto.global.js"
-            is:inline
-        />
-    )
-}

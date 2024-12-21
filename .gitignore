@@ -27,4 +27,4 @@ pnpm-debug.log*
 
 /prisma/schema.prisma
 
-bun.lockb
+bun.lock*

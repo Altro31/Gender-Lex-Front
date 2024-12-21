@@ -2,6 +2,8 @@ import { fileRouter } from "@/services/uploadthing"
 import { UPLOADTHING_TOKEN } from "astro:env/server"
 import { createRouteHandler } from "uploadthing/server"
 
+export const prerender = false
+
 // Export routes for Next App Router
 const handlers = createRouteHandler({
     router: fileRouter,

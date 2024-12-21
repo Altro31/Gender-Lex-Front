@@ -1,8 +1,10 @@
 ---
 import RootLayout from "@/layouts/RootLayout.astro"
 import HistoryDetailsContainer from "@/sections/history/HistoryDetailsContainer.astro"
+
+export const prerender = false
 ---
 
-<RootLayout title="Home" withTransitionsAPI>
+<RootLayout title="History Details">
     <HistoryDetailsContainer />
 </RootLayout>

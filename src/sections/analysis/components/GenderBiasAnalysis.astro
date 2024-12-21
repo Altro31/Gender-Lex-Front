@@ -12,9 +12,9 @@ interface Props {
 
 const { text, file } = Astro.props
 
-const analizeText = file ? await extractPDFText(file) : text
+const analiceText = file ? await extractPDFText(file) : text
 
-const { object } = await genderLex(analizeText ?? "")
+const { object } = await genderLex(analiceText ?? "")
 
 RequestRepository.create(object, Astro.request)
 ---

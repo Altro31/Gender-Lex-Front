@@ -5,6 +5,10 @@ import { Sun as SunIcon, Moon as MoonIcon } from "lucide-astro"
 const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
 ---
 
+<script define:vars={{ theme }} is:inline>
+    if (theme !== "light") document.body.classList.add(theme)
+</script>
+
 <astro-theme>
     <label
         class="group/theme absolute right-3.5 top-3.5 select-none cursor-pointer"
