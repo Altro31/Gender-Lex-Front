@@ -2,8 +2,6 @@
 import RootLayout from "@/layouts/RootLayout.astro"
 import AnalysisContainer from "@/sections/analysis/AnalysisContainer.astro"
 
-export const prerender = false
-
 if (Astro.request.method !== "POST") return Astro.redirect("/")
 ---
 
