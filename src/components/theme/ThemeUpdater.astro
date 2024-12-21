@@ -1,0 +1,18 @@
+---
+import { getPreferredThemeFromAstroCookies } from "@/lib/theme"
+
+const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
+---
+
+<div id="theme-bringer" class="sr-only" data-theme={theme}></div>
+
+<script>
+    const theme =
+        document.querySelector<HTMLDivElement>("#theme-bringer")?.dataset.theme
+    if (theme !== "light") {
+        const themeElement = document.querySelector<HTMLInputElement>("#theme")
+        if (themeElement) {
+            themeElement.checked = true
+        }
+    }
+</script>

@@ -1,25 +1,15 @@
 ---
-import { getPreferredThemeFromAstroCookies } from "@/lib/theme"
-import { Sun as SunIcon, Moon as MoonIcon } from "lucide-astro"
-
-const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
+import ThemeUpdater from "@/components/theme/ThemeUpdater.astro"
+import { Moon as MoonIcon, Sun as SunIcon } from "lucide-astro"
 ---
 
-<script define:vars={{ theme }} is:inline>
-    if (theme !== "light") document.body.classList.add(theme)
-</script>
+<ThemeUpdater server:defer />
 
-<astro-theme>
+<astro-theme transition:persist="theme">
     <label
         class="group/theme absolute right-3.5 top-3.5 select-none cursor-pointer"
     >
-        <input
-            type="checkbox"
-            id="theme"
-            class="hidden"
-            value="off"
-            {...theme === "dark" && { checked: true }}
-        />
+        <input type="checkbox" id="theme" class="hidden" value="off" />
         <MoonIcon class="hidden group-has-[#theme:checked]/theme:inline" />
         <SunIcon class="group-has-[#theme:checked]/theme:hidden" />
     </label>
@@ -33,7 +23,6 @@ const theme = getPreferredThemeFromAstroCookies(Astro.cookies)
             input?.addEventListener("input", (e) => {
                 const target = e.target as HTMLInputElement
                 actions.registerTheme(target.checked ? "dark" : "light")
-                document.body.classList.toggle("dark", target.checked)
             })
         }
     }

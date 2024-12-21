@@ -21,11 +21,10 @@
     border-color: var(--color-gray-200, currentColor);
 }
 
-
 @theme {
     --spacing: 0.25rem;
 
-    /* radius */    
+    /* radius */
     --radius-xl: calc(var(--radius) + 4px);
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -120,7 +119,7 @@
         --dev: 120 100% 20%;
     }
 
-    .dark {
+    body:has(#theme:checked) {
         --background: 224 71.4% 4.1%;
         --foreground: 210 20% 98%;
 

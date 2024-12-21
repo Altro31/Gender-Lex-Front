@@ -1,7 +1,7 @@
 ---
 import "@/base.css"
-import Theme from "@/components/Theme.astro"
 import Sidebar from "@/components/sidebar"
+import Theme from "@/components/theme/Theme.astro"
 import { buildPageTitle } from "@/lib/text/build-page-title"
 import { ClientRouter } from "astro:transitions"
 
@@ -30,7 +30,7 @@ const { title, withoutTransitionsAPI = false } = Astro.props
         }
     </head>
     <body class="min-h-screen">
-        <Theme server:defer />
+        <Theme />
         <section class="flex h-screen">
             <Sidebar transition:persist />
             <main class="flex-1 overflow-auto max-h-screen">
