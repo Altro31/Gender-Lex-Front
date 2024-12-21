@@ -22,6 +22,8 @@ ENV GEMINI_API_KEY="string"
 ENV GROQ_API_KEY="string"
 ENV PDF_SERVICES_CLIENT_ID="string"
 ENV PDF_SERVICES_CLIENT_SECRET="string"
+ENV UPLOADTHING_TOKEN="string"
+
 COPY . .
 RUN npm run build
 
