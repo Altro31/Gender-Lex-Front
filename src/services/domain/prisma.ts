@@ -7,7 +7,7 @@ export class PrismaService {
         if (!this.instance) {
             this.instance = new PrismaClient({
                 transactionOptions: {
-                    timeout: 10000,
+                    timeout: 120000,
                 },
             })
         }
