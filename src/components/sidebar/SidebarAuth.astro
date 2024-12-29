@@ -11,8 +11,14 @@ const session = await getSession(Astro.request)
     session ? (
         <UserAvatar />
     ) : (
-        <SignIn provider="google">
+        <SignIn
+            provider="google"
+            class="text-start *:inline-block space-x-2 menu:p-2 menu:-ml-2 menu:-mb-2 rounded-lg menu:bg-muted transition-all cursor-pointer active:scale-90 select-none"
+        >
             <Google />
+            <span class="not-menu:sr-only font-semibold text-black/90">
+                Iniciar sesión
+            </span>
         </SignIn>
     )
 }

@@ -1,7 +1,7 @@
 import UploadButton from "@/components/UploadButton"
 import { useUploadThing } from "@/hooks/use-uploadthing"
 import FormSendButton from "@/sections/home/components/form/FormSendButton"
-import { useState, type FormEventHandler } from "react"
+import { type FormEventHandler, useState } from "react"
 import { Textarea } from "~ui/textarea"
 
 type Input = string | undefined

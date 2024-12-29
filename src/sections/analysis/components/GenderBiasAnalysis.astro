@@ -14,7 +14,9 @@ const { text, file } = Astro.props
 
 const analiceText = file ? await extractPDFText(file) : text
 
-const { object } = await genderLex(analiceText ?? "")
+const modelName = Astro.cookies.get("MODEL")?.value
+
+const { object } = await genderLex(analiceText ?? "", modelName as any)
 
 RequestRepository.create(object, Astro.request)
 ---

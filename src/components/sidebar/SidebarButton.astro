@@ -4,19 +4,23 @@ import { Button, type ButtonProps } from "~ui/button"
 
 interface Props extends ButtonProps {
     to: string
+    label: string
 }
 
-const { to, className, "aria-label": ariaLabel, ...props } = Astro.props
+const { to, className, label, ...props } = Astro.props
 ---
 
-<a href={to} aria-label={ariaLabel}>
+<a href={to} aria-label={label}>
     <Button
-        className={cn("rounded-xl cursor-pointer", className)}
+        className={cn(
+            "justify-start rounded-xl cursor-pointer menu:w-full hover:bg-muted-foreground/20",
+            className,
+        )}
         variant="ghost"
-        size="icon"
-        aria-label={ariaLabel}
+        aria-label={label}
         {...props}
     >
         <slot />
+        <span class="not-menu:sr-only select-none">{label}</span>
     </Button>
 </a>

@@ -29,11 +29,11 @@ const { title, withoutTransitionsAPI = false } = Astro.props
             )
         }
     </head>
-    <body class="min-h-screen">
+    <body class="relative">
         <Theme />
         <section class="flex h-screen">
-            <Sidebar transition:persist />
-            <main class="flex-1 overflow-auto max-h-screen">
+            <Sidebar />
+            <main class="flex-1">
                 <slot> No Content Provided</slot>
             </main>
         </section>

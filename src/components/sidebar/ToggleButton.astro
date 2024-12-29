@@ -3,10 +3,15 @@ import { Menu as MenuIcon } from "lucide-astro"
 import { Button } from "~ui/button"
 ---
 
-<label>
-    <span class="sr-only">Menu</span>
-    <Button variant="ghost" size="icon" className="rounded-xl cursor-pointer">
+<label
+    onclick="document.body.classList.toggle('menu')"
+    class="absolute menu:static sm:static -right-12 top-1"
+>
+    <Button
+        variant="ghost"
+        className="rounded-xl cursor-pointer menu:w-full justify-start hover:bg-muted-foreground/20"
+    >
         <MenuIcon class="h-5 w-5" />
+        <span class="not-menu:sr-only select-none">GenderLex</span>
     </Button>
-    <input id="toggle-menu" type="checkbox" class="hidden" />
 </label>

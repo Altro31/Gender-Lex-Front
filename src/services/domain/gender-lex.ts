@@ -1,11 +1,18 @@
 import { altGenderLexSchema } from "@/schemas/gender-lex"
-import { models } from "@/services/ai/models.ts"
+import {
+    availableModels,
+    models,
+    type AvailableModelsType,
+} from "@/services/ai/models.ts"
 import { genderLexSystemPrompt } from "@/services/ai/system-prompts/gender-lex.ts"
 import { generateObject, streamObject } from "ai"
 
-export async function genderLex(text: string) {
+export async function genderLex(text: string, modelName?: AvailableModelsType) {
+    const model =
+        availableModels[modelName ?? "Gemini 2.0"] ??
+        availableModels["Gemini 2.0"]
     return generateObject({
-        model: models.Gemini,
+        model,
         prompt: text,
         system: genderLexSystemPrompt,
         schema: altGenderLexSchema,

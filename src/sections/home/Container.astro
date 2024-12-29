@@ -32,44 +32,45 @@ const prompts = [
 ]
 ---
 
-<div
-    class="size-full grid place-content-center group-has-[#theme:checked]:bg-red-500"
->
-    <div class="w-fit">
-        <div class="mb-8 space-y-2">
-            <h1
-                class="p-1 text-4xl font-bold bg-linear-to-r from-primary via-fuchsia-600/80 via-65% to-75% to-violet-500 bg-clip-text text-transparent"
-            >
-                <span>Bienvenido/a a GenderLex,</span>
-                <br />
-                <span>su asistente de escritura inteligente.</span>
-            </h1>
-        </div>
-    </div>
+<div class="h-full flex items-center justify-center">
     <div
-        class="mb-16 flex gap-4 flex-wrap justify-center"
-        transition:name="info"
+        class="menu:scale-95 sm:menu:scale-100 transition-transform inline-block p-4 max-h-screen max-w-4xl group-has-[#theme:checked]:bg-red-500 overflow-auto space-y-3 sm:space-y-8"
     >
-        {
-            prompts.map(({ icon: Icon, text, ready }) => (
-                <Card
-                    data-ready={ready}
-                    className="data-[ready=false]:bg-muted  cursor-pointer p-4 transition-colors hover:bg-muted/80 w-48"
+        <div class="w-fit">
+            <div class="space-y-2">
+                <h1
+                    class="p-1 text-3xl sm:text-4xl font-bold bg-linear-to-r from-primary via-fuchsia-600/80 via-65% to-75% to-violet-500 bg-clip-text text-transparent"
                 >
-                    <div class="flex flex-col justify-between h-full gap-4">
-                        <span class="text-sm">{text}</span>
-                        <div class="flex justify-between">
-                            <Icon class="h-5 w-5 text-gray-500" />
-                            {!ready && (
-                                <span class="bg-dev rounded-full text-white p-1 px-2 text-sm">
-                                    dev
-                                </span>
-                            )}
+                    <span>Bienvenido/a a GenderLex,</span>
+                    <br />
+                    <span class="text-2xl"
+                        >su asistente de escritura inteligente.</span
+                    >
+                </h1>
+            </div>
+        </div>
+        <div class="flex gap-4 flex-wrap justify-center" transition:name="info">
+            {
+                prompts.map(({ icon: Icon, text, ready }) => (
+                    <Card
+                        data-ready={ready}
+                        className="data-[ready=false]:bg-muted  cursor-pointer p-2 sm:p-4 transition-colors hover:bg-muted/80 max-w-34 sm:max-w-48"
+                    >
+                        <div class="flex sm:flex-col justify-between h-full gap-1 sm:gap-4">
+                            <span class="text-xs sm:text-sm">{text}</span>
+                            <div class="flex justify-between sm:flex-row flex-col items-end gap-1">
+                                <Icon class="h-5 w-5 text-gray-500" />
+                                {!ready && (
+                                    <span class="bg-dev rounded-full text-white p-1 px-2 text-sm">
+                                        dev
+                                    </span>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                </Card>
-            ))
-        }
+                    </Card>
+                ))
+            }
+        </div>
+        <FormContainer client:load />
     </div>
-    <FormContainer client:load />
 </div>

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @variant dark (&:is(.dark *));
+@variant menu (&:is(.menu *));
 
 @plugin "tailwindcss-animate";
 @plugin "tailwindcss-animate";
@@ -164,9 +165,14 @@
 }
 
 @layer base {
+    :root {
+        interpolate-size: allow-keywords;
+    }
+    
     body {
         @apply bg-background text-foreground;
     }
+
 }
 
 * {

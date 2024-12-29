@@ -1,9 +1,10 @@
 ---
+import { cn } from "@/lib/utils"
 import { Button, type ButtonProps } from "~ui/button"
 
 interface Props extends ButtonProps {}
 
-const { id, ...props } = Astro.props
+const { id, className, ...props } = Astro.props
 ---
 
 <toggle-button
@@ -12,7 +13,11 @@ const { id, ...props } = Astro.props
     data-state="on"
     class="group"
 >
-    <Button {...props} type="button" className="cursor-pointer">
+    <Button
+        {...props}
+        type="button"
+        className={cn("cursor-pointer", className)}
+    >
         <div class="group-data-[state=off]:hidden">
             <slot name="on">On</slot>
         </div>

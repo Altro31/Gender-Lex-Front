@@ -8,7 +8,7 @@ const session = await getSession(Astro.request)
 
 {
     session && (
-        <SidebarButton to="/history" aria-label="Historial">
+        <SidebarButton to="/history" label="Historial">
             <ClockIcon class="size-5" />
         </SidebarButton>
     )

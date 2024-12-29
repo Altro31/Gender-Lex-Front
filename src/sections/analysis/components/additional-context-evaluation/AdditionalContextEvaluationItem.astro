@@ -17,12 +17,12 @@ const severity = getRateLabel(data.influencePercentage)
         progress={data.influencePercentage * 100}
         label
         strokeWidth={16}
-        size={200}
+        size={180}
         data-severity={severity}
         class="data-[severity=low]:stroke-chart-2 data-[severity=medium]:stroke-chart-4 data-[severity=high]:stroke-chart-1"
     />
     <h3 class="text-center font-semibold">{title}</h3>
-    <p class="text-sm text-secondary-foreground/80">
+    <p class="text-xs sm:text-sm text-secondary-foreground/80">
         {data.explanation}
     </p>
 </div>

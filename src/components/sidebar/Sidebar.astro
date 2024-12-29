@@ -4,15 +4,30 @@ import SidebarHistory from "@/components/sidebar/SidebarHistory.astro"
 import ToggleButton from "@/components/sidebar/ToggleButton.astro"
 import { Plus as PlusIcon } from "lucide-astro"
 import SidebarButton from "./SidebarButton.astro"
+import SidebarModelSelector from "@/components/sidebar/SidebarModelSelector.astro"
 ---
 
-<nav class="flex flex-col gap-4 border-r p-4 justify-between">
-    <div class="flex flex-col gap-4 *:cursor-pointer">
-        <ToggleButton />
-        <SidebarButton to="/" aria-label="Nuevo análisis">
-            <PlusIcon class="size-5" />
-        </SidebarButton>
-        <SidebarHistory server:defer />
+<div
+    class="z-1 flex absolute sm:static h-full menu:w-full sm:menu:w-auto -left-20 menu:left-0"
+>
+    <nav
+        class="bg-secondary flex flex-col gap-4 border-r p-4 justify-between menu:w-48 transition-[width] ease-out"
+    >
+        <div class="flex flex-col gap-4 *:cursor-pointer">
+            <ToggleButton />
+            <SidebarButton to="/" label="Nuevo análisis">
+                <PlusIcon class="size-5" />
+            </SidebarButton>
+            <SidebarHistory server:defer />
+        </div>
+        <div class="gap-4 flex flex-col">
+            <SidebarModelSelector server:defer />
+            <SidebarAuth server:defer />
+        </div>
+    </nav>
+    <div
+        class="hidden menu:block sm:menu:hidden flex-1 bg-primary/20"
+        onclick="document.body.classList.toggle('menu')"
+    >
     </div>
-    <SidebarAuth server:defer />
-</nav>
+</div>

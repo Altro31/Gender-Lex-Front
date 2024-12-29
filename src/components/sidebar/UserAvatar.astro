@@ -7,9 +7,19 @@ const img = session?.user?.image
 const name = session?.user?.name ?? ""
 ---
 
-{img && <Avatar src={img as any} alt={name} loading="eager" useNativeImg />}
+<label
+    id="menu-auth"
+    class="*:inline-block space-x-2 menu:p-2 menu:-ml-2 menu:-mb-2 rounded-lg menu:bg-muted-foreground/20 transition-all cursor-pointer active:scale-90 select-none"
+>
+    {img && <Avatar src={img as any} alt={name} loading="eager" useNativeImg />}
+    <span class="not-menu:sr-only font-semibold text-secondary-foreground/90"
+        >{name}</span
+    >
+</label>
 
 <script>
     import { signOut } from "auth-astro/client"
-    document.querySelector("img")?.addEventListener("click", () => signOut())
+    document.querySelector("#menu-auth")?.addEventListener("click", () => {
+        signOut()
+    })
 </script>
