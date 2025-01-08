@@ -31,7 +31,10 @@ const nextPage = page < total ? page + 1 : undefined
                         />
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink href={"/history/?page=" + prevPage}>
+                        <PaginationLink
+                            href={"/history/?page=" + prevPage}
+                            data-astro-prefetch
+                        >
                             {prevPage}
                         </PaginationLink>
                     </PaginationItem>
