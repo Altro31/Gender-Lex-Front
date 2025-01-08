@@ -5,6 +5,7 @@ import ToggleButton from "@/components/sidebar/ToggleButton.astro"
 import { Plus as PlusIcon } from "lucide-astro"
 import SidebarButton from "./SidebarButton.astro"
 import SidebarModelSelector from "@/components/sidebar/SidebarModelSelector.astro"
+import { Skeleton } from "~ui/skeleton"
 ---
 
 <div
@@ -23,7 +24,12 @@ import SidebarModelSelector from "@/components/sidebar/SidebarModelSelector.astr
         </div>
         <div class="gap-4 flex flex-col">
             <SidebarModelSelector server:defer />
-            <SidebarAuth server:defer />
+            <SidebarAuth server:defer>
+                <Skeleton
+                    slot="fallback"
+                    className="size-10 rounded-full bg-white"
+                />
+            </SidebarAuth>
         </div>
     </nav>
 </div>
