@@ -1,25 +1,18 @@
 ---
 import Avatar from "@/components/Avatar.astro"
 import { getSession } from "auth-astro/server"
+import { SignOut } from "auth-astro/components"
 
 const session = await getSession(Astro.request)
 const img = session?.user?.image
 const name = session?.user?.name ?? ""
 ---
 
-<div
-    id="menu-auth"
+<SignOut
     class="*:inline-block space-x-2 menu:p-2 menu:-ml-2 menu:-mb-2 rounded-lg menu:bg-muted-foreground/20 transition-all cursor-pointer active:scale-90 select-none"
 >
     {img && <Avatar src={img as any} alt={name} loading="eager" />}
     <span class="not-menu:hidden font-semibold text-secondary-foreground/90">
         {name}
     </span>
-</div>
-
-<script>
-    import { signOut } from "auth-astro/client"
-    document.querySelector("#menu-auth")?.addEventListener("click", () => {
-        signOut()
-    })
-</script>
+</SignOut>
