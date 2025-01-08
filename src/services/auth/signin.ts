@@ -62,7 +62,6 @@ export async function signIn<
     if (redirect || !isSupportingReturn || !error) {
         // TODO: Do not redirect for Credentials and Email providers by default in next major
         navigate(data.url ?? callbackUrl)
-        navigate("")
         // If url contains a hash, the browser does not reload the page. We reload manually
         if (data.url.includes("#")) navigate("")
         return
