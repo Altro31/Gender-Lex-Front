@@ -1,0 +1,11 @@
+---
+import { getSession } from "auth-astro/server"
+
+const session = await getSession(Astro.request)
+const authorized = session !== null
+---
+
+<script define:vars={{ authorized }} is:inline>
+    const e = document.querySelector("astro-sidebar-history")
+    if (e) e.dataset.authorized = authorized
+</script>

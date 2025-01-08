@@ -1,15 +1,16 @@
 ---
 import SidebarButton from "@/components/sidebar/SidebarButton.astro"
-import { getSession } from "auth-astro/server"
+import SidebarHistoryAction from "@/components/sidebar/SidebarHistoryAction.astro"
 import { Clock as ClockIcon } from "lucide-astro"
-
-const session = await getSession(Astro.request)
 ---
 
-{
-    session && (
-        <SidebarButton to="/history" label="Historial">
-            <ClockIcon class="size-5" />
-        </SidebarButton>
-    )
-}
+<SidebarHistoryAction server:defer />
+<astro-sidebar-history
+    transition:persist="astro-sidebar-history"
+    data-authorized={false}
+    class="data-[authorized=false]:*:hidden"
+>
+    <SidebarButton to="/history" label="Historial">
+        <ClockIcon class="size-5" />
+    </SidebarButton>
+</astro-sidebar-history>
