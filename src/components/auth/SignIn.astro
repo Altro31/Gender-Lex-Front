@@ -21,7 +21,9 @@ attrs.class = `signin-${key} ${attrs.class ?? ""}`
 
 <script>
     import { signIn } from "@/services/auth/signin"
-    Object.defineProperty(window, "signIn", signIn)
+
+    // @ts-expect-error
+    window.signIn = signIn
 </script>
 
 <script define:vars={{ provider, options, authParams, key }} is:inline>
