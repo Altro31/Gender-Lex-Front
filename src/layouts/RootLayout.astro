@@ -4,6 +4,7 @@ import Sidebar from "@/components/sidebar"
 import Theme from "@/components/theme/Theme.astro"
 import { buildPageTitle } from "@/lib/text/build-page-title"
 import { ClientRouter } from "astro:transitions"
+import LoadingIndicator from "astro-loading-indicator/component"
 
 interface Props {
     title?: string
@@ -20,6 +21,7 @@ const { title, withoutTransitionsAPI = false } = Astro.props
         <meta name="generator" content={Astro.generator} />
         <title>{buildPageTitle(title)}</title>
         {!withoutTransitionsAPI && <ClientRouter />}
+        <LoadingIndicator color="blue" />
         {
             import.meta.env.DEV && (
                 <script

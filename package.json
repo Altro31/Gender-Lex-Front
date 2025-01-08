@@ -37,6 +37,7 @@
         "adm-zip": "^0.5.16",
         "ai": "^4.0.21",
         "astro": "^5.0.2",
+        "astro-loading-indicator": "^0.7.0",
         "auth-astro": "^4.2.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
