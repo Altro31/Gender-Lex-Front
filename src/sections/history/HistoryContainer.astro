@@ -1,6 +1,6 @@
 ---
 import HistoryList from "@/sections/history/components/HistoryList.astro"
-import { Card, CardContent, CardHeader, CardTitle } from "~ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "~ui/card"
 ---
 
 <div
@@ -9,17 +9,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "~ui/card"
     <Card>
         <CardHeader className="p-2 sm:p-6">
             <CardTitle className="text-lg sm:text-2xl"
-                >Historial de Análisis</CardTitle
-            >
-        </CardHeader>
-        <CardContent className="p-2 pt-0 sm:pt-0 sm:p-6">
-            <p class="text-muted-foreground text-xs sm:text-base">
+                >Historial de Análisis
+            </CardTitle>
+            <CardDescription className="text-xs sm:text-base">
                 Aquí puedes ver un resumen de tus análisis de sesgos anteriores.
                 Haz clic en &quot;Más detalles&quot; para expandir la
                 información o en &quot;Ver análisis completo&quot; para acceder
                 al informe detallado.
-            </p>
-        </CardContent>
+            </CardDescription>
+        </CardHeader>
     </Card>
     <HistoryList />
 </div>

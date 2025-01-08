@@ -1,0 +1,61 @@
+---
+import {
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+    Pagination as ShadcnPagination,
+} from "~ui/pagination"
+
+interface Props {
+    total: number
+}
+
+const { total } = Astro.props
+
+const page = Number(Astro.url.searchParams.get("page")) || 1
+
+const prevPage = page - 1 > 0 ? page - 1 : undefined
+const nextPage = page < total ? page + 1 : undefined
+---
+
+<ShadcnPagination>
+    <PaginationContent>
+        {
+            prevPage && (
+                <>
+                    <PaginationItem>
+                        <PaginationPrevious
+                            href={"/history/?page=" + prevPage}
+                        />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink href={"/history/?page=" + prevPage}>
+                            {prevPage}
+                        </PaginationLink>
+                    </PaginationItem>
+                </>
+            )
+        }
+        <PaginationItem>
+            <PaginationLink href="" isActive>
+                {page}
+            </PaginationLink>
+        </PaginationItem>
+        {
+            nextPage && (
+                <>
+                    <PaginationItem>
+                        <PaginationLink href={"/history/?page=" + nextPage}>
+                            {nextPage}
+                        </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationNext href={"/history/?page=" + nextPage} />
+                    </PaginationItem>
+                </>
+            )
+        }
+    </PaginationContent>
+</ShadcnPagination>

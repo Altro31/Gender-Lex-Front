@@ -26,12 +26,16 @@ export class RequestRepository {
         return prisma.request.findUnique({ where: { id } })
     }
 
-    static async findAll({ limit = 5 }: FindAllArgs, request: Request) {
+    static async findAll(
+        { limit = 5, page = 1 }: FindAllArgs,
+        request: Request,
+    ) {
         const user = await getUser(request)
         if (!user) return
         const prisma = getPrisma(user)
 
-        return prisma.request.findMany({
+        const requestsPromise = prisma.request.findMany({
+            skip: limit * (page - 1),
             take: limit,
             orderBy: { createdAt: "desc" },
             select: {
@@ -41,5 +45,16 @@ export class RequestRepository {
                 Analysis: true,
             },
         })
+        const totalPagesPromise = prisma.request.count()
+
+        const [requests, totalPages] = await Promise.all([
+            requestsPromise,
+            totalPagesPromise,
+        ])
+
+        return {
+            requests,
+            totalPages: Math.ceil(totalPages / limit),
+        }
     }
 }

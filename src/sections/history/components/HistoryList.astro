@@ -1,8 +1,13 @@
 ---
+import Pagination from "@/components/Pagination.astro"
 import HistoryItem from "@/sections/history/components/HistoryItem.astro"
 import { RequestRepository } from "@/services/domain/request"
 
-const analysisData = await RequestRepository.findAll({}, Astro.request)
+const page = Number(Astro.url.searchParams.get("page")) || 1
+
+const res = await RequestRepository.findAll({ page }, Astro.request)
+const total = res?.totalPages ?? 1
 ---
 
-{analysisData?.map((data) => <HistoryItem data={data as any} />)}
+{res?.requests?.map((data) => <HistoryItem data={data as any} />)}
+{total > 1 && <Pagination total={total} />}
