@@ -1,4 +1,4 @@
-import { navigate } from "astro/virtual-modules/transitions-router.js"
+import { navigate } from "astro:transitions/client"
 import type { SignOutParams } from "next-auth/react"
 
 interface AstroSignOutParams extends SignOutParams {

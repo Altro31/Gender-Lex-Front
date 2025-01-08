@@ -1,17 +1,12 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import type { BuiltInProviderType } from "@auth/core/providers"
-import type {
-    LiteralUnion,
-    SignInAuthorizationParams,
-    SignInOptions,
-} from "next-auth/react/types"
 
 interface Props extends HTMLAttributes<"button"> {
     /** The authentication provider to sign in with. */
-    provider?: LiteralUnion<BuiltInProviderType, string>
-    options?: SignInOptions
-    authParams?: SignInAuthorizationParams
+    provider?: BuiltInProviderType | string
+    options?: any
+    authParams?: any
 }
 
 const key = Math.random().toString(36).slice(2, 11)

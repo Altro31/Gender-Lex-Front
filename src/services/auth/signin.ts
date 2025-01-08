@@ -2,7 +2,7 @@ import type {
     BuiltInProviderType,
     RedirectableProviderType,
 } from "@auth/core/providers"
-import { navigate } from "astro/virtual-modules/transitions-router.js"
+import { navigate } from "astro:transitions/client"
 import type {
     LiteralUnion,
     SignInAuthorizationParams,
@@ -53,7 +53,7 @@ export async function signIn<
             ...opts,
             csrfToken,
             callbackUrl,
-        }),
+        } as any),
     })
 
     const data = await res.clone().json()
