@@ -11,6 +11,15 @@ interface FindAllArgs {
 }
 
 export class RequestRepository {
+    private static instance: RequestRepository
+
+    private constructor() {}
+
+    static getInstance() {
+        if (!this.instance) this.instance = new RequestRepository()
+        return this.instance
+    }
+
     static async create(data: RequestCreateInput, request: Request) {
         const user = await getUser(request)
         if (!user) return

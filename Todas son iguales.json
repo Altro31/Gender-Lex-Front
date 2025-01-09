@@ -1,0 +1,37 @@
+{
+    "originalText": "Todas son iguales",
+    "modifiedText": "Todas las personas son únicas y diversas.",
+    "conclusion": "El análisis revela que la frase 'Todas son iguales' presenta un sesgo de género negativo significativo debido a la generalización y homogeneización de las mujeres, lo cual niega su individualidad y diversidad. La modificación propuesta busca resaltar la diversidad y singularidad de cada persona, evitando generalizaciones que perpetúen estereotipos de género.",
+    "Analysis": {
+        "biasedTerms": [
+            {
+                "content": "Todas",
+                "influencePercentage": 0.9,
+                "explanation": "El uso de 'Todas' generaliza y homogeneiza a las mujeres, ignorando la diversidad individual y perpetuando la idea de que todas las mujeres son iguales en todos los aspectos. Esto es un sesgo de género negativo porque niega la individualidad y la singularidad de cada mujer."
+            },
+            {
+                "content": "iguales",
+                "influencePercentage": 0.8,
+                "explanation": "El término 'iguales' implica que no hay diferencias significativas entre las mujeres, lo cual es una generalización que niega la diversidad de experiencias, personalidades y capacidades. Este término refuerza el estereotipo de que las mujeres son un grupo homogéneo, lo cual es un sesgo de género negativo."
+            }
+        ],
+        "biasedMetaphors": [],
+        "additionalContextEvaluation": {
+            "stereotype": {
+                "presence": true,
+                "influencePercentage": 0.8,
+                "explanation": "La frase 'Todas son iguales' refuerza el estereotipo de que las mujeres son un grupo homogéneo sin diferencias individuales, lo cual es una generalización que niega la diversidad de experiencias, personalidades y capacidades. Este estereotipo puede llevar a la discriminación y a la falta de reconocimiento de las contribuciones individuales de las mujeres."
+            },
+            "powerAsymmetry": {
+                "presence": true,
+                "influencePercentage": 0.7,
+                "explanation": "La frase puede ser utilizada para justificar la discriminación o el trato desigual hacia las mujeres, al sugerir que no hay diferencias significativas entre ellas y, por lo tanto, no merecen un trato diferenciado o reconocimiento de sus necesidades específicas. Esto refuerza una asimetría de poder donde se niega la individualidad y se perpetúa la desigualdad."
+            },
+            "genderRepresentationAbsence": {
+                "presence": true,
+                "influencePercentage": 0.9,
+                "explanation": "La frase 'Todas son iguales' implica una falta de reconocimiento de la diversidad y singularidad de las personas, lo cual puede ser interpretado como una forma de invisibilización de las mujeres y sus experiencias individuales. Al generalizar, se niega la individualidad y se perpetúa la idea de que todas las mujeres son intercambiables o idénticas, lo cual es un sesgo de género negativo."
+            }
+        }
+    }
+}

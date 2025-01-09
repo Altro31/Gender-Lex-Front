@@ -8,6 +8,8 @@ export const genderLexSchema = schemas.RequestSchema.omit({
     userEmail: true,
 })
 
+export type GenderLexType = z.infer<typeof altGenderLexSchema>
+
 export const altGenderLexSchema = z.object({
     originalText: z.string(),
     modifiedText: z.string(),
