@@ -26,5 +26,3 @@ pnpm-debug.log*
 .vercel
 
 /prisma/schema.prisma
-
-bun.lock*
