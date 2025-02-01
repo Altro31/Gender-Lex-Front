@@ -12,19 +12,20 @@ export default function FormSendButton({
 }: Props) {
     return (
         <Button
+            asChild
             size="sm"
             className="cursor-pointer rounded-lg transition-opacity"
             disabled={disabled}
         >
             {loading ? (
-                <div className="flex items-center gap-1">
+                <button className="flex items-center gap-1">
                     <span className="animate-spin">
                         <RefreshCwIcon />
                     </span>
                     <span>Analizando</span>
-                </div>
+                </button>
             ) : (
-                <span>Enviar</span>
+                <button>Enviar</button>
             )}
         </Button>
     )

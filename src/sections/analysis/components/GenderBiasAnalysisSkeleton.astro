@@ -5,39 +5,37 @@ import { Separator } from "~ui/separator"
 import { Skeleton } from "~ui/skeleton"
 ---
 
-<div class="container mx-auto p-4 space-y-6">
-    <div class="p-6">
-        <Skeleton className="w-full max-w-80 h-8" />
-        <div class="space-y-4">
-            <section class="py-2 space-y-1">
-                <Skeleton className="w-full max-w-32 h-7" />
-                <Skeleton className="w-full h-24" />
-            </section>
+<div class="p-6">
+    <Skeleton className="w-full max-w-80 h-8" />
+    <div class="space-y-4">
+        <section class="py-2 space-y-1">
+            <Skeleton className="w-full max-w-32 h-7" />
+            <Skeleton className="w-full h-24" />
+        </section>
 
-            <Separator />
+        <Separator />
 
-            <section>
-                <Skeleton className="w-full max-w-24 h-7 mb-4" />
-                <div class="space-y-4">
-                    <BiasedContentContainerSkeleton />
-                    <BiasedContentContainerSkeleton />
-                    <AdditionalContextEvaluationContainerSkeleton />
-                </div>
-            </section>
+        <section>
+            <Skeleton className="w-full max-w-24 h-7 mb-4" />
+            <div class="space-y-4">
+                <BiasedContentContainerSkeleton />
+                <BiasedContentContainerSkeleton />
+                <AdditionalContextEvaluationContainerSkeleton />
+            </div>
+        </section>
 
-            <Separator />
+        <Separator />
 
-            <section class="space-y-2">
-                <Skeleton className="w-full max-w-48 h-7" />
-                <Skeleton className="w-full h-24" />
-            </section>
+        <section class="space-y-2">
+            <Skeleton className="w-full max-w-48 h-7" />
+            <Skeleton className="w-full h-24" />
+        </section>
 
-            <Separator />
+        <Separator />
 
-            <section class="space-y-2">
-                <Skeleton className="w-full max-w-32 h-7" />
-                <Skeleton className="w-full h-24" />
-            </section>
-        </div>
+        <section class="space-y-2">
+            <Skeleton className="w-full max-w-32 h-7" />
+            <Skeleton className="w-full h-24" />
+        </section>
     </div>
 </div>

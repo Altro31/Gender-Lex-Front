@@ -11,67 +11,63 @@ interface Props {
 const { data } = Astro.props
 ---
 
-<div
-    class="overflow-auto menu:scale-95 sm:menu:scale-100 transition-transform max-h-screen mx-auto p-4 space-y-6"
->
-    <div class="p-6">
-        <h1 class="text-xl sm:text-2xl font-bold mb-4">
-            Análisis de Sesgo de Género
-        </h1>
-        <div class="space-y-3 sm:space-y-4">
-            <section>
-                <h2 class="sm:text-lg font-semibold mb-2">Texto Original</h2>
-                <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
-                    {data.originalText}
-                </p>
-            </section>
+<div class="p-6">
+    <h1 class="text-xl sm:text-2xl font-bold mb-4">
+        Análisis de Sesgo de Género
+    </h1>
+    <div class="space-y-3 sm:space-y-4">
+        <section>
+            <h2 class="sm:text-lg font-semibold mb-2">Texto Original</h2>
+            <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
+                {data.originalText}
+            </p>
+        </section>
 
-            <Separator />
+        <Separator />
 
-            <section>
-                <h2 class="sm:text-lg font-semibold mb-2">Análisis</h2>
-                <div class="space-y-4">
-                    {
-                        data.Analysis.biasedTerms.length > 0 && (
-                            <BiasedContentContainer
-                                title="Términos Sesgados"
-                                data={data.Analysis.biasedTerms}
-                            />
-                        )
-                    }
+        <section>
+            <h2 class="sm:text-lg font-semibold mb-2">Análisis</h2>
+            <div class="space-y-4">
+                {
+                    data.Analysis.biasedTerms.length > 0 && (
+                        <BiasedContentContainer
+                            title="Términos Sesgados"
+                            data={data.Analysis.biasedTerms}
+                        />
+                    )
+                }
 
-                    {
-                        data.Analysis.biasedMetaphors.length > 0 && (
-                            <BiasedContentContainer
-                                title="Metáforas Sesgadas"
-                                data={data.Analysis.biasedMetaphors}
-                            />
-                        )
-                    }
+                {
+                    data.Analysis.biasedMetaphors.length > 0 && (
+                        <BiasedContentContainer
+                            title="Metáforas Sesgadas"
+                            data={data.Analysis.biasedMetaphors}
+                        />
+                    )
+                }
 
-                    <AdditionalContextEvaluationContainer
-                        data={data.Analysis.additionalContextEvaluation}
-                    />
-                </div>
-            </section>
+                <AdditionalContextEvaluationContainer
+                    data={data.Analysis.additionalContextEvaluation}
+                />
+            </div>
+        </section>
 
-            <Separator />
+        <Separator />
 
-            <section>
-                <h2 class="sm:text-lg font-semibold mb-2">Texto Modificado</h2>
-                <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
-                    {data.modifiedText}
-                </p>
-            </section>
+        <section>
+            <h2 class="sm:text-lg font-semibold mb-2">Texto Modificado</h2>
+            <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
+                {data.modifiedText}
+            </p>
+        </section>
 
-            <Separator />
+        <Separator />
 
-            <section>
-                <h2 class="sm:text-lg font-semibold mb-2">Conclusión</h2>
-                <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
-                    {data.conclusion}
-                </p>
-            </section>
-        </div>
+        <section>
+            <h2 class="sm:text-lg font-semibold mb-2">Conclusión</h2>
+            <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
+                {data.conclusion}
+            </p>
+        </section>
     </div>
 </div>
