@@ -1,6 +1,7 @@
 {
     "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
+        "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {
             "react": ["node_modules/preact/compat/"],
