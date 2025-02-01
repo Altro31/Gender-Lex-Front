@@ -17,7 +17,6 @@ import reactCompiler from "babel-plugin-react-compiler"
 // https://astro.build/config
 export default defineConfig({
     output: "server",
-
     integrations: [auth(), react({ babel: { plugins: [reactCompiler] } })],
 
     vite: {

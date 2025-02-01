@@ -1,0 +1,2 @@
+@variant dark (&:is(.dark *));
+@variant menu (&:is(.menu *));
