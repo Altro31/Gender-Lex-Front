@@ -14,10 +14,16 @@ import tailwindcss from "@tailwindcss/vite"
 // @ts-expect-error - no TS types yet for beta test.
 import reactCompiler from "babel-plugin-react-compiler"
 
+import preact from "@astrojs/preact"
+
 // https://astro.build/config
 export default defineConfig({
     output: "server",
-    integrations: [auth(), react({ babel: { plugins: [reactCompiler] } })],
+    integrations: [
+        // react({ babel: { plugins: [reactCompiler] } })
+        auth(),
+        preact({ compat: true, devtools: true }),
+    ],
 
     vite: {
         // @ts-ignore
@@ -66,6 +72,11 @@ export default defineConfig({
             AUTH_GOOGLE_SECRET: envField.string({
                 access: "secret",
                 context: "server",
+            }),
+            FLAG_REACT_SCAN: envField.boolean({
+                access: "public",
+                context: "client",
+                default: false,
             }),
         },
     },
