@@ -31,6 +31,10 @@ export default defineConfig({
     },
     env: {
         schema: {
+            API_KEY: envField.string({
+                access: "secret",
+                context: "server",
+            }),
             PDF_SERVICES_CLIENT_ID: envField.string({
                 access: "secret",
                 context: "server",

@@ -11,3 +11,8 @@ export const availableModels = {
     "LlaMa 3.3-70b": groq("llama-3.3-70b-versatile"),
     "LlaMa 3.1-8b": groq("llama-3.1-8b-instant"),
 } as const
+export const availableModelsName = [
+    "Gemini 2.0",
+    "LlaMa 3.1-8b",
+    "LlaMa 3.3-70b",
+] as const satisfies AvailableModelsType[]
