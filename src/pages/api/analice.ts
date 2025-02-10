@@ -2,6 +2,7 @@ import { availableModels, availableModelsName } from "@/services/ai/models"
 import type { APIRoute } from "astro"
 import { API_KEY } from "astro:env/server"
 import { z } from "astro:schema"
+import { genderLex } from "@/services/domain/gender-lex"
 
 export const POST: APIRoute = async ({ request }) => {
     const apiKey = request.headers.get("API_KEY")
@@ -10,8 +11,8 @@ export const POST: APIRoute = async ({ request }) => {
             status: 401,
             statusText: "Unauthorized",
         })
-    const { success, data, error } = await analiceInput.safeParseAsync(
-        request.json(),
+    const { success, data, error } = analiceInput.safeParse(
+        await request.json(),
     )
     if (!success) {
         return Response.json(error, {
@@ -19,7 +20,10 @@ export const POST: APIRoute = async ({ request }) => {
             statusText: "Bad request",
         })
     }
-    return Response.json(data)
+
+    const { object } = await genderLex(data.text, data.model)
+
+    return Response.json(object)
 }
 
 const analiceInput = z.object({
