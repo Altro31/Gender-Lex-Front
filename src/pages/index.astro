@@ -1,8 +1,9 @@
 ---
 import RootLayout from "@/layouts/RootLayout.astro"
 import Container from "@/sections/home/Container.astro"
+import { DOCKER } from "astro:env/server"
 
-export const prerender = true
+export const prerender = !DOCKER
 ---
 
 <RootLayout title="Home">

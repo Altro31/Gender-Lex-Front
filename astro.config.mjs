@@ -29,6 +29,11 @@ export default defineConfig({
     },
     env: {
         schema: {
+            DOCKER: envField.boolean({
+                access: "secret",
+                context: "server",
+                default: false,
+            }),
             API_KEY: envField.string({
                 access: "secret",
                 context: "server",
