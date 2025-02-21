@@ -10,6 +10,7 @@
     --spacing: 0.25rem;
 
     /* radius */
+    --radius: 0.5rem;
     --radius-xl: calc(var(--radius) + 4px);
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);

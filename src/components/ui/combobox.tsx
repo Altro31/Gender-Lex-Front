@@ -17,6 +17,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { actions } from "astro:actions"
+import { batch, useSignal } from "@preact/signals"
 
 interface Props {
     options: any[]
@@ -24,17 +25,19 @@ interface Props {
 }
 
 export default function Combobox({ defaultValue, options }: Props) {
-    const [open, setOpen] = React.useState(false)
-    const [value, setValue] = React.useState(defaultValue)
+    const open = useSignal(false)
+    const value = useSignal(defaultValue)
 
+    const handleOpen = (state: boolean) => (open.value = state)
     const handleSelect = (currentValue: any) => () => {
-        setValue(currentValue === value ? "" : currentValue)
-        setOpen(false)
+        batch(() => {
+            value.value = currentValue === value ? "" : currentValue
+            open.value = false
+        })
         actions.registerModel(currentValue)
     }
-
     return (
-        <Popover open={open} onOpenChange={setOpen}>
+        <Popover open={open} onOpenChange={handleOpen}>
             <PopoverTrigger asChild>
                 <Button
                     variant="outline"

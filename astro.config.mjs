@@ -9,20 +9,12 @@ import auth from "auth-astro"
 
 import tailwindcss from "@tailwindcss/vite"
 
-// @ts-expect-error - no TS types yet for beta test.
-import reactCompiler from "babel-plugin-react-compiler"
-
 import preact from "@astrojs/preact"
 
 // https://astro.build/config
 export default defineConfig({
     output: "server",
-    integrations: [
-        // react({ babel: { plugins: [reactCompiler] } })
-        auth(),
-        preact({ compat: true, devtools: true }),
-    ],
-
+    integrations: [auth(), preact({ compat: true, devtools: true })],
     vite: {
         // @ts-ignore
         plugins: [tailwindcss()],

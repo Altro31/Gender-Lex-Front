@@ -1,8 +1,8 @@
-import { availableModels, availableModelsName } from "@/services/ai/models"
+import { availableModelsName } from "@/services/ai/models"
+import { genderLex } from "@/services/domain/gender-lex"
 import type { APIRoute } from "astro"
 import { API_KEY } from "astro:env/server"
 import { z } from "astro:schema"
-import { genderLex } from "@/services/domain/gender-lex"
 
 export const POST: APIRoute = async ({ request }) => {
     const apiKey = request.headers.get("API_KEY")

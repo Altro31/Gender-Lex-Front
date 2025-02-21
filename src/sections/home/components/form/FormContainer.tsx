@@ -1,7 +1,8 @@
 import UploadButton from "@/components/UploadButton"
 import { useUploadThing } from "@/hooks/use-uploadthing"
 import FormSendButton from "@/sections/home/components/form/FormSendButton"
-import { type FormEventHandler, useState } from "react"
+import { useComputed, useSignal } from "@preact/signals"
+import { type FormEventHandler } from "react"
 import { Textarea } from "~ui/textarea"
 
 type Input = string | undefined
@@ -9,12 +10,14 @@ type State = "ready" | "loading" | "error"
 
 export default function FormContainer() {
     const { startUpload } = useUploadThing("fileUploader")
-    const [input, setInput] = useState<string>("")
-    const [inputValue, setInputValue] = useState<Input>("")
-    const [inputFile, setInputFile] = useState("")
-    const [state, setState] = useState<State>("ready")
+    const inputValue = useSignal<Input>("")
+    const inputFile = useSignal("")
+    const state = useSignal<State>("ready")
+    const input = useSignal("")
 
-    const disabled = !input || state === "loading"
+    const isLoading = useComputed(() => state.value === "loading")
+    const disabled = useComputed(() => !input.value || isLoading.value)
+    const contentEditable = useComputed(() => !isLoading.value)
 
     const onFileUpload = async (file: File) => {
         if (file) {
@@ -22,36 +25,34 @@ export default function FormContainer() {
             const newFile = files?.[0]
 
             if (newFile) {
-                setInputFile(newFile.appUrl)
-                setInput(newFile.appUrl)
-                setInputValue(
+                inputFile.value = newFile.appUrl
+                input.value = newFile.appUrl
+                inputValue.value =
                     "📃 " +
-                        newFile.name +
-                        ` (${(newFile.size / 1024).toFixed(2)}KB)`,
-                )
+                    newFile.name +
+                    ` (${(newFile.size / 1024).toFixed(2)}KB)`
             }
         }
     }
-
     const handleInput: FormEventHandler<HTMLTextAreaElement> = (e) => {
-        setInput(e.currentTarget.value)
-        setInputValue(e.currentTarget.value)
+        input.value = e.currentTarget.value
+        inputValue.value = e.currentTarget.value
     }
-
+    const handleSubmit = () => (state.value = "loading")
     return (
         <form
             action="/analysis"
             method="POST"
             className="group flex h-full gap-2 pr-2"
-            onSubmit={() => setState("loading")}
+            onSubmit={handleSubmit}
         >
             <Textarea
                 name="text"
                 className="resize-none px-4"
                 placeholder="Analizar un texto..."
                 id="analyze-text"
-                contentEditable={state !== "loading"}
-                value={inputValue}
+                contentEditable={contentEditable}
+                value={input}
                 onInput={handleInput}
             />
             <div className="flex flex-col gap-1">
@@ -62,10 +63,7 @@ export default function FormContainer() {
                     value={inputFile}
                     readOnly
                 />
-                <FormSendButton
-                    disabled={disabled}
-                    loading={state === "loading"}
-                />
+                <FormSendButton disabled={disabled} loading={isLoading} />
                 <UploadButton disabled={disabled} onFileUpload={onFileUpload} />
             </div>
         </form>

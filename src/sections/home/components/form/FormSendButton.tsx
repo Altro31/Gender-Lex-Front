@@ -1,9 +1,10 @@
 import { RefreshCwIcon } from "lucide-react"
+import type { JSXInternal } from "node_modules/preact/src/jsx"
 import { Button } from "~ui/button"
 
 interface Props {
-    disabled?: boolean
-    loading?: boolean
+    disabled?: JSXInternal.Signalish<boolean>
+    loading?: JSXInternal.Signalish<boolean>
 }
 
 export default function FormSendButton({
@@ -17,7 +18,7 @@ export default function FormSendButton({
             className="cursor-pointer rounded-lg transition-opacity"
             disabled={disabled}
         >
-            {loading ? (
+            {loading.valueOf() ? (
                 <button className="flex items-center gap-1">
                     <span className="animate-spin">
                         <RefreshCwIcon />

@@ -3,7 +3,9 @@ import * as PopoverPrimitive from "@radix-ui/react-popover"
 
 import { cn } from "@/lib/utils"
 
-const Popover = PopoverPrimitive.Root
+const Popover = ({ open, ...props }: PopoverPrimitive.PopoverProps) => (
+    <PopoverPrimitive.Root open={open?.valueOf()} {...props} />
+)
 
 const PopoverTrigger = PopoverPrimitive.Trigger
 
