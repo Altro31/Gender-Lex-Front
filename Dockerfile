@@ -1,4 +1,4 @@
-FROM oven/bun:lts AS bun
+FROM oven/bun AS bun
 WORKDIR /app
 
 COPY package.json package-lock.json ./
