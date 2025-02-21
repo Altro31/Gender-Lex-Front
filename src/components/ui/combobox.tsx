@@ -37,13 +37,13 @@ export default function Combobox({ defaultValue, options }: Props) {
         actions.registerModel(currentValue)
     }
     return (
-        <Popover open={open} onOpenChange={handleOpen}>
+        <Popover open={open as any} onOpenChange={handleOpen}>
             <PopoverTrigger asChild>
                 <Button
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="menu:flex -ml-2 hidden w-full cursor-pointer justify-between"
+                    className="menu:flex hidden w-full cursor-pointer justify-between"
                 >
                     {value}
                     <ChevronsUpDown className="opacity-50" />

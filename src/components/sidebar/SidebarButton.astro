@@ -11,6 +11,7 @@ const { to, className, label, ...props } = Astro.props
 ---
 
 <a href={to} aria-label={label}>
+    <!-- @ts-expect-error -->
     <Button
         className={cn(
             "justify-start rounded-xl cursor-pointer menu:w-full hover:bg-muted-foreground/20",

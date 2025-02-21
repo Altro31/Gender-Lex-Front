@@ -9,7 +9,7 @@ const name = session?.user?.name ?? ""
 ---
 
 <Signout
-    class="text-start *:inline-block space-x-2 menu:p-2 menu:-ml-2 menu:-mb-2 rounded-lg menu:bg-muted-foreground/20 transition-all cursor-pointer active:scale-90 select-none"
+    class="text-start *:inline-block space-x-2 menu:p-2 menu:-mx-2 menu:-mb-2 rounded-lg menu:bg-muted-foreground/20 transition-all cursor-pointer active:scale-90 select-none"
 >
     {img && <Avatar src={img as any} alt={name} loading="eager" />}
     <span class="not-menu:hidden font-semibold text-secondary-foreground/90">
