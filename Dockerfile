@@ -13,6 +13,7 @@ RUN bun install
 
 FROM build-deps AS build
 ENV DOCKER=true
+ENV API_KEY="string"
 ENV DATABASE_URL="string"
 ENV AUTH_GOOGLE_SECRET="string"
 ENV AUTH_GOOGLE_ID="string"
