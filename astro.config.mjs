@@ -16,7 +16,6 @@ export default defineConfig({
     output: "server",
     integrations: [auth(), preact({ compat: true, devtools: true })],
     vite: {
-        // @ts-ignore
         plugins: [tailwindcss()],
     },
     env: {

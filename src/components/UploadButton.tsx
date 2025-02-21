@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import { untracked } from "@preact/signals"
 import { PaperclipIcon } from "lucide-react"
 import { Button, type ButtonProps } from "~ui/button"
 
@@ -11,6 +12,8 @@ export default function UploadButton({
     className,
     ...props
 }: Props) {
+    console.log("UploadButton")
+
     return (
         <Button
             asChild
@@ -23,11 +26,14 @@ export default function UploadButton({
                 <span className="sr-only">Upload file</span>
                 <PaperclipIcon className="h-4 w-4" />
                 <input
+                    name="file"
                     type="file"
                     className="hidden"
                     accept=".pdf"
                     onChange={(e) =>
-                        onFileUpload(e.currentTarget.files?.item(0)!)
+                        untracked(() =>
+                            onFileUpload(e.currentTarget.files?.item(0)!),
+                        )
                     }
                 />
             </label>

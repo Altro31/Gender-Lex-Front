@@ -8,12 +8,13 @@ const { success, data } = analyzeTextInputSchema.safeParse(
     Object.fromEntries(formData.entries()),
 )
 if (!success) throw new Error("Text must be provided")
+const fileBytes = Array.from(await data?.file.bytes())
 ---
 
 <div
     class="overflow-auto menu:scale-95 sm:menu:scale-100 transition-transform max-h-screen mx-auto p-4 space-y-6"
 >
-    <GenderBiasAnalysis server:defer text={data.text} file={data.file}>
+    <GenderBiasAnalysis server:defer text={data.text} fileBytes={fileBytes}>
         <GenderBiasAnalysisSkeleton slot="fallback" />
     </GenderBiasAnalysis>
 </div>

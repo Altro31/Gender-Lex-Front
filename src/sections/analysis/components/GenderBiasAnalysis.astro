@@ -7,12 +7,16 @@ import type { Request } from "@zenstackhq/runtime/models"
 
 interface Props {
     text?: string
-    file?: string
+    fileBytes?: number[]
 }
 
-const { text, file } = Astro.props
+const { text, fileBytes } = Astro.props
+const bytes = new Uint8Array(fileBytes)
+const file = new File([bytes], "file")
 
-const analiceText = file ? await extractPDFText(file) : text
+const analiceText = file
+    ? await extractPDFText(URL.createObjectURL(file))
+    : text
 
 const modelName = Astro.cookies.get("MODEL")?.value
 
