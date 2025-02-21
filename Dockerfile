@@ -1,15 +1,15 @@
-FROM node:lts AS base
+FROM oven/bun:lts AS bun
 WORKDIR /app
 
 COPY package.json package-lock.json ./
 COPY schema.zmodel ./
 COPY prisma/schema ./prisma/schema
 
-FROM base AS prod-deps
-RUN npm install --omit=dev -f
+FROM bun AS prod-deps
+RUN bun install --production
 
-FROM base AS build-deps
-RUN npm install -f
+FROM bun AS build-deps
+RUN bun install
 
 FROM build-deps AS build
 ENV DOCKER=true
@@ -25,7 +25,7 @@ ENV PDF_SERVICES_CLIENT_SECRET="string"
 ENV UPLOADTHING_TOKEN="string"
 
 COPY . .
-RUN npm run build
+RUN bun run build
 
 FROM node:22-alpine AS runtime
 COPY --from=prod-deps /app/node_modules ./node_modules

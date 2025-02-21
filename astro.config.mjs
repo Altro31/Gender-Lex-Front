@@ -7,8 +7,6 @@ import node from "@astrojs/node"
 
 import auth from "auth-astro"
 
-import react from "@astrojs/react"
-
 import tailwindcss from "@tailwindcss/vite"
 
 // @ts-expect-error - no TS types yet for beta test.
