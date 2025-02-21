@@ -1,7 +1,7 @@
 FROM oven/bun AS bun
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json bun.lock ./
 COPY schema.zmodel ./
 COPY prisma/schema ./prisma/schema
 
