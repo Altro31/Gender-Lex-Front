@@ -21,8 +21,6 @@ export default function ReAnaliceButton({
     if (!model.value && !global)
         model.value = document.body.dataset.model as AvailableModelsType
 
-    console.log("Hola")
-
     return (
         <Button
             size="icon"
