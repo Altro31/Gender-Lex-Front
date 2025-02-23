@@ -1,10 +1,8 @@
 import { cn } from "@/lib/utils"
 import type { AvailableModelsType } from "@/services/ai/models"
 import { model } from "@/stores/model"
-import { useComputed, useSignalEffect } from "@preact/signals"
 import { RefreshCcw } from "lucide-react"
 import type { ComponentProps, JSX } from "preact"
-import { useEffect } from "preact/hooks"
 import { Button } from "~ui/button"
 
 interface Props extends ComponentProps<typeof Button> {
