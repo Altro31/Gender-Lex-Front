@@ -2,6 +2,7 @@
 import { getCurrentModel } from "@/lib/domain"
 import AdditionalContextEvaluationContainer from "@/sections/analysis/components/additional-context-evaluation/AdditionalContextEvaluationContainer.astro"
 import BiasedContentContainer from "@/sections/analysis/components/biased-content/BiasedContentContainer.astro"
+import ModelBadge from "@/sections/analysis/components/ModelBadge.astro"
 import ReAnaliceButton from "@/sections/analysis/components/ReAnaliceButton"
 import type { Request } from "@zenstackhq/runtime/models"
 import { Badge } from "~ui/badge"
@@ -24,9 +25,7 @@ const model = getCurrentModel(Astro)
         </h1>
         <div class="flex items-center gap-1">
             <ReAnaliceButton dataModel={data.model} client:load />
-            <Badge variant="secondary" className="h-fit p-2 z-10">
-                {data.model}
-            </Badge>
+            <ModelBadge model={data.model} />
         </div>
     </div>
     <div class="space-y-3 sm:space-y-4">

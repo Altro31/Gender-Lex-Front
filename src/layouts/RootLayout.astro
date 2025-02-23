@@ -47,10 +47,3 @@ const model = getCurrentModel(Astro)
         </section>
     </body>
 </html>
-
-<script>
-    import type { AvailableModelsType } from "@/services/ai/models"
-    import { model } from "@/stores/model"
-    const modelName = document.body.dataset.model! as AvailableModelsType
-    model.value = modelName
-</script>

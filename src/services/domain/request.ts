@@ -42,6 +42,7 @@ export class RequestRepository {
                 createdAt: true,
                 originalText: true,
                 Analysis: true,
+                model: true,
             },
         })
         const totalPagesPromise = prisma.request.count()
