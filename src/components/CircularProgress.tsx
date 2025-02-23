@@ -24,7 +24,7 @@ const CircularProgress: React.FC<Props> = ({
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (count.peek() >= 100) clearInterval(interval)
+            if (count.peek() >= progress) clearInterval(interval)
             else {
                 untracked(() => count.value++)
                 if (circleRef.current) {

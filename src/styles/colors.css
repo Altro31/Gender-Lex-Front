@@ -39,6 +39,8 @@
     --chart-5: hsl(27, 87%, 67%);
 
     --dev: hsl(120, 100%, 20%);
+
+    --sidebar: hsl(0, 0%, 97%);
 }
 
 body:has(#theme:checked) {
@@ -82,6 +84,8 @@ body:has(#theme:checked) {
     --chart-5: hsl(340, 75%, 55%);
 
     --dev: hsl(120, 100%, 20%);
+
+    --sidebar: hsl(224, 71.4%, 7%);
 }
 
 @theme inline {
@@ -119,4 +123,6 @@ body:has(#theme:checked) {
     --color-chart-5: var(--chart-5);
 
     --color-dev: var(--dev);
+
+    --color-sidebar: var(--sidebar);
 }
