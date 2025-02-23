@@ -22,7 +22,7 @@ export default function Combobox({ defaultValue, options }: Props) {
     }
     return (
         <Select defaultValue={defaultValue} onValueChange={handleChange}>
-            <SelectTrigger className="not-menu:hidden">
+            <SelectTrigger className="not-menu:hidden cursor-pointer">
                 <SelectValue />
             </SelectTrigger>
             <SelectContent>

@@ -1,12 +1,9 @@
 ---
-import { availableModels } from "@/services/ai/models"
+import { getCurrentModel } from "@/lib/domain"
+import { availableModelsName } from "@/services/ai/models"
 import Combobox from "~ui/combobox"
 
-const modelName = Astro.cookies.get("MODEL")?.value
+const modelName = getCurrentModel(Astro)
 ---
 
-<Combobox
-    options={Object.keys(availableModels)}
-    defaultValue={modelName ?? "Gemini 2.0"}
-    client:load
-/>
+<Combobox options={availableModelsName} defaultValue={modelName} client:load />
