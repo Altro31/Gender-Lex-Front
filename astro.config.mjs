@@ -76,6 +76,7 @@ export default defineConfig({
               maxDuration: 60,
               webAnalytics: { enabled: true },
               imageService: true,
+              isr: true,
           }),
 
     image: {
@@ -84,6 +85,5 @@ export default defineConfig({
 
     experimental: {
         clientPrerender: true,
-
     },
 })
