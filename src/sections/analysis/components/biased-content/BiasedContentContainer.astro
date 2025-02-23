@@ -1,7 +1,7 @@
 ---
 import BiasedContentItem from "@/sections/analysis/components/biased-content/BiasedContentItem.astro"
 import type { BiasedITem } from "@zenstackhq/runtime/models"
-import { Card } from "~ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "~ui/card"
 
 interface Props {
     data: BiasedITem[]
@@ -12,8 +12,8 @@ const { data, title } = Astro.props
 ---
 
 <Card>
-    <div class="p-2 sm:p-4 space-y-2 sm:space-y-3">
-        <h3 class="text-base font-semibold mb-2">{title}</h3>
+    <CardHeader><CardTitle>{title}</CardTitle></CardHeader>
+    <CardContent>
         {data.map((term) => <BiasedContentItem data={term} />)}
-    </div>
+    </CardContent>
 </Card>

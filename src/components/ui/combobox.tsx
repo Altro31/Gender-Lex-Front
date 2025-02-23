@@ -1,7 +1,5 @@
-import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
     Command,
@@ -16,8 +14,10 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { actions } from "astro:actions"
+import { cn, e } from "@/lib/utils"
 import { batch, useSignal } from "@preact/signals"
+import { actions } from "astro:actions"
+import { model } from "@/stores/model"
 
 interface Props {
     options: any[]
@@ -33,6 +33,7 @@ export default function Combobox({ defaultValue, options }: Props) {
         batch(() => {
             value.value = currentValue === value ? "" : currentValue
             open.value = false
+            model.value = currentValue
         })
         actions.registerModel(currentValue)
     }

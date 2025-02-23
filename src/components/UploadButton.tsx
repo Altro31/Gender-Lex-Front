@@ -12,8 +12,6 @@ export default function UploadButton({
     className,
     ...props
 }: Props) {
-    console.log("UploadButton")
-
     return (
         <Button
             asChild

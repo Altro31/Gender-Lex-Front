@@ -1,13 +1,16 @@
 import "request"
 
 model User {
-    email     String    @id @email
+  email     String    @id @email @default(auth().email)
 
-    createdAt DateTime  @default(now())
+  createdAt DateTime  @default(now())
 
-    Analyses  Request[]
+  Analyses  Request[]
 
-    @@auth
-    @@allow('all', auth() != null)
-    @@allow('create', true)
+  @@auth
+  @@allow('all', auth() == this)
+
+  @@openapi.meta({
+      security: [ { bearer: [] } ]
+    })
 }

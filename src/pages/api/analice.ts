@@ -5,12 +5,6 @@ import { API_KEY } from "astro:env/server"
 import { z } from "astro:schema"
 
 export const POST: APIRoute = async ({ request }) => {
-    const apiKey = request.headers.get("API_KEY")
-    if (apiKey !== API_KEY)
-        return new Response(null, {
-            status: 401,
-            statusText: "Unauthorized",
-        })
     const { success, data, error } = analiceInput.safeParse(
         await request.json(),
     )

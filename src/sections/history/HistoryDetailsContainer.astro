@@ -8,4 +8,6 @@ const data = await RequestRepository.findOne(id, Astro.request)
 if (!data) return Astro.redirect("/404")
 ---
 
-<ResultContainer data={data} />
+<div class="mx-auto p-4 py-10 space-y-3">
+    <ResultContainer data={data} />
+</div>

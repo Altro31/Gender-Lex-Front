@@ -1,9 +1,7 @@
 import { getUser } from "@/lib/auth"
 import { getPrisma } from "@/lib/prisma/prisma-instance"
+import type { Prisma } from "@zenstackhq/runtime/models"
 import schemas from "@zenstackhq/runtime/zod/models"
-import type { z } from "astro:content"
-
-type RequestCreateInput = z.infer<typeof schemas.RequestCreateSchema>
 
 interface FindAllArgs {
     page?: number
@@ -11,7 +9,8 @@ interface FindAllArgs {
 }
 
 export class RequestRepository {
-    static async create(data: RequestCreateInput, request: Request) {
+    static async create(input: Prisma.RequestCreateInput, request: Request) {
+        const data = schemas.RequestCreateSchema.parse(input)
         const user = await getUser(request)
         if (!user) return
         const prisma = getPrisma(user)

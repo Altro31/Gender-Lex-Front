@@ -31,8 +31,6 @@ export default function FormContainer() {
         inputValue.value = e.currentTarget.value
     }
     const handleSubmit = () => (state.value = "loading")
-
-    console.log("FormContainer")
     return (
         <form
             action="/analysis"

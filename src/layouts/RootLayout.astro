@@ -2,16 +2,19 @@
 import "@/base.css"
 import Sidebar from "@/components/sidebar"
 import Theme from "@/components/theme/Theme.astro"
+import { getCurrentModel } from "@/lib/domain"
 import { buildPageTitle } from "@/lib/text/build-page-title"
-import { ClientRouter } from "astro:transitions"
 import LoadingIndicator from "astro-loading-indicator/component"
 import { FLAG_REACT_SCAN } from "astro:env/client"
+import { ClientRouter } from "astro:transitions"
 
 interface Props {
     title?: string
     withoutTransitionsAPI?: boolean
 }
 const { title, withoutTransitionsAPI = false } = Astro.props
+
+const model = getCurrentModel(Astro)
 ---
 
 <html lang="en">
@@ -32,13 +35,22 @@ const { title, withoutTransitionsAPI = false } = Astro.props
             )
         }
     </head>
-    <body class="relative">
+    <body class="relative" data-model={model}>
         <Theme />
         <section class="flex h-screen">
             <Sidebar />
-            <main class="flex-1">
+            <main
+                class="flex-1 menu:scale-95 sm:menu:scale-100 transition-transform overflow-auto max-h-screen"
+            >
                 <slot> No Content Provided</slot>
             </main>
         </section>
     </body>
 </html>
+
+<script>
+    import type { AvailableModelsType } from "@/services/ai/models"
+    import { model } from "@/stores/model"
+    const modelName = document.body.dataset.model! as AvailableModelsType
+    model.value = modelName
+</script>

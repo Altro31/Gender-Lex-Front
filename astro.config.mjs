@@ -37,10 +37,6 @@ export default defineConfig({
                 access: "secret",
                 context: "server",
             }),
-            UPLOADTHING_TOKEN: envField.string({
-                access: "secret",
-                context: "server",
-            }),
             DATABASE_URL: envField.string({
                 access: "secret",
                 context: "server",

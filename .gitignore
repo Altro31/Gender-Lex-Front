@@ -26,3 +26,4 @@ pnpm-debug.log*
 .vercel
 
 /prisma/schema.prisma
+/public/openapi.json

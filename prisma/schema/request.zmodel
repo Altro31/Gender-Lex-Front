@@ -3,9 +3,14 @@ import "analysis"
 
 model Request {
     id           String   @id @default(cuid())
+    slug         String   @default(uuid())
+
+    model        String
     originalText String
     modifiedText String
     conclusion   String
+
+
     userEmail    String?  @default(auth().email)
     User         User?    @relation(fields: [userEmail], references: [email], onDelete: SetNull)
 
@@ -13,7 +18,9 @@ model Request {
 
     Analysis     Analysis @json
 
-    @@allow('all',true)
-    @@deny('create',auth().email == null)
-    @@allow('read', auth() != User)
+    @@allow('all',auth() == User)
+
+    @@openapi.meta({
+        security: [ { bearer: [] } ],
+    })
 }

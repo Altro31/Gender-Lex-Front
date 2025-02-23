@@ -1,4 +1,5 @@
 ---
+import { getCurrentModel } from "@/lib/domain"
 import ResultContainer from "@/sections/analysis/components/ResultContainer.astro"
 import { genderLex } from "@/services/domain/gender-lex"
 import { RequestRepository } from "@/services/domain/request"
@@ -11,20 +12,24 @@ interface Props {
 }
 
 const { text, fileBytes } = Astro.props
-const bytes = new Uint8Array(fileBytes)
-const file = new File([bytes], "file")
+let file
+if (fileBytes) {
+    const bytes = new Uint8Array(fileBytes)
+    file = new File([bytes], "file")
+}
 
 const analiceText = file
     ? await extractPDFText(URL.createObjectURL(file))
     : text
 
-const modelName = Astro.cookies.get("MODEL")?.value
+const modelName = getCurrentModel(Astro)
 
 const { object } = await genderLex(analiceText ?? "", modelName as any)
 
-RequestRepository.create(object, Astro.request)
+const data = await RequestRepository.create(
+    { ...object, model: modelName },
+    Astro.request,
+)
 ---
 
-<ResultContainer
-    data={object as Omit<Request, "id" | "createdAt" | "userEmail">}
-/>
+<ResultContainer data={data} />

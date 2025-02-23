@@ -7,10 +7,22 @@ import "./prisma/schema/user"
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+plugin openapi {
+    provider = "@zenstackhq/openapi"
+    output = "./public/openapi.json"
+    title = "GenderLex"
+    version = "1.0.0"
+    omitInputDetails = true
+    securitySchemes = {
+        bearer: { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+        apiKey: { type: 'apiKey', in: 'header', name: 'API-KEY' }
+    }
 }

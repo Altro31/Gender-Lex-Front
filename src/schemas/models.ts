@@ -1,5 +1,4 @@
 import { z } from "astro:schema"
+import { availableModelsName } from "@/services/ai/models.ts"
 
-const models = ["Gemini 2.0", "LlaMa 3.1-8b", "LlaMa 3.3-70b"] as const
-
-export const modelSchema = z.enum(models)
+export const modelSchema = z.enum(availableModelsName)
