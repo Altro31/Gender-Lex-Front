@@ -1,7 +1,7 @@
 import "request"
 
 model User {
-  email     String    @id @email @default(auth().email)
+  email     String    @id @email
 
   createdAt DateTime  @default(now())
 

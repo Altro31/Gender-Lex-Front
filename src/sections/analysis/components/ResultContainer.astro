@@ -1,24 +1,24 @@
 ---
-import { getCurrentModel } from "@/lib/domain"
 import AdditionalContextEvaluationContainer from "@/sections/analysis/components/additional-context-evaluation/AdditionalContextEvaluationContainer.astro"
 import BiasedContentContainer from "@/sections/analysis/components/biased-content/BiasedContentContainer.astro"
 import ModelBadge from "@/sections/analysis/components/ModelBadge.astro"
 import ReAnaliceButton from "@/sections/analysis/components/ReAnaliceButton"
 import type { Request } from "@zenstackhq/runtime/models"
-import { Badge } from "~ui/badge"
 import { Separator } from "~ui/separator"
+import { getUser } from "@/lib/auth"
 
 interface Props {
     data: Request
 }
 
 const { data } = Astro.props
-const model = getCurrentModel(Astro)
+
+const user = await getUser(Astro.request)
 ---
 
 <form class="p-6" action="/analysis" method="POST">
     <input type="hidden" value={data.originalText} name="text" />
-    <input type="hidden" value={data.slug} name="slug" />
+    {user && <input type="hidden" value={data?.slug} name="slug" />}
     <div class="flex justify-between">
         <h1 class="text-xl sm:text-2xl font-bold mb-4">
             Análisis de Sesgo de Género

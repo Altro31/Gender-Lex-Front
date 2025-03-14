@@ -4,7 +4,7 @@ import ResultContainer from "@/sections/analysis/components/ResultContainer.astr
 import { genderLex } from "@/services/domain/gender-lex"
 import { RequestRepository } from "@/services/domain/request"
 import { extractPDFText } from "@/services/pdf/extract-pdf-text"
-import type { Request } from "@zenstackhq/runtime/models"
+import { getUser } from "@/lib/auth"
 
 interface Props {
     text?: string
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const { text, fileBytes } = Astro.props
+
 let file
 if (fileBytes) {
     const bytes = new Uint8Array(fileBytes)
@@ -24,12 +25,16 @@ const analiceText = file
 
 const modelName = getCurrentModel(Astro)
 
+const user = await getUser(Astro.request)
+
 const { object } = await genderLex(analiceText ?? "", modelName as any)
 
-const data = await RequestRepository.create(
-    { ...object, model: modelName },
-    Astro.request,
-)
+const data = user
+    ? await RequestRepository.create(
+          { ...object, model: modelName },
+          Astro.request,
+      )
+    : { ...object, model: modelName }
 ---
 
 <ResultContainer data={data} />

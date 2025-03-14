@@ -4,6 +4,7 @@
     "rsc": false,
     "tsx": true,
     "tailwind": {
+        "config": "",
         "css": "src/base.css",
         "baseColor": "gray",
         "cssVariables": true,
@@ -15,5 +16,6 @@
         "ui": "@/components/ui",
         "lib": "@/lib",
         "hooks": "@/hooks"
-    }
+    },
+    "iconLibrary": "lucide"
 }

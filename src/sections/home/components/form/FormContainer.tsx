@@ -40,7 +40,7 @@ export default function FormContainer() {
         >
             <Textarea
                 name="text"
-                className="resize-none px-4"
+                className="bg-background resize-none px-4"
                 placeholder="Analizar un texto..."
                 id="analyze-text"
                 contentEditable={contentEditable}

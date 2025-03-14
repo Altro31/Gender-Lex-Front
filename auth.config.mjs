@@ -13,8 +13,15 @@ export default defineConfig({
     ],
     events: {
         async signIn({ user }) {
-            console.log(user)
-            await getPrisma(user).user.create({ data: { email: user.email } })
+            if (!user.email) throw new Error("User email must be provided")
+            const prisma = getPrisma(user)
+            const existingUser = await prisma.user.findUnique({
+                where: { email: user.email },
+            })
+            if (!existingUser)
+                await prisma.user.create({
+                    data: { email: user.email },
+                })
         },
     },
 })
