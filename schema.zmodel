@@ -14,15 +14,3 @@ datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
 }
-
-plugin openapi {
-    provider = "@zenstackhq/openapi"
-    output = "./public/openapi.json"
-    title = "GenderLex"
-    version = "1.0.0"
-    omitInputDetails = true
-    securitySchemes = {
-        bearer: { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
-        apiKey: { type: 'apiKey', in: 'header', name: 'API-KEY' }
-    }
-}

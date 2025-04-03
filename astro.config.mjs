@@ -20,6 +20,10 @@ export default defineConfig({
     },
     env: {
         schema: {
+            API_URL: envField.string({
+                access: "secret",
+                context: "server",
+            }),
             API_KEY: envField.string({
                 access: "secret",
                 context: "server",

@@ -1,40 +1,24 @@
 ---
 import { getCurrentModel } from "@/lib/domain"
 import ResultContainer from "@/sections/analysis/components/ResultContainer.astro"
-import { genderLex } from "@/services/domain/gender-lex"
-import { RequestRepository } from "@/services/domain/request"
-import { extractPDFText } from "@/services/pdf/extract-pdf-text"
-import { getUser } from "@/lib/auth"
+import { analice, analiceFile } from "@/services/analice"
 
 interface Props {
     text?: string
     fileBytes?: number[]
 }
 
-const { text, fileBytes } = Astro.props
+const { text = "", fileBytes } = Astro.props
 
 let file
 if (fileBytes) {
     const bytes = new Uint8Array(fileBytes)
     file = new File([bytes], "file")
 }
-
-const analiceText = file
-    ? await extractPDFText(URL.createObjectURL(file))
-    : text
-
 const modelName = getCurrentModel(Astro)
-
-const user = await getUser(Astro.request)
-
-const { object } = await genderLex(analiceText ?? "", modelName as any)
-
-const data = user
-    ? await RequestRepository.create(
-          { ...object, model: modelName },
-          Astro.request,
-      )
-    : { ...object, model: modelName }
+const data = await (file
+    ? analiceFile(file, modelName, Astro.request)
+    : analice(text, modelName, Astro.request))
 ---
 
-<ResultContainer data={data} />
+<ResultContainer data={{ ...data, model: modelName }} />

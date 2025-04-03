@@ -1,4 +1,5 @@
 ---
+import UploadArea from "@/components/UploadArea"
 import FormContainer from "@/sections/home/components/form/FormContainer"
 import {
     ChartColumn as ChartColumnIcon,
@@ -32,7 +33,7 @@ const prompts = [
 ]
 ---
 
-<div class="h-full flex items-center justify-center">
+<UploadArea className="h-full flex items-center justify-center" client:load>
     <div
         class="p-4 max-w-4xl group-has-[#theme:checked]:bg-red-500 space-y-3 sm:space-y-8"
     >
@@ -73,7 +74,7 @@ const prompts = [
         </div>
         <FormContainer client:load />
     </div>
-</div>
+</UploadArea>
 
 <style is:global>
     @property --model {

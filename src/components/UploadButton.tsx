@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import { droppedFileStore } from "@/stores/droped-file"
 import { untracked } from "@preact/signals"
 import { PaperclipIcon } from "lucide-react"
 import { Button, type ButtonProps } from "~ui/button"
@@ -28,11 +29,11 @@ export default function UploadButton({
                     type="file"
                     className="hidden"
                     accept=".pdf"
-                    onChange={(e) =>
+                    onChange={(e) => {
                         untracked(() =>
                             onFileUpload(e.currentTarget.files?.item(0)!),
                         )
-                    }
+                    }}
                 />
             </label>
         </Button>

@@ -1,26 +1,23 @@
 import "user"
 import "analysis"
+import "modified-alternatives"
 
 model Request {
-    id           String   @id @default(cuid())
-    slug         String   @default(uuid())
+    id                       String                @id @default(cuid())
+    slug                     String                @default(uuid())
 
-    model        String
-    originalText String
-    modifiedText String
-    conclusion   String
+    model                    String
+    originalText             String
+    modifiedTextAlternatives ModifiedAlternative[] @json
+    conclusion               String
 
 
-    userEmail    String?  @default(auth().email)
-    User         User?    @relation(fields: [userEmail], references: [email], onDelete: SetNull)
+    userId                   String?               @default(auth().id)
+    User                     User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
 
-    createdAt    DateTime @default(now())
+    createdAt                DateTime              @default(now())
 
-    Analysis     Analysis @json
+    Analysis                 Analysis              @json
 
     @@allow('all',auth() == User)
-
-    @@openapi.meta({
-        security: [ { bearer: [] } ],
-    })
 }

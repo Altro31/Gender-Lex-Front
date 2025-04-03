@@ -1,41 +1,49 @@
 ---
-import AdditionalContextEvaluationContainerSkeleton from "@/sections/analysis/components/additional-context-evaluation/AdditionalContextEvaluationContainerSkeleton.astro"
-import BiasedContentContainerSkeleton from "@/sections/analysis/components/biased-content/BiasedContentContainerSkeleton.astro"
-import { Separator } from "~ui/separator"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "~ui/card"
 import { Skeleton } from "~ui/skeleton"
 ---
 
 <div class="p-6">
-    <Skeleton className="w-full max-w-80 h-8" />
-    <div class="space-y-4">
-        <section class="py-2 space-y-1">
-            <Skeleton className="w-full max-w-32 h-7" />
-            <Skeleton className="w-full h-24" />
-        </section>
+    <div class="space-y-4 sm:space-y-6">
+        <div class="space-y-1 sm:space-y-2">
+            <Skeleton className="h-8 sm:h-10 w-3/4" />
+            <Skeleton className="h-4 sm:h-5 w-2/3" />
+        </div>
 
-        <Separator />
+        <Card>
+            <CardHeader className="pb-2 sm:pb-4">
+                <CardTitle className="text-xl sm:text-2xl">
+                    <Skeleton className="h-7 w-1/2" />
+                </CardTitle>
+                <CardDescription>
+                    <Skeleton className="h-4 w-2/3" />
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Skeleton
+                    className="h-[150px] sm:h-[200px] w-full rounded-md"
+                />
+            </CardContent>
+        </Card>
 
-        <section>
-            <Skeleton className="w-full max-w-24 h-7 mb-4" />
-            <div class="space-y-4">
-                <BiasedContentContainerSkeleton />
-                <BiasedContentContainerSkeleton />
-                <AdditionalContextEvaluationContainerSkeleton />
+        <div class="w-full">
+            <div class="block md:hidden mb-4">
+                <Skeleton className="h-10 w-full rounded-md" />
             </div>
-        </section>
 
-        <Separator />
+            <div class="hidden md:block mb-4">
+                <Skeleton className="h-10 w-full rounded-md" />
+            </div>
 
-        <section class="space-y-2">
-            <Skeleton className="w-full max-w-48 h-7" />
-            <Skeleton className="w-full h-24" />
-        </section>
-
-        <Separator />
-
-        <section class="space-y-2">
-            <Skeleton className="w-full max-w-32 h-7" />
-            <Skeleton className="w-full h-24" />
-        </section>
+            <div class="mt-2">
+                <Skeleton className="h-[400px] w-full rounded-md" />
+            </div>
+        </div>
     </div>
 </div>

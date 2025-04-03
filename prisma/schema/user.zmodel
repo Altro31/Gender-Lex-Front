@@ -1,7 +1,16 @@
 import "request"
 
+enum Provider {
+  Local
+  Google
+}
+
 model User {
-  email     String    @id @email
+  id        String    @id @default(cuid())
+  email     String    @email @unique
+  password  String?   @password @deny('read',  this.provider != Local)
+
+  provider  Provider  @default(Local)
 
   createdAt DateTime  @default(now())
 
@@ -9,8 +18,5 @@ model User {
 
   @@auth
   @@allow('all', auth() == this)
-
-  @@openapi.meta({
-      security: [ { bearer: [] } ]
-    })
+  @@allow('create,read',true)
 }

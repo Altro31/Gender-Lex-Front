@@ -8,6 +8,11 @@ export const availableModels = {
     "LlaMa 3.3-70b": groq("llama-3.3-70b-versatile"),
     "LlaMa 3.1-8b": groq("llama-3.1-8b-instant"),
 } as const
-export const availableModelsName = Object.keys(
-    availableModels,
-) as UnionToTuple<AvailableModelsType>
+export type Model = (typeof availableModelsName)[number]
+export const availableModelsName = [
+    "deepseek",
+    "gemini",
+    "llama3_1",
+    "llama3_3",
+    "qwen",
+]

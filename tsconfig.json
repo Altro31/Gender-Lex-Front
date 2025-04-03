@@ -1,6 +1,9 @@
 {
     "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "noUncheckedIndexedAccess": true,
         "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {

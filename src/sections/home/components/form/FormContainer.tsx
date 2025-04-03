@@ -1,6 +1,7 @@
 import UploadButton from "@/components/UploadButton"
 import FormSendButton from "@/sections/home/components/form/FormSendButton"
-import { batch, useComputed, useSignal } from "@preact/signals"
+import { droppedFileStore } from "@/stores/droped-file"
+import { batch, useComputed, useSignal, useSignalEffect } from "@preact/signals"
 import { type FormEventHandler } from "react"
 import { Textarea } from "~ui/textarea"
 
@@ -16,17 +17,17 @@ export default function FormContainer() {
     const contentEditable = useComputed(() => !isLoading.value)
 
     const onFileUpload = async (file: File) => {
-        if (file) {
-            if (file) {
-                batch(() => {
-                    inputValue.value =
-                        "📃 " +
-                        file.name +
-                        ` (${(file.size / 1024).toFixed(2)}KB)`
-                })
-            }
-        }
+        batch(() => {
+            inputValue.value =
+                "📃 " + file.name + ` (${(file.size / 1024).toFixed(2)}KB)`
+        })
     }
+
+    useSignalEffect(() => {
+        if (droppedFileStore.value !== null)
+            onFileUpload(droppedFileStore.value)
+    })
+
     const handleInput: FormEventHandler<HTMLTextAreaElement> = (e) => {
         inputValue.value = e.currentTarget.value
     }

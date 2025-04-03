@@ -1,11 +1,9 @@
 ---
-import AdditionalContextEvaluationContainer from "@/sections/analysis/components/additional-context-evaluation/AdditionalContextEvaluationContainer.astro"
-import BiasedContentContainer from "@/sections/analysis/components/biased-content/BiasedContentContainer.astro"
+import { getUser } from "@/lib/auth"
+import ResultData from "@/sections/analysis/components/data/ResultData"
 import ModelBadge from "@/sections/analysis/components/ModelBadge.astro"
 import ReAnaliceButton from "@/sections/analysis/components/ReAnaliceButton"
 import type { Request } from "@zenstackhq/runtime/models"
-import { Separator } from "~ui/separator"
-import { getUser } from "@/lib/auth"
 
 interface Props {
     data: Request
@@ -28,59 +26,5 @@ const user = await getUser(Astro.request)
             <ModelBadge model={data.model} />
         </div>
     </div>
-    <div class="space-y-3 sm:space-y-4">
-        <section>
-            <h2 class="sm:text-lg font-semibold mb-2">Texto Original</h2>
-            <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
-                {data.originalText}
-            </p>
-        </section>
-
-        <Separator />
-
-        <section>
-            <h2 class="sm:text-lg font-semibold mb-2">Análisis</h2>
-            <div class="space-y-4">
-                {
-                    data.Analysis.biasedTerms.length > 0 && (
-                        <BiasedContentContainer
-                            title="Términos Sesgados"
-                            data={data.Analysis.biasedTerms}
-                        />
-                    )
-                }
-
-                {
-                    data.Analysis.biasedMetaphors.length > 0 && (
-                        <BiasedContentContainer
-                            title="Metáforas Sesgadas"
-                            data={data.Analysis.biasedMetaphors}
-                        />
-                    )
-                }
-
-                <AdditionalContextEvaluationContainer
-                    data={data.Analysis.additionalContextEvaluation}
-                />
-            </div>
-        </section>
-
-        <Separator />
-
-        <section>
-            <h2 class="sm:text-lg font-semibold mb-2">Texto Modificado</h2>
-            <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
-                {data.modifiedText}
-            </p>
-        </section>
-
-        <Separator />
-
-        <section>
-            <h2 class="sm:text-lg font-semibold mb-2">Conclusión</h2>
-            <p class="text-sm sm:text-base bg-muted p-3 rounded-md">
-                {data.conclusion}
-            </p>
-        </section>
-    </div>
+    <ResultData data={data} client:load />
 </form>

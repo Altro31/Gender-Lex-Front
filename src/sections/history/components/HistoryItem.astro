@@ -1,12 +1,8 @@
 ---
 import ToggleButton from "@/components/ToggleButton.astro"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import ModelBadge from "@/sections/analysis/components/ModelBadge.astro"
-import { calculateOverallBias } from "@/sections/history/utils/calculate-overall-bias"
-import { getBiasColor } from "@/sections/history/utils/get-bias-color"
-import { getBiasLevel } from "@/sections/history/utils/get-bias-level"
 import type { Analysis, Request } from "@zenstackhq/runtime/models"
 import { AlertTriangle, ChevronRight } from "lucide-react"
 
@@ -18,10 +14,6 @@ interface Props {
 }
 
 const { id, createdAt, originalText, Analysis, model } = Astro.props.data
-
-const overallBias = calculateOverallBias(Analysis)
-const biasLevel = getBiasLevel(overallBias)
-const biasColor = getBiasColor(overallBias)
 ---
 
 <Card className="w-full group p-2">
