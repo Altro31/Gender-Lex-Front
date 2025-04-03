@@ -2,7 +2,7 @@ import { z } from "astro:schema"
 
 export type GoogleLoginEntity = z.infer<typeof googleLoginEntitySchema>
 export const googleLoginEntitySchema = z.object({
-    jwt: z.string().jwt(),
+    jwt: z.string(),
     user: z.object({
         id: z.string(),
         email: z.string(),

@@ -11,5 +11,5 @@ console.log(res)
 const total = res?.totalPages ?? 1
 ---
 
-{res?.data?.requests?.map((data) => <HistoryItem data={data as any} />)}
+{res?.data?.map((data) => <HistoryItem data={data as any} />)}
 {total > 1 && <Pagination total={total} />}
