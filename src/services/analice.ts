@@ -24,8 +24,12 @@ export async function analiceFile(file: File, model: string, request: Request) {
     const formData = new FormData()
     formData.append("file", file)
     formData.append("model", model)
-    const res = await axios.post<RequestType>(endpoints.ai.analice, formData, {
-        headers: { Authorization: "Bearer " + (session as any)?.jwt },
+    const res = await fetch(endpoints.ai.analiceFile, {
+        method: "POST",
+        body: formData,
+        headers: {
+            Authorization: "Bearer " + (session as any)?.jwt,
+        },
     })
-    return res.data
+    return (await res.json()) as RequestType
 }
